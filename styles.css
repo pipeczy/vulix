@@ -48,15 +48,17 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 1rem 2rem;
+    padding: 0.5rem 2rem; /* Reducido para dar espacio al logo */
     background: rgba(250, 251, 252, 0.85);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid rgba(0,0,0,0.05);
     transition: var(--transition-smooth);
+    height: 80px; /* ALTURA FIJA */
 }
 
 .header.scrolled {
-    padding: 0.75rem 2rem;
+    height: 70px; /* Altura fija cuando hay scroll */
+    padding: 0.5rem 2rem;
     box-shadow: var(--shadow-md);
 }
 
@@ -66,6 +68,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 100%; /* Ocupa toda la altura del header */
 }
 
 .logo {
@@ -79,6 +82,38 @@ body {
     align-items: center;
     gap: 0.5rem;
 }
+
+.logo {
+    font-family: var(--font-mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--color-text);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    height: 100%; /* Ocupa toda la altura disponible */
+}
+
+.logo-image {
+    height: 350%; /* Se adapta a la altura del contenedor */
+    max-height: 400px; /* Límite máximo */
+    width: auto;
+    object-fit: contain;
+    transition: var(--transition-fast);
+    padding: 5px 0; /* Pequeño padding para que no toque los bordes */
+}
+
+.logo:hover .logo-image {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+
+.header.scrolled .logo-image {
+    max-height: 55px; /* Más pequeño cuando hay scroll */
+}
+
 
 .logo-mark {
     width: 36px;
