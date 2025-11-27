@@ -672,12 +672,45 @@ body {
 /* ==================== SERVICES SECTION ==================== */
 .services {
     padding: 8rem 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.services::before {
+    content: '';
+    position: absolute;
+    top: 20%;
+    right: -10%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: floatSlow 20s ease-in-out infinite;
+}
+
+.services::after {
+    content: '';
+    position: absolute;
+    bottom: 10%;
+    left: -5%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: floatSlow 15s ease-in-out infinite reverse;
+}
+
+@keyframes floatSlow {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(30px, -30px) scale(1.1); }
 }
 
 .services-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+    position: relative;
+    z-index: 1;
 }
 
 .service-card {
@@ -685,9 +718,10 @@ body {
     padding: 2.5rem;
     border-radius: 16px;
     border: 1px solid rgba(0,0,0,0.06);
-    transition: var(--transition-smooth);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
     position: relative;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .service-card::before {
@@ -700,16 +734,35 @@ body {
     background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
     transform: scaleX(0);
     transform-origin: left;
-    transition: var(--transition-smooth);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.service-card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
 }
 
 .service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 20px 60px rgba(0, 212, 255, 0.2), 0 0 0 1px rgba(0, 212, 255, 0.1);
+    border-color: rgba(0, 212, 255, 0.3);
 }
 
 .service-card:hover::before {
     transform: scaleX(1);
+}
+
+.service-card:hover::after {
+    width: 500px;
+    height: 500px;
 }
 
 .service-icon {
@@ -722,18 +775,40 @@ body {
     justify-content: center;
     font-size: 1.75rem;
     margin-bottom: 1.5rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 1;
 }
 
+.service-card:hover .service-icon {
+    transform: scale(1.15) rotate(5deg);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(124, 58, 237, 0.2) 100%);
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.3);
+}
 .service-card h3 {
     font-size: 1.25rem;
     font-weight: 700;
     margin-bottom: 0.75rem;
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.service-card:hover h3 {
+    color: var(--color-primary-dark);
 }
 
 .service-card p {
     color: var(--color-text-muted);
     font-size: 0.95rem;
     margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.service-card:hover p {
+    color: var(--color-text);
 }
 
 .service-features {
@@ -741,6 +816,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+    position: relative;
+    z-index: 1;
 }
 
 .service-features li {
@@ -749,12 +826,24 @@ body {
     gap: 0.5rem;
     font-size: 0.9rem;
     color: var(--color-text-muted);
+    transition: all 0.3s ease;
+    transform: translateX(0);
+}
+
+.service-card:hover .service-features li {
+    transform: translateX(5px);
+    color: var(--color-text);
 }
 
 .service-features li::before {
     content: '→';
     color: var(--color-primary);
     font-weight: 600;
+    transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-features li::before {
+    transform: translateX(3px);
 }
 
 /* ==================== ANTI-FALLAS SECTION ==================== */
