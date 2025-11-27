@@ -48,11 +48,55 @@ const observer = new IntersectionObserver((entries) => {
 }, observerOptions);
 
 // Animate elements on scroll
-document.querySelectorAll('.service-card, .portfolio-card, .testimonial-card, .process-step, .anti-card').forEach(el => {
+document.querySelectorAll('.service-card, .portfolio-card, .testimonial-card, .anti-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
     el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
     observer.observe(el);
+});
+
+// ==================== PROCESS STEPS SEQUENTIAL ACTIVATION ====================
+const processObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const steps = entry.target.querySelectorAll('.process-step');
+            steps.forEach((step, index) => {
+                setTimeout(() => {
+                    step.classList.add('active');
+                }, index * 400); // Activación secuencial cada 400ms
+            });
+            processObserver.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.3
+});
+
+const processSection = document.querySelector('.process-timeline');
+if (processSection) {
+    processObserver.observe(processSection);
+}
+
+// ==================== PROCESS STEPS HOVER EFFECT ====================
+const processSteps = document.querySelectorAll('.process-step');
+processSteps.forEach((step, index) => {
+    step.addEventListener('mouseenter', () => {
+        // Añadir efecto de brillo a los pasos anteriores
+        processSteps.forEach((s, i) => {
+            if (i <= index) {
+                s.querySelector('.process-number').style.borderColor = 'var(--color-primary)';
+            }
+        });
+    });
+    
+    step.addEventListener('mouseleave', () => {
+        // Restaurar estados
+        processSteps.forEach((s, i) => {
+            if (!s.classList.contains('active')) {
+                s.querySelector('.process-number').style.borderColor = '#e5e7eb';
+            }
+        });
+    });
 });
 
 // ==================== PARALLAX EFFECT FOR HERO ====================
