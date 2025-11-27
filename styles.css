@@ -2290,6 +2290,324 @@ body {
 .portfolio {
     padding: 8rem 2rem;
     background: var(--color-bg-alt);
+    position: relative;
+    overflow: hidden;
+}
+
+/* ==================== PORTFOLIO BACKGROUND EFFECTS ==================== */
+.portfolio-background-effects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Puntos flotantes sutiles */
+.portfolio-dot {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(0, 212, 255, 0.12);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0, 212, 255, 0.2);
+    animation: portfolioDotFloat 8s ease-in-out infinite;
+}
+
+.portfolio-dot-1 {
+    top: 15%;
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 7s;
+}
+
+.portfolio-dot-2 {
+    top: 45%;
+    left: 85%;
+    animation-delay: 1s;
+    animation-duration: 9s;
+    background: rgba(124, 58, 237, 0.12);
+    box-shadow: 0 0 8px rgba(124, 58, 237, 0.2);
+}
+
+.portfolio-dot-3 {
+    top: 70%;
+    left: 20%;
+    animation-delay: 2s;
+    animation-duration: 8s;
+}
+
+.portfolio-dot-4 {
+    top: 25%;
+    left: 60%;
+    animation-delay: 1.5s;
+    animation-duration: 7.5s;
+    background: rgba(124, 58, 237, 0.12);
+    box-shadow: 0 0 8px rgba(124, 58, 237, 0.2);
+}
+
+.portfolio-dot-5 {
+    top: 85%;
+    left: 75%;
+    animation-delay: 2.5s;
+    animation-duration: 8.5s;
+}
+
+/* Líneas diagonales sutiles */
+.portfolio-line {
+    position: absolute;
+    width: 1px;
+    height: 150px;
+    background: linear-gradient(to bottom,
+        transparent,
+        rgba(0, 212, 255, 0.08),
+        transparent);
+    animation: portfolioLineMove 12s ease-in-out infinite;
+}
+
+.portfolio-line-1 {
+    top: 20%;
+    left: 30%;
+    transform: rotate(25deg);
+    animation-delay: 0s;
+}
+
+.portfolio-line-2 {
+    top: 60%;
+    right: 25%;
+    transform: rotate(-25deg);
+    animation-delay: 3s;
+    background: linear-gradient(to bottom,
+        transparent,
+        rgba(124, 58, 237, 0.08),
+        transparent);
+}
+
+/* Resplandores sutiles */
+.portfolio-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: 0.08;
+    animation: portfolioGlowPulse 10s ease-in-out infinite;
+}
+
+.portfolio-glow-1 {
+    top: 10%;
+    left: 15%;
+    width: 200px;
+    height: 200px;
+    background: rgba(0, 212, 255, 0.3);
+    animation-delay: 0s;
+}
+
+.portfolio-glow-2 {
+    bottom: 15%;
+    right: 20%;
+    width: 250px;
+    height: 250px;
+    background: rgba(124, 58, 237, 0.25);
+    animation-delay: 2s;
+}
+
+/* Animaciones para efectos de fondo */
+@keyframes portfolioDotFloat {
+    0%, 100% {
+        transform: translateY(0) scale(1);
+        opacity: 0.15;
+    }
+    50% {
+        transform: translateY(-20px) scale(1.5);
+        opacity: 0.3;
+    }
+}
+
+@keyframes portfolioLineMove {
+    0%, 100% {
+        transform: translateY(0) rotate(25deg);
+        opacity: 0.08;
+    }
+    50% {
+        transform: translateY(-30px) rotate(25deg);
+        opacity: 0.15;
+    }
+}
+
+@keyframes portfolioGlowPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.08;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.12;
+    }
+}
+
+/* ==================== ESTRELLITAS EN LAS ESQUINAS ==================== */
+.portfolio-star {
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+    animation: starTwinkle 3s ease-in-out infinite;
+}
+
+.portfolio-star::before {
+    content: '✦';
+    position: absolute;
+    font-size: 12px;
+    transform: translate(-50%, -50%);
+}
+
+/* Esquina superior izquierda (Top Left) - Cian */
+.portfolio-star-tl-1 {
+    top: 5%;
+    left: 3%;
+    animation-delay: 0s;
+}
+
+.portfolio-star-tl-1::before {
+    color: rgba(0, 212, 255, 0.6);
+    font-size: 14px;
+}
+
+.portfolio-star-tl-2 {
+    top: 8%;
+    left: 6%;
+    animation-delay: 1s;
+}
+
+.portfolio-star-tl-2::before {
+    color: rgba(0, 212, 255, 0.5);
+    font-size: 10px;
+}
+
+.portfolio-star-tl-3 {
+    top: 3%;
+    left: 8%;
+    animation-delay: 2s;
+}
+
+.portfolio-star-tl-3::before {
+    color: rgba(124, 58, 237, 0.5);
+    font-size: 11px;
+}
+
+/* Esquina superior derecha (Top Right) - Púrpura */
+.portfolio-star-tr-1 {
+    top: 5%;
+    right: 3%;
+    animation-delay: 0.5s;
+}
+
+.portfolio-star-tr-1::before {
+    color: rgba(124, 58, 237, 0.6);
+    font-size: 13px;
+}
+
+.portfolio-star-tr-2 {
+    top: 8%;
+    right: 6%;
+    animation-delay: 1.5s;
+}
+
+.portfolio-star-tr-2::before {
+    color: rgba(124, 58, 237, 0.5);
+    font-size: 10px;
+}
+
+.portfolio-star-tr-3 {
+    top: 3%;
+    right: 7%;
+    animation-delay: 2.5s;
+}
+
+.portfolio-star-tr-3::before {
+    color: rgba(0, 212, 255, 0.5);
+    font-size: 12px;
+}
+
+/* Esquina inferior izquierda (Bottom Left) - Cian */
+.portfolio-star-bl-1 {
+    bottom: 5%;
+    left: 3%;
+    animation-delay: 1s;
+}
+
+.portfolio-star-bl-1::before {
+    color: rgba(0, 212, 255, 0.6);
+    font-size: 14px;
+}
+
+.portfolio-star-bl-2 {
+    bottom: 8%;
+    left: 6%;
+    animation-delay: 2s;
+}
+
+.portfolio-star-bl-2::before {
+    color: rgba(0, 212, 255, 0.5);
+    font-size: 11px;
+}
+
+.portfolio-star-bl-3 {
+    bottom: 3%;
+    left: 8%;
+    animation-delay: 3s;
+}
+
+.portfolio-star-bl-3::before {
+    color: rgba(124, 58, 237, 0.5);
+    font-size: 10px;
+}
+
+/* Esquina inferior derecha (Bottom Right) - Púrpura */
+.portfolio-star-br-1 {
+    bottom: 5%;
+    right: 3%;
+    animation-delay: 1.5s;
+}
+
+.portfolio-star-br-1::before {
+    color: rgba(124, 58, 237, 0.6);
+    font-size: 13px;
+}
+
+.portfolio-star-br-2 {
+    bottom: 8%;
+    right: 6%;
+    animation-delay: 2.5s;
+}
+
+.portfolio-star-br-2::before {
+    color: rgba(124, 58, 237, 0.5);
+    font-size: 11px;
+}
+
+.portfolio-star-br-3 {
+    bottom: 3%;
+    right: 8%;
+    animation-delay: 0.5s;
+}
+
+.portfolio-star-br-3::before {
+    color: rgba(0, 212, 255, 0.5);
+    font-size: 12px;
+}
+
+/* Animación de titileo de estrellas */
+@keyframes starTwinkle {
+    0%, 100% {
+        opacity: 0;
+        transform: scale(0.5) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2) rotate(180deg);
+    }
 }
 
 .portfolio-grid {
@@ -2303,12 +2621,61 @@ body {
     border-radius: 16px;
     overflow: hidden;
     box-shadow: var(--shadow-sm);
-    transition: var(--transition-smooth);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 1;
+}
+
+.portfolio-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg,
+        rgba(0, 212, 255, 0) 0%,
+        rgba(0, 212, 255, 0.03) 30%,
+        rgba(124, 58, 237, 0.03) 70%,
+        rgba(124, 58, 237, 0) 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.portfolio-card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+        rgba(0, 212, 255, 0.1) 0%,
+        rgba(124, 58, 237, 0.06) 40%,
+        transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+    pointer-events: none;
+    z-index: 0;
 }
 
 .portfolio-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 60px rgba(0, 212, 255, 0.15),
+                0 10px 40px rgba(124, 58, 237, 0.1),
+                0 0 0 1px rgba(0, 212, 255, 0.1);
+}
+
+.portfolio-card:hover::before {
+    opacity: 1;
+}
+
+.portfolio-card:hover::after {
+    width: 600px;
+    height: 600px;
 }
 
 .portfolio-image {
@@ -2316,6 +2683,7 @@ body {
     background: linear-gradient(135deg, var(--color-bg-alt) 0%, rgba(0, 212, 255, 0.1) 100%);
     position: relative;
     overflow: hidden;
+    z-index: 1;
 }
 
 .portfolio-image::after {
@@ -2330,10 +2698,19 @@ body {
     height: 100%;
     object-fit: cover;
     border-radius: 8px;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.4s ease;
+}
+
+.portfolio-card:hover .portfolio-placeholder {
+    transform: scale(1.05);
 }
 
 .portfolio-content {
     padding: 1.5rem;
+    position: relative;
+    z-index: 1;
 }
 
 .portfolio-tags {
@@ -2349,6 +2726,14 @@ body {
     background: rgba(0, 212, 255, 0.1);
     color: var(--color-primary-dark);
     border-radius: 100px;
+    transition: all 0.3s ease;
+}
+
+.portfolio-card:hover .portfolio-tag {
+    background: rgba(0, 212, 255, 0.18);
+    color: var(--color-primary-dark);
+    box-shadow: 0 0 12px rgba(0, 212, 255, 0.25);
+    transform: translateY(-2px);
 }
 
 .portfolio-card h3 {
@@ -2387,6 +2772,173 @@ body {
     padding: 8rem 2rem;
     position: relative;
     overflow: hidden;
+}
+
+/* Process Background Effects */
+.process-background-effects {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.process-line {
+    position: absolute;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.3), rgba(124, 58, 237, 0.3));
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.2);
+}
+
+.process-line-1 {
+    width: 2px;
+    height: 200px;
+    top: 10%;
+    left: 15%;
+    animation: processLineFloat 8s ease-in-out infinite;
+}
+
+.process-line-2 {
+    width: 2px;
+    height: 250px;
+    top: 60%;
+    right: 20%;
+    animation: processLineFloat 10s ease-in-out infinite reverse;
+    animation-delay: 2s;
+}
+
+.process-star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: rgba(0, 212, 255, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+    animation: processStarTwinkle 3s ease-in-out infinite;
+}
+
+.process-star-1 {
+    top: 15%;
+    left: 20%;
+    animation-delay: 0s;
+}
+
+.process-star-2 {
+    top: 25%;
+    right: 15%;
+    animation-delay: 0.5s;
+}
+
+.process-star-3 {
+    top: 50%;
+    left: 10%;
+    animation-delay: 1s;
+}
+
+.process-star-4 {
+    top: 70%;
+    right: 25%;
+    animation-delay: 1.5s;
+}
+
+.process-star-5 {
+    top: 80%;
+    left: 30%;
+    animation-delay: 2s;
+}
+
+.process-star-6 {
+    top: 40%;
+    right: 30%;
+    animation-delay: 2.5s;
+}
+
+.process-star-7 {
+    top: 60%;
+    left: 40%;
+    animation-delay: 0.8s;
+}
+
+.process-star-8 {
+    top: 35%;
+    right: 40%;
+    animation-delay: 1.8s;
+}
+
+.process-dot {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: rgba(0, 212, 255, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.7);
+    animation: processDotPulse 3s ease-in-out infinite;
+}
+
+.process-dot-1 {
+    top: 20%;
+    left: 25%;
+    animation-delay: 0s;
+}
+
+.process-dot-2 {
+    top: 30%;
+    right: 30%;
+    animation-delay: 0.6s;
+}
+
+.process-dot-3 {
+    top: 70%;
+    left: 35%;
+    animation-delay: 1.2s;
+}
+
+.process-dot-4 {
+    top: 80%;
+    right: 15%;
+    animation-delay: 1.8s;
+}
+
+.process-dot-5 {
+    top: 45%;
+    right: 25%;
+    animation-delay: 2.4s;
+}
+
+@keyframes processLineFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translateY(-30px) rotate(5deg);
+        opacity: 1;
+    }
+}
+
+@keyframes processStarTwinkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
+}
+
+@keyframes processDotPulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.5);
+    }
 }
 
 /* Fondo animado */
@@ -2805,6 +3357,13 @@ body {
 .pricing {
     padding: 8rem 2rem;
     background: var(--color-bg-alt);
+    position: relative;
+    overflow: hidden;
+}
+
+.pricing .section-inner {
+    position: relative;
+    z-index: 1;
 }
 
 .pricing-grid {
@@ -2976,6 +3535,111 @@ body {
 .pricing-note a:hover {
     color: var(--color-primary);
     text-decoration: underline;
+}
+
+/* Pricing Space Background Effects */
+.pricing-space-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.pricing-star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+    animation: pricingStarTwinkle 3s ease-in-out infinite;
+}
+
+.pricing-star-1 {
+    top: 15%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.pricing-star-2 {
+    top: 25%;
+    right: 15%;
+    animation-delay: 0.5s;
+}
+
+.pricing-star-3 {
+    top: 70%;
+    left: 20%;
+    animation-delay: 1s;
+}
+
+.pricing-star-4 {
+    top: 80%;
+    right: 25%;
+    animation-delay: 1.5s;
+}
+
+.pricing-star-5 {
+    top: 40%;
+    left: 5%;
+    animation-delay: 2s;
+}
+
+.pricing-star-6 {
+    top: 60%;
+    right: 8%;
+    animation-delay: 2.5s;
+}
+
+.pricing-orbit {
+    position: absolute;
+    border: 1px solid rgba(0, 212, 255, 0.08);
+    border-radius: 50%;
+    animation: pricingOrbitRotate 30s linear infinite;
+}
+
+.pricing-orbit-1 {
+    width: 300px;
+    height: 300px;
+    top: 10%;
+    right: -100px;
+}
+
+.pricing-orbit-2 {
+    width: 400px;
+    height: 400px;
+    bottom: -150px;
+    left: -100px;
+    animation-duration: 40s;
+}
+
+@keyframes pricingStarTwinkle {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+}
+
+@keyframes pricingOrbitRotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.pricing-grid {
+    position: relative;
+    z-index: 1;
 }
 
 /* ==================== IMPULSA SECTION ==================== */
