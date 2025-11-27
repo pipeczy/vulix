@@ -855,7 +855,7 @@ body {
 /* ==================== ANTI-FALLAS SECTION ==================== */
 .anti-fallas {
     padding: 6rem 2rem;
-    background: var(--color-text);
+    background: linear-gradient(135deg, #0a0e1a 0%, #1a1f35 50%, #0d1117 100%);
     color: white;
     position: relative;
     overflow: hidden;
@@ -864,13 +864,168 @@ body {
 .anti-fallas::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: 
-        radial-gradient(ellipse at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 50%, rgba(124, 58, 237, 0.1) 0%, transparent 50%);
+    top: -50%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.15) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: floatGlow 15s ease-in-out infinite;
+    filter: blur(60px);
+}
+
+.anti-fallas::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: floatGlow 20s ease-in-out infinite reverse;
+    filter: blur(80px);
+}
+
+@keyframes floatGlow {
+    0%, 100% { 
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+    }
+    50% { 
+        transform: translate(50px, -50px) scale(1.2);
+        opacity: 0.8;
+    }
+}
+
+/* Partículas flotantes */
+.anti-fallas .section-inner::before,
+.anti-fallas .section-inner::after {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: particleFloat 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.anti-fallas .section-inner::before {
+    top: 20%;
+    left: 15%;
+    animation-delay: 0s;
+}
+
+.anti-fallas .section-inner::after {
+    top: 60%;
+    right: 20%;
+    animation-delay: 4s;
+    background: var(--color-accent);
+}
+
+/* Partículas adicionales usando la grid */
+.anti-grid::before,
+.anti-grid::after {
+    content: '';
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: particleFloat 10s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.anti-grid::before {
+    top: 15%;
+    right: 10%;
+    animation-delay: 2s;
+}
+
+.anti-grid::after {
+    bottom: 20%;
+    left: 8%;
+    animation-delay: 6s;
+    background: rgba(124, 58, 237, 0.8);
+}
+
+/* Más partículas pequeñas */
+.anti-card:nth-child(1)::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    top: 10%;
+    right: 15%;
+    opacity: 0.4;
+    animation: particleFloat 12s ease-in-out infinite;
+    animation-delay: 1s;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.anti-card:nth-child(2)::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(124, 58, 237, 0.8);
+    border-radius: 50%;
+    top: 20%;
+    left: 10%;
+    opacity: 0.4;
+    animation: particleFloat 14s ease-in-out infinite;
+    animation-delay: 3s;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.anti-card:nth-child(3)::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    bottom: 15%;
+    right: 12%;
+    opacity: 0.4;
+    animation: particleFloat 11s ease-in-out infinite;
+    animation-delay: 5s;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.anti-card:nth-child(4)::after {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(124, 58, 237, 0.8);
+    border-radius: 50%;
+    bottom: 20%;
+    left: 15%;
+    opacity: 0.4;
+    animation: particleFloat 13s ease-in-out infinite;
+    animation-delay: 7s;
+    pointer-events: none;
+    z-index: 0;
+}
+
+@keyframes particleFloat {
+    0%, 100% { 
+        transform: translateY(0) scale(1);
+        opacity: 0.6;
+    }
+    50% { 
+        transform: translateY(-30px) scale(1.5);
+        opacity: 1;
+    }
 }
 
 .anti-fallas .section-inner {
@@ -880,14 +1035,17 @@ body {
 
 .anti-fallas .section-tag {
     color: var(--color-primary);
+    animation: fadeInUp 0.6s ease-out;
 }
 
 .anti-fallas .section-title {
     color: white;
+    animation: fadeInUp 0.6s ease-out 0.1s both;
 }
 
 .anti-fallas .section-subtitle {
     color: rgba(255,255,255,0.7);
+    animation: fadeInUp 0.6s ease-out 0.2s both;
 }
 
 .anti-grid {
@@ -895,44 +1053,113 @@ body {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
     margin-top: 3rem;
+    position: relative;
 }
 
 .anti-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 12px;
-    padding: 1.5rem;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 2rem;
     display: flex;
-    gap: 1rem;
-    transition: var(--transition-fast);
+    gap: 1.25rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+}
+
+.anti-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 .anti-card:hover {
     background: rgba(255,255,255,0.08);
-    border-color: rgba(0, 212, 255, 0.3);
+    border-color: rgba(0, 212, 255, 0.4);
+    transform: translateY(-8px);
+    box-shadow: 
+        0 20px 60px rgba(0, 212, 255, 0.25),
+        0 10px 30px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(0, 212, 255, 0.1),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+}
+
+.anti-card:hover::before {
+    transform: scaleX(1);
 }
 
 .anti-icon {
-    width: 48px;
-    height: 48px;
-    background: rgba(0, 212, 255, 0.15);
-    border-radius: 10px;
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.2) 0%, rgba(124, 58, 237, 0.2) 100%);
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     flex-shrink: 0;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.2);
+}
+
+.anti-card:hover .anti-icon {
+    transform: scale(1.1) rotate(-5deg);
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.3) 0%, rgba(124, 58, 237, 0.3) 100%);
+    box-shadow: 0 8px 24px rgba(0, 212, 255, 0.4);
+}
+
+.anti-content {
+    position: relative;
+    z-index: 1;
 }
 
 .anti-content h4 {
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 600;
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+    color: white;
+}
+
+.anti-card:hover .anti-content h4 {
+    color: var(--color-primary);
 }
 
 .anti-content p {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     color: rgba(255,255,255,0.6);
+    line-height: 1.6;
+    transition: color 0.3s ease;
+}
+
+.anti-card:hover .anti-content p {
+    color: rgba(255,255,255,0.85);
+}
+
+/* Efecto de brillo en las esquinas */
+.anti-card:hover .anti-icon::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 8px;
+    height: 8px;
+    background: var(--color-primary);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--color-primary);
+    animation: pulse 1.5s ease-in-out infinite;
 }
 
 /* ==================== PORTFOLIO SECTION ==================== */
