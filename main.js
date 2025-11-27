@@ -252,3 +252,138 @@ const mockupDashboard = document.querySelector('.mockup-dashboard');
 if (mockupDashboard) {
     metricsObserver.observe(mockupDashboard);
 }
+
+
+// Scroll to Top Button
+const scrollToTopBtn = document.createElement('button');
+scrollToTopBtn.className = 'scroll-to-top';
+scrollToTopBtn.setAttribute('aria-label', 'Volver arriba');
+document.body.appendChild(scrollToTopBtn);
+
+// Show/hide button on scroll
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        scrollToTopBtn.classList.add('visible');
+    } else {
+        scrollToTopBtn.classList.remove('visible');
+    }
+});
+
+// Scroll to top with animation
+scrollToTopBtn.addEventListener('click', () => {
+    // Add active animation
+    scrollToTopBtn.style.animation = 'rocketBoost 0.6s ease-out';
+    
+    // Scroll to top
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+    
+    // Remove animation after completion
+    setTimeout(() => {
+        scrollToTopBtn.style.animation = '';
+    }, 600);
+});
+
+// Optional: Add particle effect on hover
+scrollToTopBtn.addEventListener('mouseenter', () => {
+    createStarParticles(scrollToTopBtn);
+});
+
+function createStarParticles(element) {
+    const rect = element.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    for (let i = 0; i < 3; i++) {
+        setTimeout(() => {
+            const particle = document.createElement('div');
+            particle.style.cssText = `
+                position: fixed;
+                width: 4px;
+                height: 4px;
+                background: white;
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 1000;
+                left: ${centerX}px;
+                top: ${centerY}px;
+                box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+            `;
+            document.body.appendChild(particle);
+            
+            const angle = (Math.PI * 2 * i) / 3;
+            const distance = 40;
+            const endX = centerX + Math.cos(angle) * distance;
+            const endY = centerY + Math.sin(angle) * distance;
+            
+            particle.animate([
+                { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+                { transform: `translate(${endX - centerX}px, ${endY - centerY}px) scale(0)`, opacity: 0 }
+            ], {
+                duration: 800,
+                easing: 'ease-out'
+            }).onfinish = () => particle.remove();
+        }, i * 100);
+    }
+}
+
+// ==================== BUTTON ROCKET LAUNCH ====================
+const btnDespegue = document.getElementById('btnDespegue');
+
+if (btnDespegue) {
+    btnDespegue.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Get button position
+        const btnRect = btnDespegue.getBoundingClientRect();
+        const btnCenterX = btnRect.left + btnRect.width / 2;
+        const btnCenterY = btnRect.top + btnRect.height / 2;
+        
+        // Create rocket element
+        const rocket = document.createElement('div');
+        rocket.className = 'btn-rocket';
+        rocket.innerHTML = `
+            <div class="btn-rocket-body">
+                <div class="btn-rocket-nose"></div>
+                <div class="btn-rocket-window"></div>
+            </div>
+            <div class="btn-rocket-fins">
+                <div class="btn-rocket-fin btn-rocket-fin-left"></div>
+                <div class="btn-rocket-fin btn-rocket-fin-right"></div>
+            </div>
+            <div class="btn-rocket-flames">
+                <div class="btn-rocket-flame"></div>
+                <div class="btn-rocket-flame"></div>
+                <div class="btn-rocket-flame"></div>
+            </div>
+        `;
+        
+        // Position rocket at button center
+        rocket.style.left = btnCenterX + 'px';
+        rocket.style.top = btnCenterY + 'px';
+        
+        document.body.appendChild(rocket);
+        
+        // Trigger launch animation immediately (sin setTimeout)
+        requestAnimationFrame(() => {
+            rocket.classList.add('launching');
+        });
+        
+        // Remove rocket after animation
+        setTimeout(() => {
+            rocket.remove();
+            // Redirect to contact section
+            document.querySelector('#contacto').scrollIntoView({ behavior: 'smooth' });
+        }, 1600);
+        
+        // Add shake effect to button
+        btnDespegue.classList.add('btn-shake');
+        setTimeout(() => {
+            btnDespegue.classList.remove('btn-shake');
+        }, 500);
+    });
+}
+
+// ==================== ANIMATED COUNTER FOR METRICS ====================
