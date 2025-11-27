@@ -130,18 +130,63 @@ const ctaForm = document.querySelector('.cta-form');
 if (ctaForm) {
     ctaForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        
+
         // Get form data
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
-        
+
         // Here you would typically send the data to your server
         console.log('Form submitted:', data);
-        
+
         // Show success message (you can customize this)
         alert('¡Gracias por contactarnos! Te responderemos en menos de 24 horas.');
-        
+
         // Reset form
         e.target.reset();
     });
 }
+
+// ==================== PARALLAX STARS EFFECT ====================
+let ticking = false;
+
+function updateParallaxStars() {
+    const impulsaSection = document.querySelector('.impulsa-section');
+    if (!impulsaSection) return;
+
+    const stars = document.querySelectorAll('.parallax-star');
+    const scrolled = window.pageYOffset;
+
+    // Obtener la posición de la sección impulsa
+    const sectionTop = impulsaSection.offsetTop;
+
+    // Calcular el scroll relativo a la sección (cuánto has scrolleado desde que empieza)
+    const relativeScroll = scrolled - sectionTop;
+
+    stars.forEach((star, index) => {
+        // Diferentes velocidades para cada estrella (efecto parallax más notorio)
+        // Cada estrella tiene una velocidad única basada en su índice
+        const speedVariation = (index % 7) + 1; // Números del 1 al 7
+        const speed = speedVariation * 0.5; // Velocidades entre 0.5 y 3.5
+
+        // Movimiento inverso al scroll: cuando bajas, las estrellas suben (negativo)
+        const yOffset = -relativeScroll * speed;
+
+        // Aplicar transformación
+        star.style.transform = `translateY(${yOffset}px)`;
+    });
+
+    ticking = false;
+}
+
+function requestParallaxTick() {
+    if (!ticking) {
+        window.requestAnimationFrame(updateParallaxStars);
+        ticking = true;
+    }
+}
+
+// Escuchar el evento de scroll
+window.addEventListener('scroll', requestParallaxTick, { passive: true });
+
+// Ejecutar una vez al cargar para inicializar
+updateParallaxStars();
