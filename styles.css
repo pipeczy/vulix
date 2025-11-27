@@ -48,18 +48,191 @@ body {
     left: 0;
     right: 0;
     z-index: 1000;
-    padding: 0.5rem 2rem; /* Reducido para dar espacio al logo */
-    background: rgba(250, 251, 252, 0.85);
+    padding: 0.5rem 2rem;
+    background: linear-gradient(180deg,
+        rgba(10, 15, 30, 0.95) 0%,
+        rgba(15, 20, 35, 0.92) 100%);
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.15);
     transition: var(--transition-smooth);
-    height: 80px; /* ALTURA FIJA */
+    height: 80px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(0, 212, 255, 0.1);
+    overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image:
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(2px 2px at 60% 70%, white, transparent),
+        radial-gradient(1px 1px at 50% 50%, white, transparent),
+        radial-gradient(1px 1px at 80% 10%, white, transparent),
+        radial-gradient(2px 2px at 90% 60%, white, transparent),
+        radial-gradient(1px 1px at 33% 80%, white, transparent),
+        radial-gradient(1px 1px at 15% 90%, white, transparent),
+        radial-gradient(1px 1px at 25% 45%, rgba(255,255,255,0.8), transparent),
+        radial-gradient(1px 1px at 75% 25%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(2px 2px at 45% 15%, white, transparent),
+        radial-gradient(1px 1px at 88% 85%, rgba(255,255,255,0.7), transparent),
+        radial-gradient(1px 1px at 12% 55%, white, transparent),
+        radial-gradient(1px 1px at 67% 92%, rgba(255,255,255,0.8), transparent),
+        radial-gradient(2px 2px at 38% 68%, white, transparent),
+        radial-gradient(1px 1px at 95% 35%, rgba(255,255,255,0.6), transparent),
+        radial-gradient(1px 1px at 5% 15%, white, transparent),
+        radial-gradient(1px 1px at 42% 88%, rgba(255,255,255,0.5), transparent),
+        radial-gradient(1px 1px at 72% 48%, white, transparent),
+        radial-gradient(2px 2px at 28% 22%, rgba(255,255,255,0.9), transparent),
+        radial-gradient(1px 1px at 8% 65%, white, transparent);
+    background-size: 200% 200%;
+    background-position: 0% 0%;
+    opacity: 0.5;
+    animation: twinkleStars 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.header::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 8%;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle, #00d4ff 0%, #0099cc 50%, transparent 70%);
+    border-radius: 50%;
+    transform: translateY(-50%);
+    opacity: 0.7;
+    animation: floatPlanet 15s ease-in-out infinite;
+    pointer-events: none;
+    box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
+}
+
+@keyframes twinkleStars {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.7; }
+}
+
+@keyframes floatPlanet {
+    0%, 100% {
+        transform: translateY(-50%) translateX(0) scale(1);
+        opacity: 0.7;
+    }
+    50% {
+        transform: translateY(-40%) translateX(-20px) scale(1.1);
+        opacity: 0.9;
+    }
+}
+
+/* Space Planets */
+.space-planets {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.planet {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.planet-1 {
+    top: 20%;
+    left: 5%;
+    width: 14px;
+    height: 14px;
+    background: radial-gradient(circle at 30% 30%, #ff6b35, #d94a1f);
+    box-shadow:
+        0 0 20px rgba(255, 107, 53, 0.6),
+        inset -3px -3px 6px rgba(0, 0, 0, 0.3);
+    animation: orbit1 25s linear infinite;
+}
+
+.planet-2 {
+    top: 60%;
+    left: 15%;
+    width: 8px;
+    height: 8px;
+    background: radial-gradient(circle at 35% 35%, #a855f7, #7c3aed);
+    box-shadow:
+        0 0 15px rgba(168, 85, 247, 0.5),
+        inset -2px -2px 4px rgba(0, 0, 0, 0.3);
+    animation: orbit2 18s linear infinite;
+}
+
+.planet-3 {
+    top: 35%;
+    right: 12%;
+    width: 11px;
+    height: 11px;
+    background: radial-gradient(circle at 30% 30%, #00d4ff, #0099cc);
+    box-shadow:
+        0 0 18px rgba(0, 212, 255, 0.6),
+        inset -2px -2px 5px rgba(0, 0, 0, 0.3);
+    animation: orbit3 20s linear infinite;
+}
+
+@keyframes orbit1 {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.8;
+    }
+    25% {
+        transform: translate(30px, -10px) scale(1.1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(50px, 5px) scale(0.9);
+        opacity: 0.7;
+    }
+    75% {
+        transform: translate(25px, 15px) scale(1.05);
+        opacity: 0.9;
+    }
+}
+
+@keyframes orbit2 {
+    0%, 100% {
+        transform: translate(0, 0) rotate(0deg) scale(1);
+        opacity: 0.7;
+    }
+    33% {
+        transform: translate(-20px, 10px) rotate(120deg) scale(1.15);
+        opacity: 0.9;
+    }
+    66% {
+        transform: translate(15px, -5px) rotate(240deg) scale(0.85);
+        opacity: 0.8;
+    }
+}
+
+@keyframes orbit3 {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.75;
+    }
+    50% {
+        transform: translate(-40px, 12px) scale(1.2);
+        opacity: 1;
+    }
 }
 
 .header.scrolled {
-    height: 70px; /* Altura fija cuando hay scroll */
+    height: 70px;
     padding: 0.5rem 2rem;
-    box-shadow: var(--shadow-md);
+    background: rgba(10, 15, 30, 0.98);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(0, 212, 255, 0.15);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
 }
 
 .header-inner {
@@ -68,7 +241,9 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 100%; /* Ocupa toda la altura del header */
+    height: 100%;
+    position: relative;
+    z-index: 2;
 }
 
 .logo {
@@ -145,7 +320,7 @@ body {
 .nav-links a {
     font-size: 0.9rem;
     font-weight: 500;
-    color: var(--color-text-muted);
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     transition: var(--transition-fast);
     position: relative;
@@ -159,11 +334,13 @@ body {
     width: 0;
     height: 2px;
     background: var(--color-primary);
+    box-shadow: 0 0 8px var(--color-primary);
     transition: var(--transition-fast);
 }
 
 .nav-links a:hover {
-    color: var(--color-text);
+    color: rgba(255, 255, 255, 1);
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
 }
 
 .nav-links a:hover::after {
@@ -1923,7 +2100,7 @@ body {
 }
 
 .portfolio-image {
-    height: 240px;
+    height: 320px;
     background: linear-gradient(135deg, var(--color-bg-alt) 0%, rgba(0, 212, 255, 0.1) 100%);
     position: relative;
     overflow: hidden;
@@ -1937,15 +2114,10 @@ body {
 }
 
 .portfolio-placeholder {
-    position: absolute;
-    inset: 2rem;
-    border: 2px dashed rgba(0,0,0,0.1);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 3rem;
-    opacity: 0.3;
 }
 
 .portfolio-content {
@@ -3406,7 +3578,7 @@ body {
     gap: 4rem;
     padding-bottom: 3rem;
     border-bottom: 1px solid rgba(255,255,255,0.1);
-    align-items: start;
+    align-items: center;
 }
 
 .footer-brand {
@@ -3417,9 +3589,15 @@ body {
 
 .footer-brand .logo {
     color: white;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     display: flex;
     align-items: center;
+}
+
+.footer-brand .logo-image {
+    height: 50px;
+    max-height: 50px;
+    width: auto;
 }
 
 .footer-brand .logo-mark {
@@ -3515,7 +3693,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 
+    box-shadow:
         0 8px 32px rgba(0, 212, 255, 0.4),
         0 0 0 0 rgba(0, 212, 255, 0.7);
     z-index: 999;
@@ -3524,6 +3702,8 @@ body {
     transform: translateY(100px);
     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     overflow: visible;
+    font-size: 28px;
+    color: white;
 }
 
 .back-to-top.visible {
@@ -3799,19 +3979,38 @@ body {
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+    .footer-main {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+    }
+}
+
 @media (max-width: 768px) {
+    .footer-main {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 1.5rem;
+        text-align: center;
+    }
+
     .back-to-top {
         width: 55px;
         height: 55px;
         bottom: 1.5rem;
         right: 1.5rem;
+        font-size: 24px;
     }
-    
+
     .back-to-top-rocket {
         width: 24px;
         height: 30px;
     }
-    
+
     .back-to-top-body {
         width: 24px;
         height: 30px;

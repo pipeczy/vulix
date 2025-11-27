@@ -255,41 +255,40 @@ if (mockupDashboard) {
 
 
 // Scroll to Top Button
-const scrollToTopBtn = document.createElement('button');
-scrollToTopBtn.className = 'scroll-to-top';
-scrollToTopBtn.setAttribute('aria-label', 'Volver arriba');
-document.body.appendChild(scrollToTopBtn);
+const scrollToTopBtn = document.getElementById('scrollToTop');
 
-// Show/hide button on scroll
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-        scrollToTopBtn.classList.add('visible');
-    } else {
-        scrollToTopBtn.classList.remove('visible');
-    }
-});
-
-// Scroll to top with animation
-scrollToTopBtn.addEventListener('click', () => {
-    // Add active animation
-    scrollToTopBtn.style.animation = 'rocketBoost 0.6s ease-out';
-    
-    // Scroll to top
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+if (scrollToTopBtn) {
+    // Show/hide button on scroll
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollToTopBtn.classList.add('visible');
+        } else {
+            scrollToTopBtn.classList.remove('visible');
+        }
     });
-    
-    // Remove animation after completion
-    setTimeout(() => {
-        scrollToTopBtn.style.animation = '';
-    }, 600);
-});
 
-// Optional: Add particle effect on hover
-scrollToTopBtn.addEventListener('mouseenter', () => {
-    createStarParticles(scrollToTopBtn);
-});
+    // Scroll to top with animation
+    scrollToTopBtn.addEventListener('click', () => {
+        // Add launching animation
+        scrollToTopBtn.classList.add('launching');
+
+        // Scroll to top
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+
+        // Remove animation after completion
+        setTimeout(() => {
+            scrollToTopBtn.classList.remove('launching');
+        }, 1000);
+    });
+
+    // Optional: Add particle effect on hover
+    scrollToTopBtn.addEventListener('mouseenter', () => {
+        createStarParticles(scrollToTopBtn);
+    });
+}
 
 function createStarParticles(element) {
     const rect = element.getBoundingClientRect();
