@@ -328,3 +328,62 @@ function createStarParticles(element) {
         }, i * 100);
     }
 }
+
+// ==================== BUTTON ROCKET LAUNCH ====================
+const btnDespegue = document.getElementById('btnDespegue');
+
+if (btnDespegue) {
+    btnDespegue.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Get button position
+        const btnRect = btnDespegue.getBoundingClientRect();
+        const btnCenterX = btnRect.left + btnRect.width / 2;
+        const btnCenterY = btnRect.top + btnRect.height / 2;
+        
+        // Create rocket element
+        const rocket = document.createElement('div');
+        rocket.className = 'btn-rocket';
+        rocket.innerHTML = `
+            <div class="btn-rocket-body">
+                <div class="btn-rocket-nose"></div>
+                <div class="btn-rocket-window"></div>
+            </div>
+            <div class="btn-rocket-fins">
+                <div class="btn-rocket-fin btn-rocket-fin-left"></div>
+                <div class="btn-rocket-fin btn-rocket-fin-right"></div>
+            </div>
+            <div class="btn-rocket-flames">
+                <div class="btn-rocket-flame"></div>
+                <div class="btn-rocket-flame"></div>
+                <div class="btn-rocket-flame"></div>
+            </div>
+        `;
+        
+        // Position rocket at button center
+        rocket.style.left = btnCenterX + 'px';
+        rocket.style.top = btnCenterY + 'px';
+        
+        document.body.appendChild(rocket);
+        
+        // Trigger launch animation immediately (sin setTimeout)
+        requestAnimationFrame(() => {
+            rocket.classList.add('launching');
+        });
+        
+        // Remove rocket after animation
+        setTimeout(() => {
+            rocket.remove();
+            // Redirect to contact section
+            document.querySelector('#contacto').scrollIntoView({ behavior: 'smooth' });
+        }, 1600);
+        
+        // Add shake effect to button
+        btnDespegue.classList.add('btn-shake');
+        setTimeout(() => {
+            btnDespegue.classList.remove('btn-shake');
+        }, 500);
+    });
+}
+
+// ==================== ANIMATED COUNTER FOR METRICS ====================
