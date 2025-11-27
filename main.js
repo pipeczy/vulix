@@ -190,3 +190,65 @@ window.addEventListener('scroll', requestParallaxTick, { passive: true });
 
 // Ejecutar una vez al cargar para inicializar
 updateParallaxStars();
+
+// ==================== ANIMATED COUNTER FOR METRICS ====================
+function animateCounter(element, target, duration = 1500, suffix = '') {
+    const start = 0;
+    const increment = target / (duration / 16); // 60 FPS
+    let current = start;
+
+    const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+            element.textContent = target + suffix;
+            clearInterval(timer);
+        } else {
+            // Format numbers based on type
+            if (suffix === '%') {
+                element.textContent = '+' + Math.floor(current) + suffix;
+            } else if (suffix === 'K') {
+                element.textContent = current.toFixed(1) + suffix;
+            } else if (suffix === 'x') {
+                element.textContent = current.toFixed(1) + suffix;
+            } else {
+                element.textContent = Math.floor(current) + suffix;
+            }
+        }
+    }, 16);
+}
+
+// Observer for metric cards animation
+const metricsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const metricCards = entry.target.querySelectorAll('.metric-card');
+
+            // Animate each metric value
+            if (metricCards[0]) {
+                const conversionValue = metricCards[0].querySelector('.metric-value');
+                animateCounter(conversionValue, 45, 1500, '%');
+            }
+
+            if (metricCards[1]) {
+                const trafficValue = metricCards[1].querySelector('.metric-value');
+                animateCounter(trafficValue, 8.2, 1500, 'K');
+            }
+
+            if (metricCards[2]) {
+                const roiValue = metricCards[2].querySelector('.metric-value');
+                animateCounter(roiValue, 3.8, 1500, 'x');
+            }
+
+            // Unobserve after animation
+            metricsObserver.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.3
+});
+
+// Observe the mockup dashboard
+const mockupDashboard = document.querySelector('.mockup-dashboard');
+if (mockupDashboard) {
+    metricsObserver.observe(mockupDashboard);
+}
