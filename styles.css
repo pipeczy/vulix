@@ -1821,3 +1821,9 @@ body {
         font-size: 1.75rem;
     }
 }
+
+.footer .logo-image {
+    height: 150px;
+    width: auto;
+    object-fit: contain;
+}
