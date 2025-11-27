@@ -1451,7 +1451,7 @@ body {
 /* ==================== PRICING SECTION ==================== */
 .pricing {
     padding: 8rem 2rem;
-    background: var(--color-bg);
+    background: var(--color-bg-alt);
 }
 
 .pricing-grid {
