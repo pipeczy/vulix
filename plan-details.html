@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Continúa con tu proyecto digital - VULIX">
+    <title>Cotiza tu Plan | VULIX</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="plan-details.css">
+</head>
+
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header" id="header">
+        <div class="space-planets">
+            <div class="planet planet-1"></div>
+            <div class="planet planet-2"></div>
+            <div class="planet planet-3"></div>
+        </div>
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <img src="images/logo-blanco.png" alt="VULIX" class="logo-image">
+            </a>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="index.html#servicios">Servicios</a></li>
+                    <li><a href="index.html#portfolio">Portfolio</a></li>
+                    <li><a href="index.html#precios">Precios</a></li>
+                    <li><a href="index.html#proceso">Proceso</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ==================== MAIN CONTENT ==================== -->
+    <section class="quote-section" id="quoteSection">
+        <!-- Fondo Espacial Parallax Multi-Capa -->
+        <div class="space-background">
+            <!-- Capa 1: Nebulosas suaves -->
+            <div class="space-layer nebula-layer" data-speed="0.3"></div>
+            <!-- Capa 2: Estrellas con titileo -->
+            <div class="space-layer stars-layer" data-speed="0.5"></div>
+            <!-- Capa 3: Grid futurista sutil -->
+            <div class="space-layer grid-layer" data-speed="0.2"></div>
+        </div>
+
+        <div class="quote-container">
+            <!-- Header -->
+            <div class="quote-header">
+                <div class="plan-badge-large" id="planBadge">Plan Seleccionado</div>
+                <h1>Empecemos tu proyecto digital</h1>
+                <p class="quote-subtitle">
+                    Solo necesitamos algunos datos para preparar tu cotización personalizada
+                    y darte los siguientes pasos.
+                </p>
+            </div>
+
+            <!-- Formulario Principal con Glow Interactivo -->
+            <div class="form-glow-container" id="formGlowContainer">
+                <form class="quote-form" id="quoteForm">
+                <div class="form-section">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fullName">Nombre completo *</label>
+                            <input type="text" id="fullName" name="fullName" placeholder="Tu nombre completo" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" placeholder="correo@empresa.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Teléfono *</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="company">Nombre de empresa (opcional)</label>
+                            <input type="text" id="company" name="company" placeholder="Tu empresa">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="currentUrl">¿Tienes un sitio web actualmente? (opcional)</label>
+                        <input type="url" id="currentUrl" name="currentUrl" placeholder="https://tusitio.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="selectedPlan">Plan que te interesa *</label>
+                        <select id="selectedPlan" name="selectedPlan" required>
+                            <option value="" disabled selected>Selecciona un plan</option>
+                            <option value="despegue">Plan Despegue</option>
+                            <option value="orbita">Plan Órbita</option>
+                            <option value="constelacion">Plan Constelación</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="objective">¿Cuál es tu objetivo principal con este sitio? *</label>
+                        <select id="objective" name="objective" required>
+                            <option value="" disabled selected>Selecciona tu objetivo</option>
+                            <option value="generar-leads">Generar más leads y contactos calificados</option>
+                            <option value="vender-online">Vender productos o servicios online</option>
+                            <option value="imagen-profesional">Proyectar una imagen profesional sólida</option>
+                            <option value="escalar-negocio">Escalar y automatizar mi negocio</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="additionalInfo">¿Algo más que debamos saber? (opcional)</label>
+                        <textarea id="additionalInfo" name="additionalInfo" rows="4"
+                            placeholder="Cuéntanos brevemente sobre tu proyecto, plazos, o cualquier requerimiento especial..."></textarea>
+                    </div>
+                </div>
+
+                <!-- CTA Principal -->
+                <div class="form-cta">
+                    <button type="submit" class="btn btn-primary btn-xl">
+                        Enviar y Solicitar Cotización
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                        </svg>
+                    </button>
+
+                    <div class="cta-benefits">
+                        <div class="benefit-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                            <span>Respuesta en menos de 24 horas</span>
+                        </div>
+                        <div class="benefit-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                            <span>Sin compromiso de compra</span>
+                        </div>
+                        <div class="benefit-item">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                            <span>Te contactamos con los próximos pasos</span>
+                        </div>
+                    </div>
+
+                    <p class="form-legal">
+                        Al enviar este formulario aceptas nuestra
+                        <a href="#">Política de Privacidad</a>.
+                        Tus datos están protegidos y solo los usamos para contactarte sobre tu proyecto.
+                    </p>
+                </div>
+            </form>
+            </div>
+
+            <!-- Separador -->
+            <div class="section-divider">
+                <span>o</span>
+            </div>
+
+            <!-- Sección: Agendar Reunión -->
+            <div class="meeting-option">
+                <div class="meeting-icon">📅</div>
+                <h3>¿Prefieres hablar con nosotros primero?</h3>
+                <p>
+                    Agenda una reunión rápida de 30 minutos para revisar tu proyecto en detalle
+                    antes de recibir la cotización. Sin presión, sin compromiso.
+                </p>
+                <a href="#agendar" class="btn btn-secondary">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                    Agendar Reunión
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <img src="images/logo_solo_png.png" alt="VULIX" class="logo-image">
+                    </a>
+                    <p>Ingeniería estratégica para el crecimiento digital. Desarrollo web, diseño UX/UI y consultoría
+                        que convierte.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="index.html#servicios">Desarrollo Web</a></li>
+                        <li><a href="index.html#servicios">Diseño UX/UI</a></li>
+                        <li><a href="index.html#servicios">Consultoría Digital</a></li>
+                        <li><a href="index.html#servicios">SEO & Analytics</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="index.html#portfolio">Portfolio</a></li>
+                        <li><a href="index.html#proceso">Proceso</a></li>
+                        <li><a href="index.html#testimonios">Testimonios</a></li>
+                        <li><a href="index.html#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Aviso Legal</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Cookies</a></li>
+                        <li><a href="#">Términos de Servicio</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2025 VULIX. Todos los derechos reservados.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="Twitter">X</a>
+                    <a href="#" aria-label="Instagram">IG</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== SCROLL TO TOP BUTTON ==================== -->
+    <button id="scrollToTop" class="back-to-top" aria-label="Volver arriba">
+        🚀
+    </button>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script src="plan-details.js"></script>
+</body>
+
+</html>
