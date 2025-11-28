@@ -2820,51 +2820,55 @@ body {
     animation: processStarTwinkle 3s ease-in-out infinite;
 }
 
+/* Top-left corner stars */
 .process-star-1 {
-    top: 15%;
-    left: 20%;
+    top: 10%;
+    left: 8%;
     animation-delay: 0s;
 }
 
 .process-star-2 {
-    top: 25%;
-    right: 15%;
+    top: 18%;
+    left: 12%;
     animation-delay: 0.5s;
 }
 
+/* Top-right corner stars */
 .process-star-3 {
-    top: 50%;
-    left: 10%;
+    top: 12%;
+    right: 10%;
     animation-delay: 1s;
 }
 
 .process-star-4 {
-    top: 70%;
-    right: 25%;
+    top: 20%;
+    right: 15%;
     animation-delay: 1.5s;
 }
 
+/* Bottom-left corner stars */
 .process-star-5 {
-    top: 80%;
-    left: 30%;
+    top: 85%;
+    left: 10%;
     animation-delay: 2s;
 }
 
 .process-star-6 {
-    top: 40%;
-    right: 30%;
+    top: 90%;
+    left: 15%;
     animation-delay: 2.5s;
 }
 
+/* Bottom-right corner stars */
 .process-star-7 {
-    top: 60%;
-    left: 40%;
+    top: 85%;
+    right: 12%;
     animation-delay: 0.8s;
 }
 
 .process-star-8 {
-    top: 35%;
-    right: 40%;
+    top: 92%;
+    right: 8%;
     animation-delay: 1.8s;
 }
 
