@@ -40,7 +40,7 @@
                     <li><a href="#proceso">Proceso</a></li>
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
-                <a href="#contacto" class="btn btn-primary">Agenda Consultoría Gratuita</a>
+                <a href="#contacto" class="btn btn-primary">Iniciar Proyecto</a>
                 <div class="menu-toggle" aria-label="Menú">
                     <span></span>
                     <span></span>
@@ -86,7 +86,7 @@
                     consultoría digital que transforma visitantes en clientes.</p>
                 <div class="hero-cta">
                     <a href="#contacto" class="btn btn-primary">
-                        Solicita tu Auditoría ROI Gratuita
+                        Solicitar Evaluación del Proyecto
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2">
                             <path d="M5 12h14M12 5l7 7-7 7" />
@@ -767,7 +767,7 @@
                         <li>3 revisiones incluidas</li>
                         <li>Entrega en 5-7 dias</li>
                     </ul>
-                    <a href="#contacto" class="btn btn-secondary">Comenzar →</a>
+                    <a href="plan-details.html?plan=despegue" class="btn btn-secondary">Comenzar →</a>
                 </div>
 
                 <!-- Plan Profesional (Destacado) -->
@@ -793,7 +793,7 @@
                         <li>Entrega en 4-6 semanas</li>
                         <li>1 mes de soporte post-lanzamiento</li>
                     </ul>
-                    <a href="#contacto" class="btn btn-primary">Solicitar Ahora →</a>
+                    <a href="plan-details.html?plan=orbita" class="btn btn-primary">Solicitar Ahora →</a>
                 </div>
 
                 <!-- Plan Premium -->
@@ -819,7 +819,7 @@
                         <li>3 meses de soporte y mantenimiento</li>
                         <li>Consultoría estratégica mensual</li>
                     </ul>
-                    <a href="#contacto" class="btn btn-secondary">Consultar →</a>
+                    <a href="plan-details.html?plan=constelacion" class="btn btn-secondary">Consultar →</a>
                 </div>
             </div>
             <div class="pricing-note">
@@ -896,13 +896,17 @@
                     <input type="email" placeholder="correo@empresa.com" required>
                 </div>
                 <div class="form-group">
-                    <select required>
+                    <select id="serviceSelect" required>
                         <option value="" disabled selected>¿Qué servicio te interesa?</option>
                         <option value="desarrollo">Desarrollo Web</option>
                         <option value="ux-ui">Diseño UX/UI</option>
                         <option value="consultoria">Consultoría Digital</option>
                         <option value="completo">Proyecto Completo</option>
+                        <option value="personalizado">Servicio Personalizado</option>
                     </select>
+                </div>
+                <div class="form-group" id="customServiceGroup" style="display: none;">
+                    <input type="text" id="customServiceInput" placeholder="Describe tu servicio personalizado...">
                 </div>
                 <div class="form-group">
                     <textarea placeholder="Cuéntanos brevemente sobre tu proyecto..."></textarea>

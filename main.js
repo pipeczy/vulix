@@ -143,6 +143,30 @@ if (ctaForm) {
 
         // Reset form
         e.target.reset();
+
+        // Hide custom service field when form is reset
+        const customServiceGroup = document.getElementById('customServiceGroup');
+        if (customServiceGroup) {
+            customServiceGroup.style.display = 'none';
+        }
+    });
+}
+
+// ==================== CUSTOM SERVICE TOGGLE ====================
+const serviceSelect = document.getElementById('serviceSelect');
+const customServiceGroup = document.getElementById('customServiceGroup');
+const customServiceInput = document.getElementById('customServiceInput');
+
+if (serviceSelect && customServiceGroup) {
+    serviceSelect.addEventListener('change', (e) => {
+        if (e.target.value === 'personalizado') {
+            customServiceGroup.style.display = 'block';
+            customServiceInput.setAttribute('required', 'required');
+        } else {
+            customServiceGroup.style.display = 'none';
+            customServiceInput.removeAttribute('required');
+            customServiceInput.value = '';
+        }
     });
 }
 
