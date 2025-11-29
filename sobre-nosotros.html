@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Conoce la historia de VULIX - Tres estudiantes de Ingeniería Civil Informática transformando negocios con tecnología.">
+    <title>Sobre Nosotros | VULIX - Nuestra Historia</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* ==================== ANIMACIONES ==================== */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes nebula {
+            0% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+            50% { transform: translate(20px, -20px) scale(1.1); opacity: 0.5; }
+            100% { transform: translate(0, 0) scale(1); opacity: 0.3; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 255, 0.3); }
+            50% { box-shadow: 0 0 40px rgba(124, 58, 237, 0.5); }
+        }
+
+        @keyframes floatParticle {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-30px) translateX(10px);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-60px) translateX(-10px);
+                opacity: 1;
+            }
+            75% {
+                transform: translateY(-30px) translateX(5px);
+                opacity: 0.6;
+            }
+        }
+
+        @keyframes rotatePlanet {
+            0% { transform: rotate(0deg) translateX(50px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(50px) rotate(-360deg); }
+        }
+
+        @keyframes floatSphere {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-40px) scale(1.05);
+            }
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes satelliteOrbit {
+            0% { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
+        }
+
+        @keyframes twinkleStars {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        @keyframes floatingStar {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-20px) translateX(10px);
+                opacity: 1;
+            }
+        }
+
+        @keyframes galaxyRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes nebulaFloat {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+                opacity: 0.15;
+            }
+            50% {
+                transform: translate(30px, -30px) scale(1.1);
+                opacity: 0.25;
+            }
+        }
+
+        /* ==================== HERO SECTION ==================== ssss*/
+        .about-hero {
+            min-height: 50vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: transparent;
+            overflow: hidden;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .about-hero-content {
+            max-width: 900px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .about-hero .section-tag {
+            display: inline-block;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .about-hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #00D4FF 0%, #7C3AED 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out 0.4s both;
+            line-height: 1.2;
+        }
+
+        .about-hero-subtitle {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.85);
+            line-height: 1.8;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        /* Partículas flotantes */
+        .hero-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.8) 0%, rgba(124, 58, 237, 0.4) 100%);
+            border-radius: 50%;
+            animation: floatParticle 6s ease-in-out infinite;
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+
+        .particle:nth-child(even) {
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.8) 0%, rgba(0, 212, 255, 0.4) 100%);
+            box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
+        }
+
+        /* ==================== FONDO ESPACIAL UNIFORME ==================== */
+        body {
+            background: linear-gradient(180deg,
+                #0a0f1e 0%,
+                #0d1220 15%,
+                #101528 30%,
+                #13182a 45%,
+                #0f1423 60%,
+                #13182a 75%,
+                #101528 85%,
+                #0d1220 95%,
+                #0a0f1e 100%);
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Capa de nebulosas difusas */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(0, 212, 255, 0.06) 0%, transparent 40%),
+                radial-gradient(ellipse at 80% 40%, rgba(124, 58, 237, 0.05) 0%, transparent 35%),
+                radial-gradient(ellipse at 40% 70%, rgba(0, 212, 255, 0.04) 0%, transparent 30%),
+                radial-gradient(ellipse at 70% 85%, rgba(124, 58, 237, 0.06) 0%, transparent 38%),
+                radial-gradient(ellipse at 50% 50%, rgba(0, 150, 200, 0.03) 0%, transparent 45%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Campo de estrellas completo - extendido */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                /* Zona superior */
+                radial-gradient(1px 1px at 5% 3%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(2px 2px at 12% 8%, rgba(255,255,255,0.9), transparent),
+                radial-gradient(1px 1px at 18% 5%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 25% 12%, rgba(255,255,255,0.8), transparent),
+                radial-gradient(2px 2px at 32% 6%, rgba(255,255,255,0.9), transparent),
+                radial-gradient(1px 1px at 38% 10%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 45% 4%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 52% 9%, rgba(255,255,255,0.85), transparent),
+                radial-gradient(1px 1px at 58% 7%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 65% 11%, rgba(255,255,255,0.8), transparent),
+                radial-gradient(2px 2px at 72% 5%, rgba(255,255,255,0.9), transparent),
+                radial-gradient(1px 1px at 78% 8%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 85% 6%, rgba(255,255,255,0.75), transparent),
+                radial-gradient(2px 2px at 92% 10%, rgba(255,255,255,0.85), transparent),
+                radial-gradient(1px 1px at 97% 4%, rgba(255,255,255,0.7), transparent),
+                /* Zona media */
+                radial-gradient(1px 1px at 8% 25%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 15% 35%, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 22% 42%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 35% 38%, rgba(255,255,255,0.65), transparent),
+                radial-gradient(2px 2px at 42% 45%, rgba(255,255,255,0.85), transparent),
+                radial-gradient(1px 1px at 55% 32%, rgba(255,255,255,0.75), transparent),
+                radial-gradient(1px 1px at 62% 48%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 72% 38%, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 85% 42%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 92% 35%, rgba(255,255,255,0.65), transparent),
+                /* Zona inferior */
+                radial-gradient(1px 1px at 5% 65%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(2px 2px at 12% 72%, rgba(255,255,255,0.85), transparent),
+                radial-gradient(1px 1px at 20% 78%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 28% 85%, rgba(255,255,255,0.75), transparent),
+                radial-gradient(2px 2px at 38% 68%, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 45% 75%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 52% 82%, rgba(255,255,255,0.65), transparent),
+                radial-gradient(2px 2px at 62% 88%, rgba(255,255,255,0.85), transparent),
+                radial-gradient(1px 1px at 70% 72%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 78% 78%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 85% 85%, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 92% 68%, rgba(255,255,255,0.75), transparent),
+                radial-gradient(1px 1px at 95% 92%, rgba(255,255,255,0.7), transparent),
+                /* Zona muy inferior */
+                radial-gradient(1px 1px at 8% 95%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 25% 97%, rgba(255,255,255,0.8), transparent),
+                radial-gradient(1px 1px at 50% 96%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 75% 98%, rgba(255,255,255,0.65), transparent);
+            background-size: 100% 100%;
+            animation: twinkle 8s ease-in-out infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .about-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 2rem 6rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Elementos 3D del universo */
+        .space-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        /* Estrellas flotantes adicionales */
+        .floating-star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(0, 212, 255, 0.5) 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+            animation: floatingStar 8s ease-in-out infinite;
+        }
+
+        .floating-star:nth-child(even) {
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(124, 58, 237, 0.5) 100%);
+            animation-duration: 10s;
+        }
+
+        /* Mini galaxias espirales */
+        .mini-galaxy {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(ellipse at center,
+                rgba(0, 212, 255, 0.15) 0%,
+                rgba(0, 150, 200, 0.08) 30%,
+                transparent 70%);
+            border-radius: 50%;
+            animation: galaxyRotate 40s linear infinite;
+            filter: blur(2px);
+        }
+
+        .mini-galaxy::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center,
+                rgba(255, 255, 255, 0.3) 0%,
+                rgba(0, 212, 255, 0.1) 20%,
+                transparent 50%);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            animation: twinkleStars 4s ease-in-out infinite;
+        }
+
+        .mini-galaxy.purple {
+            background: radial-gradient(ellipse at center,
+                rgba(124, 58, 237, 0.15) 0%,
+                rgba(100, 40, 200, 0.08) 30%,
+                transparent 70%);
+        }
+
+        .mini-galaxy.purple::before {
+            background: radial-gradient(ellipse at center,
+                rgba(255, 255, 255, 0.3) 0%,
+                rgba(124, 58, 237, 0.1) 20%,
+                transparent 50%);
+        }
+
+        /* Nebulosas animadas sutiles */
+        .animated-nebula {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: nebulaFloat 25s ease-in-out infinite;
+        }
+
+        .animated-nebula.cyan {
+            background: radial-gradient(circle,
+                rgba(0, 212, 255, 0.12) 0%,
+                rgba(0, 150, 200, 0.06) 50%,
+                transparent 100%);
+        }
+
+        .animated-nebula.purple {
+            background: radial-gradient(circle,
+                rgba(124, 58, 237, 0.12) 0%,
+                rgba(100, 40, 200, 0.06) 50%,
+                transparent 100%);
+        }
+
+        /* Planetas flotantes */
+        .planet-3d {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%,
+                rgba(0, 212, 255, 0.3) 0%,
+                rgba(0, 150, 200, 0.15) 50%,
+                rgba(0, 100, 150, 0.05) 100%);
+            box-shadow:
+                inset -20px -20px 40px rgba(0, 0, 0, 0.3),
+                0 0 60px rgba(0, 212, 255, 0.2);
+            animation: floatSphere 15s ease-in-out infinite;
+        }
+
+        .planet-3d.purple {
+            background: radial-gradient(circle at 30% 30%,
+                rgba(124, 58, 237, 0.3) 0%,
+                rgba(100, 40, 200, 0.15) 50%,
+                rgba(80, 30, 150, 0.05) 100%);
+            box-shadow:
+                inset -20px -20px 40px rgba(0, 0, 0, 0.3),
+                0 0 60px rgba(124, 58, 237, 0.2);
+        }
+
+        /* Esferas brillantes */
+        .glow-sphere {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle,
+                rgba(255, 255, 255, 0.8) 0%,
+                rgba(0, 212, 255, 0.4) 30%,
+                transparent 70%);
+            animation: shimmer 4s ease-in-out infinite;
+        }
+
+        /* Satélites minimalistas */
+        .satellite {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+        }
+
+        .satellite::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: rgba(0, 212, 255, 0.6);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.8);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .satellite::after {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 2px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(0, 212, 255, 0.4) 50%,
+                transparent 100%);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        .about-section {
+            margin-bottom: 5rem;
+        }
+
+        .about-intro {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3.5rem;
+            border-radius: 24px;
+            box-shadow:
+                0 10px 40px rgba(0, 0, 0, 0.3),
+                0 0 60px rgba(0, 212, 255, 0.1),
+                inset 0 0 60px rgba(255, 255, 255, 0.02);
+            margin-bottom: 4rem;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+
+        .about-intro::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.08) 0%, transparent 70%);
+            animation: nebula 15s ease-in-out infinite;
+        }
+
+        .about-intro:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 80px rgba(0, 212, 255, 0.2),
+                inset 0 0 60px rgba(255, 255, 255, 0.03);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .about-intro p {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .about-intro p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-intro strong {
+            background: linear-gradient(135deg, #00D4FF 0%, #7C3AED 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        .mission-vision-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .mission-card,
+        .vision-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow:
+                0 8px 30px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(0, 212, 255, 0.1),
+                inset 0 0 40px rgba(255, 255, 255, 0.02);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .mission-card::before,
+        .vision-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #00D4FF 0%, #00A8CC 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+        }
+
+        .vision-card::before {
+            background: linear-gradient(90deg, #7C3AED 0%, #9D5CFF 100%);
+        }
+
+        .mission-card::after,
+        .vision-card::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            transform: translate(-50%, -50%);
+            transition: all 0.6s ease;
+        }
+
+        .vision-card::after {
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%);
+        }
+
+        .mission-card:hover,
+        .vision-card:hover {
+            transform: translateY(-10px);
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.4),
+                0 0 60px rgba(0, 212, 255, 0.3),
+                inset 0 0 40px rgba(255, 255, 255, 0.04);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .mission-card:hover::before,
+        .vision-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .mission-card:hover::after,
+        .vision-card:hover::after {
+            width: 400px;
+            height: 400px;
+        }
+
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-title {
+            font-size: 1.85rem;
+            font-weight: 700;
+            margin-bottom: 1.25rem;
+            color: rgba(255, 255, 255, 0.95);
+            position: relative;
+            z-index: 1;
+        }
+
+        .card-text {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: rgba(255, 255, 255, 0.75);
+            position: relative;
+            z-index: 1;
+        }
+
+        .values-section {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 5rem 2rem;
+            border-radius: 32px;
+            margin-top: 4rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+                0 10px 40px rgba(0, 0, 0, 0.3),
+                inset 0 0 80px rgba(0, 212, 255, 0.03);
+        }
+
+        .values-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(circle at 20% 30%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(124, 58, 237, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .values-header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .values-header h2 {
+            font-size: 2.75rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #00D4FF 0%, #7C3AED 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .value-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow:
+                0 4px 20px rgba(0, 0, 0, 0.3),
+                0 0 30px rgba(0, 212, 255, 0.08),
+                inset 0 0 30px rgba(255, 255, 255, 0.02);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                #00D4FF 50%,
+                transparent 100%);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .value-card:nth-child(2)::before {
+            background: linear-gradient(90deg,
+                transparent 0%,
+                #7C3AED 50%,
+                transparent 100%);
+        }
+
+        .value-card:nth-child(3)::before {
+            background: linear-gradient(90deg,
+                transparent 0%,
+                #00D4FF 50%,
+                transparent 100%);
+        }
+
+        .value-card:nth-child(4)::before {
+            background: linear-gradient(90deg,
+                transparent 0%,
+                #7C3AED 50%,
+                transparent 100%);
+        }
+
+        .value-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow:
+                0 12px 40px rgba(0, 0, 0, 0.4),
+                0 0 50px rgba(0, 212, 255, 0.2),
+                inset 0 0 30px rgba(255, 255, 255, 0.04);
+            border-color: rgba(0, 212, 255, 0.3);
+        }
+
+        .value-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1.25rem;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .value-card:nth-child(2) .value-icon {
+            animation-delay: 0.5s;
+        }
+
+        .value-card:nth-child(3) .value-icon {
+            animation-delay: 1s;
+        }
+
+        .value-card:nth-child(4) .value-icon {
+            animation-delay: 1.5s;
+        }
+
+        .value-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 0.85rem;
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .value-description {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        /* ==================== CTA SECTION ==================== */
+        .cta-about {
+            text-align: center;
+            margin-top: 5rem;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg,
+                #0a0f1e 0%,
+                #0f1427 25%,
+                #1a1535 50%,
+                #0f1423 75%,
+                #0a0f1e 100%);
+            border-radius: 32px;
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                inset 0 0 60px rgba(0, 212, 255, 0.05);
+        }
+
+        /* Estrellas brillantes en CTA */
+        .cta-about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(2px 2px at 15% 25%, rgba(255,255,255,0.9), transparent),
+                radial-gradient(1px 1px at 25% 50%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(2px 2px at 35% 15%, white, transparent),
+                radial-gradient(1px 1px at 50% 70%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(1px 1px at 65% 30%, rgba(255,255,255,0.8), transparent),
+                radial-gradient(2px 2px at 75% 60%, white, transparent),
+                radial-gradient(1px 1px at 85% 20%, rgba(255,255,255,0.7), transparent),
+                radial-gradient(1px 1px at 20% 80%, rgba(255,255,255,0.6), transparent),
+                radial-gradient(2px 2px at 90% 45%, rgba(255,255,255,0.9), transparent),
+                radial-gradient(1px 1px at 40% 35%, rgba(255,255,255,0.8), transparent);
+            animation: twinkle 5s ease-in-out infinite;
+        }
+
+        /* Nebulosa en CTA */
+        .cta-about::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background:
+                radial-gradient(circle at 40% 50%, rgba(0, 212, 255, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 60% 50%, rgba(124, 58, 237, 0.15) 0%, transparent 50%);
+            animation: nebula 18s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        .cta-about-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .cta-about h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #ffffff 0%, #e0f2fe 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .cta-about p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.85);
+            margin-bottom: 2.5rem;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-about .btn {
+            box-shadow: 0 8px 30px rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .cta-about .btn:hover {
+            box-shadow: 0 12px 40px rgba(0, 212, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Header transparente integrado */
+        .header {
+            background: linear-gradient(180deg,
+                rgba(10, 15, 30, 0.98) 0%,
+                rgba(10, 15, 30, 0.95) 50%,
+                rgba(10, 15, 30, 0.85) 100%) !important;
+        }
+
+        @media (max-width: 768px) {
+            .about-hero {
+                padding: 5rem 1.5rem 2rem;
+                min-height: 40vh;
+            }
+
+            .about-content {
+                padding: 1.5rem 1.5rem 4rem;
+            }
+
+            .about-intro {
+                padding: 2rem;
+            }
+
+            .mission-card,
+            .vision-card {
+                padding: 2rem;
+            }
+
+            .values-section {
+                padding: 3rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header" id="header">
+        <div class="space-planets">
+            <div class="planet planet-1"></div>
+            <div class="planet planet-2"></div>
+            <div class="planet planet-3"></div>
+        </div>
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <img src="images/logo-blanco.png" alt="VULIX" class="logo-image">
+            </a>
+            <nav class="nav">
+                <ul class="nav-links">
+                    <li><a href="index.html#servicios">Servicios</a></li>
+                    <li><a href="index.html#portfolio">Portfolio</a></li>
+                    <li><a href="index.html#precios">Precios</a></li>
+                    <li><a href="index.html#proceso">Proceso</a></li>
+                    <li><a href="index.html#contacto">Contacto</a></li>
+                </ul>
+                <a href="index.html#contacto" class="btn btn-primary">Iniciar Proyecto</a>
+                <div class="menu-toggle" aria-label="Menú">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ==================== FONDO ESPACIAL 3D ==================== -->
+    <div class="space-background">
+        <!-- Estrellas flotantes distribuidas -->
+        <div class="floating-star" style="top: 8%; left: 12%; animation-delay: 0s;"></div>
+        <div class="floating-star" style="top: 15%; left: 35%; animation-delay: 1s;"></div>
+        <div class="floating-star" style="top: 22%; left: 65%; animation-delay: 2s;"></div>
+        <div class="floating-star" style="top: 28%; left: 88%; animation-delay: 0.5s;"></div>
+        <div class="floating-star" style="top: 35%; left: 18%; animation-delay: 1.5s;"></div>
+        <div class="floating-star" style="top: 42%; left: 45%; animation-delay: 2.5s;"></div>
+        <div class="floating-star" style="top: 48%; left: 75%; animation-delay: 0.8s;"></div>
+        <div class="floating-star" style="top: 55%; left: 5%; animation-delay: 1.8s;"></div>
+        <div class="floating-star" style="top: 62%; left: 28%; animation-delay: 2.2s;"></div>
+        <div class="floating-star" style="top: 68%; left: 55%; animation-delay: 0.3s;"></div>
+        <div class="floating-star" style="top: 75%; left: 82%; animation-delay: 1.3s;"></div>
+        <div class="floating-star" style="top: 82%; left: 15%; animation-delay: 2.8s;"></div>
+        <div class="floating-star" style="top: 88%; left: 42%; animation-delay: 0.7s;"></div>
+        <div class="floating-star" style="top: 92%; left: 70%; animation-delay: 1.7s;"></div>
+        <div class="floating-star" style="top: 95%; left: 92%; animation-delay: 2.3s;"></div>
+
+        <!-- Mini galaxias espirales -->
+        <div class="mini-galaxy" style="top: 18%; left: 8%; animation-delay: 0s;"></div>
+        <div class="mini-galaxy purple" style="top: 45%; right: 12%; animation-delay: 5s;"></div>
+        <div class="mini-galaxy" style="bottom: 25%; left: 15%; animation-delay: 10s;"></div>
+        <div class="mini-galaxy purple" style="top: 72%; right: 20%; animation-delay: 15s;"></div>
+
+        <!-- Nebulosas animadas sutiles -->
+        <div class="animated-nebula cyan" style="width: 200px; height: 200px; top: 10%; right: 15%; animation-delay: 0s;"></div>
+        <div class="animated-nebula purple" style="width: 180px; height: 180px; top: 40%; left: 10%; animation-delay: 8s;"></div>
+        <div class="animated-nebula cyan" style="width: 220px; height: 220px; bottom: 20%; right: 10%; animation-delay: 16s;"></div>
+        <div class="animated-nebula purple" style="width: 190px; height: 190px; top: 65%; left: 20%; animation-delay: 12s;"></div>
+
+        <!-- Planetas 3D -->
+        <div class="planet-3d" style="width: 150px; height: 150px; top: 15%; left: 5%; animation-delay: 0s;"></div>
+        <div class="planet-3d purple" style="width: 120px; height: 120px; top: 60%; right: 8%; animation-delay: 2s;"></div>
+        <div class="planet-3d" style="width: 80px; height: 80px; top: 40%; right: 15%; animation-delay: 4s;"></div>
+        <div class="planet-3d purple" style="width: 100px; height: 100px; bottom: 20%; left: 10%; animation-delay: 6s;"></div>
+
+        <!-- Esferas brillantes -->
+        <div class="glow-sphere" style="width: 40px; height: 40px; top: 25%; left: 20%; animation-delay: 0s;"></div>
+        <div class="glow-sphere" style="width: 30px; height: 30px; top: 70%; left: 80%; animation-delay: 1.5s;"></div>
+        <div class="glow-sphere" style="width: 35px; height: 35px; bottom: 30%; right: 25%; animation-delay: 3s;"></div>
+
+        <!-- Satélites -->
+        <div class="satellite" style="top: 30%; left: 70%; animation: satelliteOrbit 20s linear infinite;"></div>
+        <div class="satellite" style="top: 65%; left: 40%; animation: satelliteOrbit 25s linear infinite reverse;"></div>
+    </div>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="about-hero">
+        <!-- Partículas estelares flotantes -->
+        <div class="hero-particles">
+            <div class="particle" style="left: 10%; top: 20%; animation-delay: 0s;"></div>
+            <div class="particle" style="left: 20%; top: 60%; animation-delay: 1s;"></div>
+            <div class="particle" style="left: 30%; top: 40%; animation-delay: 2s;"></div>
+            <div class="particle" style="left: 40%; top: 80%; animation-delay: 0.5s;"></div>
+            <div class="particle" style="left: 50%; top: 15%; animation-delay: 1.5s;"></div>
+            <div class="particle" style="left: 60%; top: 70%; animation-delay: 0.8s;"></div>
+            <div class="particle" style="left: 70%; top: 35%; animation-delay: 2.2s;"></div>
+            <div class="particle" style="left: 80%; top: 55%; animation-delay: 1.2s;"></div>
+            <div class="particle" style="left: 90%; top: 25%; animation-delay: 1.8s;"></div>
+            <div class="particle" style="left: 15%; top: 75%; animation-delay: 0.3s;"></div>
+        </div>
+
+        <div class="about-hero-content">
+            <span class="section-tag">// SOBRE NOSOTROS</span>
+            <h1>La historia detrás de Vulix</h1>
+            <p class="about-hero-subtitle">Tres estudiantes con una misión: democratizar la tecnología y transformar negocios.</p>
+        </div>
+    </section>
+
+    <!-- ==================== ABOUT CONTENT ==================== -->
+    <div class="about-content">
+        <!-- Nuestra Historia -->
+        <section class="about-section">
+            <div class="about-intro">
+                <p><strong>Vulix nació del sueño compartido de tres estudiantes de Ingeniería Civil Informática en formación</strong>, unidos por la convicción de que la tecnología puede transformar negocios, conectar oportunidades y abrir caminos que antes parecían inalcanzables.</p>
+
+                <p>Desde nuestras primeras experiencias en la universidad entendimos algo esencial: <strong>muchos emprendedores, marcas y pequeñas empresas desean digitalizarse</strong>, pero no saben por dónde comenzar, pagan precios excesivos o reciben soluciones que no representan la calidad que merecen.</p>
+
+                <p><strong>Por eso creamos Vulix.</strong></p>
+
+                <p>Somos una combinación de creatividad, ingeniería y visión emprendedora, comprometidos con entregar soluciones digitales modernas, eficientes y verdaderamente accesibles. Desarrollamos sitios web profesionales, landing pages de alto impacto, tiendas online listas para vender y experiencias digitales diseñadas para impulsar el crecimiento real y sostenible de cada cliente.</p>
+
+                <p><strong>Creemos que una página web no es solo diseño: es una herramienta estratégica de éxito.</strong> Nuestra misión es convertir esa herramienta en una ventaja competitiva para cada persona y negocio que confía en nosotros.</p>
+
+                <p>Vulix es más que una agencia digital. Es un proyecto vivo, que crece con cada cliente, cada idea y cada desafío. Así como tú buscas avanzar, nosotros también estamos construyendo nuestro futuro: <strong>paso a paso, con dedicación, disciplina y una profunda pasión por la tecnología.</strong></p>
+            </div>
+        </section>
+
+        <!-- Misión y Visión -->
+        <section class="about-section">
+            <div class="mission-vision-grid">
+                <div class="mission-card">
+                    <div class="card-icon">🎯</div>
+                    <h3 class="card-title">Misión</h3>
+                    <p class="card-text">Impulsar a emprendedores, pymes y marcas mediante soluciones digitales accesibles, modernas y de alta calidad, integrando ingeniería, creatividad y un acompañamiento cercano para obtener resultados reales y sostenibles.</p>
+                </div>
+                <div class="vision-card">
+                    <div class="card-icon">🔭</div>
+                    <h3 class="card-title">Visión</h3>
+                    <p class="card-text">Convertirnos en una agencia digital referente en Chile y Latinoamérica, reconocida por democratizar la tecnología, ofrecer experiencias digitales profesionales y crecer junto a nuestros clientes con innovación, transparencia y compromiso.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Valores -->
+        <section class="values-section">
+            <div class="values-header">
+                <h2>Nuestros Valores</h2>
+                <p style="color: var(--color-text-muted); font-size: 1.1rem;">Los principios que guían cada proyecto</p>
+            </div>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">💡</div>
+                    <h4 class="value-title">Innovación</h4>
+                    <p class="value-description">Adoptamos las últimas tecnologías para crear soluciones vanguardistas.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h4 class="value-title">Transparencia</h4>
+                    <p class="value-description">Comunicación clara y honesta en cada etapa del proyecto.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h4 class="value-title">Resultados</h4>
+                    <p class="value-description">Enfocados en entregas que generen impacto real en tu negocio.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🚀</div>
+                    <h4 class="value-title">Accesibilidad</h4>
+                    <p class="value-description">Tecnología de calidad al alcance de emprendedores y pymes.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Final -->
+        <div class="cta-about">
+            <div class="cta-about-content">
+                <h2>¿Listo para trabajar juntos?</h2>
+                <p>Construyamos algo increíble para tu negocio</p>
+                <a href="index.html#contacto" class="btn btn-primary">
+                    Iniciar Proyecto
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-main">
+                <div class="footer-brand">
+                    <a href="index.html" class="logo">
+                        <img src="images/logo-blanco.png" alt="VULIX" class="logo-image">
+                    </a>
+                    <p>Ingeniería estratégica para el crecimiento digital. Desarrollo web, diseño UX/UI y consultoría
+                        que convierte.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Servicios</h4>
+                    <ul>
+                        <li><a href="index.html#servicios">Desarrollo Web</a></li>
+                        <li><a href="index.html#servicios">Diseño UX/UI</a></li>
+                        <li><a href="index.html#servicios">Consultoría Digital</a></li>
+                        <li><a href="index.html#servicios">SEO & Analytics</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                        <li><a href="index.html#portfolio">Portfolio</a></li>
+                        <li><a href="index.html#proceso">Proceso</a></li>
+                        <li><a href="index.html#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#">Aviso Legal</a></li>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Cookies</a></li>
+                        <li><a href="#">Términos de Servicio</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2025 VULIX. Todos los derechos reservados.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="LinkedIn">in</a>
+                    <a href="#" aria-label="Twitter">X</a>
+                    <a href="#" aria-label="Instagram">IG</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== SCROLL TO TOP BUTTON ==================== -->
+    <button id="scrollToTop" class="back-to-top" aria-label="Volver arriba">
+        🚀
+    </button>
+
+    <!-- ==================== JAVASCRIPT ==================== -->
+    <script src="main.js"></script>
+    <script>
+        // Efecto Parallax suave para elementos 3D del universo
+        document.addEventListener('DOMContentLoaded', function() {
+            const planets = document.querySelectorAll('.planet-3d');
+            const spheres = document.querySelectorAll('.glow-sphere');
+            const satellites = document.querySelectorAll('.satellite');
+            const floatingStars = document.querySelectorAll('.floating-star');
+            const galaxies = document.querySelectorAll('.mini-galaxy');
+            const nebulas = document.querySelectorAll('.animated-nebula');
+
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+
+                // Parallax para planetas
+                planets.forEach((planet, index) => {
+                    const speed = 0.1 + (index * 0.05);
+                    const yPos = -(scrolled * speed);
+                    planet.style.transform = `translateY(${yPos}px)`;
+                });
+
+                // Parallax para esferas brillantes
+                spheres.forEach((sphere, index) => {
+                    const speed = 0.15 + (index * 0.05);
+                    const yPos = -(scrolled * speed);
+                    sphere.style.transform = `translateY(${yPos}px)`;
+                });
+
+                // Parallax para satélites (más rápido)
+                satellites.forEach((satellite, index) => {
+                    const speed = 0.2 + (index * 0.05);
+                    const yPos = -(scrolled * speed);
+                    satellite.style.transform = `translateY(${yPos}px)`;
+                });
+
+                // Parallax para estrellas flotantes
+                floatingStars.forEach((star, index) => {
+                    const speed = 0.08 + (index * 0.02);
+                    const yPos = -(scrolled * speed);
+                    star.style.transform = `translateY(${yPos}px)`;
+                });
+
+                // Parallax para mini-galaxias
+                galaxies.forEach((galaxy, index) => {
+                    const speed = 0.12 + (index * 0.03);
+                    const yPos = -(scrolled * speed);
+                    galaxy.style.transform = `translateY(${yPos}px) rotate(${scrolled * 0.05}deg)`;
+                });
+
+                // Parallax para nebulosas
+                nebulas.forEach((nebula, index) => {
+                    const speed = 0.05 + (index * 0.02);
+                    const yPos = -(scrolled * speed);
+                    nebula.style.transform = `translateY(${yPos}px)`;
+                });
+
+                // Efecto de brillo en cards al hacer scroll
+                const cards = document.querySelectorAll('.about-intro, .mission-card, .vision-card, .value-card');
+                cards.forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+
+                    if (rect.top < windowHeight * 0.8) {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }
+                });
+            });
+
+            // Inicializar opacidad de las cards
+            const cards = document.querySelectorAll('.about-intro, .mission-card, .vision-card, .value-card');
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+            });
+        });
+    </script>
+</body>
+
+</html>
