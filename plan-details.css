@@ -431,6 +431,156 @@
     letter-spacing: 1px;
 }
 
+/* ==================== CONTACT OPTIONS ==================== */
+
+.contact-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin: 3rem 0;
+}
+
+.contact-card {
+    background: rgba(20, 25, 40, 0.5);
+    border-radius: 24px;
+    padding: 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.contact-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle,
+        rgba(0, 212, 255, 0.08) 0%,
+        transparent 70%);
+    animation: rotate 15s linear infinite;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.contact-card:hover::before {
+    opacity: 1;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+}
+
+/* WhatsApp Card */
+.whatsapp-card {
+    border-color: rgba(37, 211, 102, 0.2);
+}
+
+.whatsapp-card:hover {
+    border-color: rgba(37, 211, 102, 0.4);
+    box-shadow: 0 10px 40px rgba(37, 211, 102, 0.2);
+}
+
+/* Instagram Card */
+.instagram-card {
+    border-color: rgba(225, 48, 108, 0.2);
+}
+
+.instagram-card:hover {
+    border-color: rgba(225, 48, 108, 0.4);
+    box-shadow: 0 10px 40px rgba(225, 48, 108, 0.2);
+}
+
+.contact-icon {
+    font-size: 3rem;
+    margin-bottom: 1.25rem;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-card p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* WhatsApp Button */
+.btn-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #25d366 0%, #20c157 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-family: var(--font-primary);
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp:hover {
+    background: linear-gradient(135deg, #20c157 0%, #1da84c 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+}
+
+.btn-whatsapp svg {
+    flex-shrink: 0;
+}
+
+/* Instagram Button */
+.btn-instagram {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.625rem;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%);
+    color: #ffffff;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-family: var(--font-primary);
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 4px 20px rgba(225, 48, 108, 0.3);
+}
+
+.btn-instagram:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(225, 48, 108, 0.5);
+    filter: brightness(1.1);
+}
+
+.btn-instagram svg {
+    flex-shrink: 0;
+}
+
 /* Meeting Option */
 .meeting-option {
     background: rgba(20, 25, 40, 0.5);
@@ -549,6 +699,24 @@
         align-items: center;
     }
 
+    /* Contact Options en móviles */
+    .contact-options {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .contact-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .contact-card h3 {
+        font-size: 1.3rem;
+    }
+
+    .contact-card p {
+        font-size: 0.95rem;
+    }
+
     .meeting-option {
         padding: 2rem 1.5rem;
     }
@@ -565,6 +733,11 @@
     .form-glow-container::before {
         width: 250px;
         height: 250px;
+    }
+
+    .form-glow-container::after {
+        width: 150px;
+        height: 150px;
     }
 }
 
