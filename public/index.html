@@ -8,15 +8,24 @@
         content="VULIX - Ingeniería Estratégica para el Crecimiento Digital. Desarrollo Web, Diseño UX/UI y Consultoría Digital de alto rendimiento.">
     <title>VULIX | Desarrollo Web & Consultoría Digital de Alto Rendimiento</title>
 
-    <!-- Fonts -->
+    <!-- Preload critical resources -->
+    <link rel="preload" href="../assets/css/styles.css" as="style">
+    <link rel="preload" href="../assets/images/logo-blanco.webp" as="image">
+    <link rel="preload" href="../assets/js/main.js" as="script">
+
+    <!-- Fonts - Optimized loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap"
-        rel="stylesheet">
+        rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    </noscript>
 
     <!-- Styles -->
     <link rel="stylesheet" href="../assets/css/styles.css">
+    <link rel="stylesheet" href="../assets/css/mobile-optimizations.css">
 </head>
 
 <body>
@@ -30,7 +39,7 @@
         </div>
         <div class="header-inner">
             <a href="#inicio" class="logo">
-                <img src="../assets/images/logo-blanco.png" alt="VULIX" class="logo-image">
+                <img src="../assets/images/logo-blanco.webp" alt="VULIX" class="logo-image">
             </a>
             <nav class="nav" id="navMenu">
                 <ul class="nav-links">
@@ -57,19 +66,15 @@
             <div class="hero-gradient"></div>
             <div class="hero-gradient-2"></div>
             <div class="hero-logo-watermark">
-                <img src="../assets/images/logo_solo_png.png" alt="" class="watermark-logo">
+                <img src="../assets/images/logo_solo_png.webp" alt="" class="watermark-logo">
             </div>
             <div class="hero-shapes">
                 <div class="floating-shape"></div>
                 <div class="floating-shape"></div>
                 <div class="floating-shape"></div>
             </div>
-            <!-- Polvo estelar -->
+            <!-- Polvo estelar - Optimizado -->
             <div class="stardust">
-                <div class="dust-particle"></div>
-                <div class="dust-particle"></div>
-                <div class="dust-particle"></div>
-                <div class="dust-particle"></div>
                 <div class="dust-particle"></div>
                 <div class="dust-particle"></div>
                 <div class="dust-particle"></div>
@@ -188,123 +193,48 @@
     <!-- ==================== IMPULSA SECTION ===================== -->
     <section class="impulsa-section">
         <div class="impulsa-stars-background">
+            <!-- Estrellas optimizadas - Reducido de 100+ a 30 para mejor rendimiento -->
             <!-- Columna izquierda -->
-            <div class="parallax-star" style="top: 5%; left: 3%;"></div>
             <div class="parallax-star" style="top: 10%; left: 5%;"></div>
-            <div class="parallax-star" style="top: 15%; left: 8%;"></div>
-            <div class="parallax-star" style="top: 20%; left: 6%;"></div>
-            <div class="parallax-star" style="top: 25%; left: 4%;"></div>
             <div class="parallax-star" style="top: 30%; left: 7%;"></div>
-            <div class="parallax-star" style="top: 35%; left: 5%;"></div>
-            <div class="parallax-star" style="top: 40%; left: 9%;"></div>
-            <div class="parallax-star" style="top: 45%; left: 3%;"></div>
             <div class="parallax-star" style="top: 50%; left: 6%;"></div>
-            <div class="parallax-star" style="top: 55%; left: 8%;"></div>
-            <div class="parallax-star" style="top: 60%; left: 4%;"></div>
-            <div class="parallax-star" style="top: 65%; left: 7%;"></div>
             <div class="parallax-star" style="top: 70%; left: 5%;"></div>
-            <div class="parallax-star" style="top: 75%; left: 9%;"></div>
-            <div class="parallax-star" style="top: 80%; left: 3%;"></div>
-            <div class="parallax-star" style="top: 85%; left: 6%;"></div>
             <div class="parallax-star" style="top: 90%; left: 8%;"></div>
-            <div class="parallax-star" style="top: 95%; left: 4%;"></div>
 
             <!-- Columna centro-izquierda -->
-            <div class="parallax-star" style="top: 8%; left: 18%;"></div>
-            <div class="parallax-star" style="top: 12%; left: 22%;"></div>
-            <div class="parallax-star" style="top: 18%; left: 15%;"></div>
-            <div class="parallax-star" style="top: 22%; left: 20%;"></div>
-            <div class="parallax-star" style="top: 28%; left: 17%;"></div>
-            <div class="parallax-star" style="top: 33%; left: 23%;"></div>
-            <div class="parallax-star" style="top: 38%; left: 19%;"></div>
-            <div class="parallax-star" style="top: 43%; left: 16%;"></div>
-            <div class="parallax-star" style="top: 48%; left: 21%;"></div>
-            <div class="parallax-star" style="top: 53%; left: 18%;"></div>
-            <div class="parallax-star" style="top: 58%; left: 24%;"></div>
-            <div class="parallax-star" style="top: 63%; left: 15%;"></div>
-            <div class="parallax-star" style="top: 68%; left: 20%;"></div>
-            <div class="parallax-star" style="top: 73%; left: 22%;"></div>
-            <div class="parallax-star" style="top: 78%; left: 17%;"></div>
-            <div class="parallax-star" style="top: 83%; left: 19%;"></div>
-            <div class="parallax-star" style="top: 88%; left: 23%;"></div>
-            <div class="parallax-star" style="top: 93%; left: 16%;"></div>
+            <div class="parallax-star" style="top: 15%; left: 18%;"></div>
+            <div class="parallax-star" style="top: 35%; left: 20%;"></div>
+            <div class="parallax-star" style="top: 55%; left: 22%;"></div>
+            <div class="parallax-star" style="top: 75%; left: 19%;"></div>
+            <div class="parallax-star" style="top: 85%; left: 23%;"></div>
 
             <!-- Columna centro -->
-            <div class="parallax-star" style="top: 7%; left: 35%;"></div>
-            <div class="parallax-star" style="top: 13%; left: 40%;"></div>
-            <div class="parallax-star" style="top: 19%; left: 37%;"></div>
-            <div class="parallax-star" style="top: 24%; left: 42%;"></div>
-            <div class="parallax-star" style="top: 31%; left: 38%;"></div>
-            <div class="parallax-star" style="top: 36%; left: 44%;"></div>
-            <div class="parallax-star" style="top: 41%; left: 36%;"></div>
-            <div class="parallax-star" style="top: 47%; left: 41%;"></div>
-            <div class="parallax-star" style="top: 52%; left: 39%;"></div>
-            <div class="parallax-star" style="top: 57%; left: 43%;"></div>
-            <div class="parallax-star" style="top: 62%; left: 37%;"></div>
-            <div class="parallax-star" style="top: 67%; left: 40%;"></div>
-            <div class="parallax-star" style="top: 72%; left: 42%;"></div>
-            <div class="parallax-star" style="top: 77%; left: 38%;"></div>
-            <div class="parallax-star" style="top: 82%; left: 41%;"></div>
-            <div class="parallax-star" style="top: 87%; left: 39%;"></div>
-            <div class="parallax-star" style="top: 92%; left: 43%;"></div>
+            <div class="parallax-star" style="top: 12%; left: 40%;"></div>
+            <div class="parallax-star" style="top: 28%; left: 38%;"></div>
+            <div class="parallax-star" style="top: 45%; left: 42%;"></div>
+            <div class="parallax-star" style="top: 62%; left: 39%;"></div>
+            <div class="parallax-star" style="top: 80%; left: 41%;"></div>
 
             <!-- Columna centro-derecha -->
-            <div class="parallax-star" style="top: 6%; left: 58%;"></div>
-            <div class="parallax-star" style="top: 11%; left: 62%;"></div>
-            <div class="parallax-star" style="top: 16%; left: 55%;"></div>
-            <div class="parallax-star" style="top: 21%; left: 60%;"></div>
-            <div class="parallax-star" style="top: 27%; left: 57%;"></div>
-            <div class="parallax-star" style="top: 32%; left: 63%;"></div>
-            <div class="parallax-star" style="top: 37%; left: 59%;"></div>
-            <div class="parallax-star" style="top: 44%; left: 56%;"></div>
-            <div class="parallax-star" style="top: 49%; left: 61%;"></div>
-            <div class="parallax-star" style="top: 54%; left: 58%;"></div>
-            <div class="parallax-star" style="top: 59%; left: 64%;"></div>
-            <div class="parallax-star" style="top: 64%; left: 55%;"></div>
-            <div class="parallax-star" style="top: 69%; left: 60%;"></div>
-            <div class="parallax-star" style="top: 74%; left: 62%;"></div>
-            <div class="parallax-star" style="top: 79%; left: 57%;"></div>
-            <div class="parallax-star" style="top: 84%; left: 59%;"></div>
-            <div class="parallax-star" style="top: 89%; left: 63%;"></div>
-            <div class="parallax-star" style="top: 94%; left: 56%;"></div>
+            <div class="parallax-star" style="top: 8%; left: 60%;"></div>
+            <div class="parallax-star" style="top: 25%; left: 58%;"></div>
+            <div class="parallax-star" style="top: 48%; left: 62%;"></div>
+            <div class="parallax-star" style="top: 68%; left: 59%;"></div>
+            <div class="parallax-star" style="top: 88%; left: 61%;"></div>
 
             <!-- Columna derecha -->
-            <div class="parallax-star" style="top: 4%; right: 4%;"></div>
-            <div class="parallax-star" style="top: 9%; right: 7%;"></div>
-            <div class="parallax-star" style="top: 14%; right: 5%;"></div>
-            <div class="parallax-star" style="top: 19%; right: 9%;"></div>
-            <div class="parallax-star" style="top: 26%; right: 6%;"></div>
-            <div class="parallax-star" style="top: 34%; right: 8%;"></div>
-            <div class="parallax-star" style="top: 39%; right: 4%;"></div>
-            <div class="parallax-star" style="top: 46%; right: 7%;"></div>
-            <div class="parallax-star" style="top: 51%; right: 5%;"></div>
-            <div class="parallax-star" style="top: 56%; right: 9%;"></div>
-            <div class="parallax-star" style="top: 61%; right: 6%;"></div>
-            <div class="parallax-star" style="top: 66%; right: 8%;"></div>
-            <div class="parallax-star" style="top: 71%; right: 4%;"></div>
-            <div class="parallax-star" style="top: 76%; right: 7%;"></div>
-            <div class="parallax-star" style="top: 81%; right: 5%;"></div>
-            <div class="parallax-star" style="top: 86%; right: 9%;"></div>
-            <div class="parallax-star" style="top: 91%; right: 6%;"></div>
-            <div class="parallax-star" style="top: 96%; right: 8%;"></div>
+            <div class="parallax-star" style="top: 18%; right: 7%;"></div>
+            <div class="parallax-star" style="top: 38%; right: 5%;"></div>
+            <div class="parallax-star" style="top: 58%; right: 8%;"></div>
+            <div class="parallax-star" style="top: 78%; right: 6%;"></div>
+            <div class="parallax-star" style="top: 92%; right: 9%;"></div>
 
             <!-- Columna extrema derecha -->
-            <div class="parallax-star" style="top: 8%; right: 17%;"></div>
-            <div class="parallax-star" style="top: 15%; right: 20%;"></div>
-            <div class="parallax-star" style="top: 23%; right: 18%;"></div>
-            <div class="parallax-star" style="top: 29%; right: 22%;"></div>
-            <div class="parallax-star" style="top: 35%; right: 16%;"></div>
-            <div class="parallax-star" style="top: 42%; right: 19%;"></div>
-            <div class="parallax-star" style="top: 50%; right: 21%;"></div>
-            <div class="parallax-star" style="top: 55%; right: 17%;"></div>
-            <div class="parallax-star" style="top: 60%; right: 20%;"></div>
-            <div class="parallax-star" style="top: 65%; right: 18%;"></div>
-            <div class="parallax-star" style="top: 70%; right: 22%;"></div>
-            <div class="parallax-star" style="top: 75%; right: 16%;"></div>
-            <div class="parallax-star" style="top: 80%; right: 19%;"></div>
-            <div class="parallax-star" style="top: 85%; right: 21%;"></div>
-            <div class="parallax-star" style="top: 90%; right: 17%;"></div>
-            <div class="parallax-star" style="top: 95%; right: 20%;"></div>
+            <div class="parallax-star" style="top: 20%; right: 20%;"></div>
+            <div class="parallax-star" style="top: 42%; right: 18%;"></div>
+            <div class="parallax-star" style="top: 65%; right: 22%;"></div>
+            <div class="parallax-star" style="top: 82%; right: 19%;"></div>
+            <div class="parallax-star" style="top: 95%; right: 21%;"></div>
         </div>
         <div class="impulsa-inner">
             <div class="impulsa-content">
@@ -322,10 +252,6 @@
             <div class="impulsa-visual">
                 <div class="rocket-container">
                     <div class="stars">
-                        <div class="star-particle"></div>
-                        <div class="star-particle"></div>
-                        <div class="star-particle"></div>
-                        <div class="star-particle"></div>
                         <div class="star-particle"></div>
                         <div class="star-particle"></div>
                         <div class="star-particle"></div>
@@ -534,7 +460,7 @@
             <div class="portfolio-grid">
                 <article class="portfolio-card">
                     <div class="portfolio-image">
-                        <img src="../assets/images/madacril.png" alt="Madacril" class="portfolio-placeholder">
+                        <img src="../assets/images/madacril.webp" alt="Madacril" class="portfolio-placeholder" loading="lazy">
                     </div>
                     <div class="portfolio-content">
                         <div class="portfolio-tags">
@@ -552,7 +478,7 @@
                 </article>
                 <article class="portfolio-card">
                     <div class="portfolio-image">
-                        <img src="../assets/images/regalox.png" alt="Regalox" class="portfolio-placeholder">
+                        <img src="../assets/images/regalox.webp" alt="Regalox" class="portfolio-placeholder" loading="lazy">
                     </div>
                     <div class="portfolio-content">
                         <div class="portfolio-tags">
@@ -570,7 +496,7 @@
                 </article>
                 <article class="portfolio-card">
                     <div class="portfolio-image">
-                        <img src="../assets/images/lubiel.png" alt="Lubiel" class="portfolio-placeholder">
+                        <img src="../assets/images/lubiel.webp" alt="Lubiel" class="portfolio-placeholder" loading="lazy">
                     </div>
                     <div class="portfolio-content">
                         <div class="portfolio-tags">
@@ -947,7 +873,7 @@
             <div class="footer-main">
                 <div class="footer-brand">
                     <a href="#" class="logo">
-                        <img src="../assets/images/logo-blanco.png" alt="VULIX" class="logo-image">
+                        <img src="../assets/images/logo-blanco.webp" alt="VULIX" class="logo-image">
                     </a>
                     <p>Ingeniería estratégica para el crecimiento digital.</p>
                 </div>
@@ -987,7 +913,8 @@
     </button>
 
     <!-- ==================== JAVASCRIPT ==================== -->
-    <script src="../assets/js/main.js"></script>
+    <!-- Scripts - Deferred for better performance -->
+    <script src="../assets/js/main.js" defer></script>
 </body>
 
 </html>

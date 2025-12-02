@@ -1,34 +1,67 @@
-// ==================== MOBILE MENU TOGGLE ====================
+// ==================== MOBILE MENU TOGGLE - REESCRITO DESDE CERO ====================
 const menuToggle = document.getElementById('menuToggle');
 const navMenu = document.getElementById('navMenu');
 const navLinks = document.querySelectorAll('.nav-links a');
 
+// Crear overlay
+let menuOverlay = document.querySelector('.menu-overlay');
+if (!menuOverlay) {
+    menuOverlay = document.createElement('div');
+    menuOverlay.className = 'menu-overlay';
+    document.body.appendChild(menuOverlay);
+}
+
 if (menuToggle && navMenu) {
-    menuToggle.addEventListener('click', (e) => {
+    console.log('✅ Menu elements found');
+    
+    // Función para abrir menú
+    function openMenu() {
+        menuToggle.classList.add('active');
+        navMenu.classList.add('active');
+        menuOverlay.classList.add('active');
+        document.body.classList.add('menu-open');
+        console.log('🔵 Menu OPENED');
+    }
+    
+    // Función para cerrar menú
+    function closeMenu() {
+        menuToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        document.body.classList.remove('menu-open');
+        console.log('🔴 Menu CLOSED');
+    }
+    
+    // Toggle al hacer clic en hamburguesa
+    menuToggle.addEventListener('click', function(e) {
         e.preventDefault();
         e.stopPropagation();
-        menuToggle.classList.toggle('active');
-        navMenu.classList.toggle('active');
-        document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-    });
-
-    // Close menu when clicking on a link
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            menuToggle.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!navMenu.contains(e.target) && !menuToggle.contains(e.target) && navMenu.classList.contains('active')) {
-            menuToggle.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.style.overflow = '';
+        
+        const isOpen = navMenu.classList.contains('active');
+        console.log('🍔 Menu clicked, currently open:', isOpen);
+        
+        if (isOpen) {
+            closeMenu();
+        } else {
+            openMenu();
         }
     });
+    
+    // Cerrar al hacer clic en un link
+    navLinks.forEach(function(link) {
+        link.addEventListener('click', function() {
+            console.log('🔗 Link clicked');
+            closeMenu();
+        });
+    });
+    
+    // Cerrar al hacer clic en el overlay
+    menuOverlay.addEventListener('click', function() {
+        console.log('⬛ Overlay clicked');
+        closeMenu();
+    });
+    
+    console.log('✅ Menu initialized successfully');
 }
 
 // ==================== HEADER SCROLL EFFECT ====================
