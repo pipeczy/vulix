@@ -379,15 +379,17 @@
         display: none;
     }
     
-    /* Watermark más visible en mobile */
+    /* Watermark visible en mobile */
     .hero-logo-watermark {
-        width: 90%;
-        opacity: 0.06;
+        display: block !important;
+        width: 80%;
+        max-width: 400px;
+        opacity: 0.08;
         animation: logo-pulse 20s ease-in-out infinite;
     }
     
     @keyframes logo-pulse {
-        0%, 100% { opacity: 0.06; transform: translate(-50%, -50%) scale(1); }
+        0%, 100% { opacity: 0.08; transform: translate(-50%, -50%) scale(1); }
         50% { opacity: 0.08; transform: translate(-50%, -50%) scale(1.05); }
     }
     
@@ -438,7 +440,15 @@
     /* Rocket más pequeño y con animación suave en mobile */
     .rocket-container {
         transform: scale(0.8);
-        animation: rocketFloatSmooth 6s ease-in-out infinite !important;
+        animation: rocketFloatSmooth 10s ease-in-out infinite !important;
+    }
+    
+    /* Desactivar animaciones múltiples del cohete en móvil */
+    .rocket {
+        animation: none !important;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
     }
     
     @keyframes rocketFloatSmooth {
@@ -446,7 +456,7 @@
             transform: scale(0.8) translateY(0);
         }
         50% {
-            transform: scale(0.8) translateY(-15px);
+            transform: scale(0.8) translateY(-20px);
         }
     }
     
@@ -863,7 +873,15 @@
     
     .rocket-container {
         transform: scale(0.7);
-        animation: rocketFloatSmooth 6s ease-in-out infinite !important;
+        animation: rocketFloatSmooth 10s ease-in-out infinite !important;
+    }
+    
+    /* Desactivar animaciones múltiples del cohete en móvil */
+    .rocket {
+        animation: none !important;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
     }
     
     @keyframes rocketFloatSmooth {
@@ -871,7 +889,7 @@
             transform: scale(0.7) translateY(0);
         }
         50% {
-            transform: scale(0.7) translateY(-12px);
+            transform: scale(0.7) translateY(-15px);
         }
     }
     

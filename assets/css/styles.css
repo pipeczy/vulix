@@ -534,7 +534,7 @@ body.menu-open {
 
 .hero-logo-watermark {
     position: absolute;
-    top: 50%;
+    top: 25%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 60%;
@@ -3935,16 +3935,7 @@ body.menu-open {
     filter: drop-shadow(0 -5px 10px rgba(255, 107, 53, 0.5));
 }
 
-.rocket-nose::after {
-    content: '';
-    position: absolute;
-    top: 15px;
-    left: -15px;
-    width: 30px;
-    height: 35px;
-    background: linear-gradient(180deg, var(--color-cta) 0%, #ff8c5a 100%);
-    border-radius: 0 0 5px 5px;
-}
+
 
 .rocket-window {
     position: absolute;
@@ -5624,8 +5615,7 @@ body.menu-open {
     /* Hide complex hero decorations */
     .hero-gradient,
     .hero-gradient-2,
-    .floating-shape,
-    .hero-logo-watermark {
+    .floating-shape {
         display: none;
     }
 
