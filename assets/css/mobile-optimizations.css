@@ -4,44 +4,45 @@
 
 /* ==================== TABLET (1024px y menos) ==================== */
 @media (max-width: 1024px) {
+
     /* Header ajustes para tablet */
     .header {
         padding: 0.5rem 1.5rem;
         height: 70px;
     }
-    
+
     .logo-image {
         height: 280%;
         max-height: 300px;
     }
-    
+
     /* Hero ajustes para tablet */
     .hero {
         padding: 7rem 1.5rem 3rem;
     }
-    
+
     .hero-inner {
         gap: 3rem;
     }
-    
+
     /* Servicios en 2 columnas */
     .services-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
     }
-    
+
     /* Anti-fallas en 2 columnas */
     .anti-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
     }
-    
+
     /* Portfolio en 2 columnas */
     .portfolio-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
     }
-    
+
     /* Pricing en 2 columnas + 1 */
     .pricing-grid {
         grid-template-columns: repeat(2, 1fr);
@@ -51,199 +52,205 @@
 
 /* ==================== MOBILE LANDSCAPE & SMALL TABLET (768px y menos) ==================== */
 @media (max-width: 768px) {
+
     /* ===== BASE ===== */
     html {
         font-size: 15px;
     }
-    
+
     body {
         overflow-x: hidden;
     }
-    
-    /* FORZAR RESET DEL NAV ORIGINAL DESKTOP */
-    .header .nav {
-        position: relative !important;
-        display: flex !important;
-        flex-direction: row !important;
-        top: auto !important;
-        right: auto !important;
-        width: auto !important;
-        height: auto !important;
-        background: transparent !important;
-        padding: 0 !important;
-        box-shadow: none !important;
-    }
-    
+
     /* ===== HEADER MOBILE ===== */
     .header {
         padding: 0.75rem 1.25rem;
         height: 70px;
-        position: sticky;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
+        z-index: 3000;
+        overflow: visible;
     }
-    
+
     .header.scrolled {
         height: 65px;
         backdrop-filter: blur(25px);
         -webkit-backdrop-filter: blur(25px);
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     }
-    
+
     .logo-image {
         height: 250%;
         max-height: 200px;
     }
-    
-    /* Menu toggle visible y centrado */
+
+    /* Botón hamburguesa/X visible siempre */
     .menu-toggle {
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
+        z-index: 3500;
     }
-    
-    /* Navegación móvil - Z-INDEX MAYOR QUE OVERLAY */
-    #navMenu,
-    .header nav,
-    .header .nav,
-    nav#navMenu {
-        position: fixed !important;
-        top: 70px !important;
-        right: -100% !important;
-        left: auto !important;
-        width: 280px !important;
-        height: calc(100vh - 70px) !important;
-        background: #0f1729 !important;
-        flex-direction: column !important;
-        align-items: stretch !important;
-        justify-content: flex-start !important;
-        gap: 0 !important;
-        padding: 2rem 0 !important;
-        margin: 0 !important;
-        transition: right 0.4s ease !important;
-        box-shadow: -4px 0 20px rgba(0, 0, 0, 0.5) !important;
-        z-index: 10001 !important;
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
-        display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-    }
-    
-    #navMenu.active,
-    .header nav.active,
-    .header .nav.active,
-    nav#navMenu.active {
-        right: 0 !important;
-    }
-    
-    /* Overlay oscuro - Z-INDEX MENOR QUE EL MENÚ */
-    .menu-overlay {
+
+    /* =========================
+       NAVEGACIÓN MÓVIL
+       ========================= */
+
+    /* Contenedor del menú móvil */
+    #navMenu {
         position: fixed !important;
         top: 70px !important;
         left: 0 !important;
         right: 0 !important;
-        bottom: 0 !important;
-        background: rgba(0, 0, 0, 0.7) !important;
+        width: 100% !important;
+        min-height: calc(100vh - 70px) !important;
+        max-height: calc(100vh - 70px) !important;
+
+        /* Fondo semi-transparente con difuminado */
+        background: rgba(10, 15, 30, 0.75) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+        gap: 0 !important;
+
+        padding: 2rem 0 2rem !important;
+        margin: 0 !important;
+
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+
+        /* OCULTO por defecto */
         opacity: 0 !important;
         visibility: hidden !important;
-        transition: opacity 0.3s ease, visibility 0.3s ease !important;
-        z-index: 10000 !important;
         pointer-events: none !important;
+        transform: translateX(-100%) !important;
+        transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease !important;
+
+        z-index: 2500 !important;
     }
-    
-    .menu-overlay.active {
+
+    /* Estado ABIERTO del menú */
+    #navMenu.active {
         opacity: 1 !important;
         visibility: visible !important;
         pointer-events: auto !important;
+        transform: translateX(0) !important;
     }
-    
+
+    /* Overlay oscuro - bajo el header y el menú */
+    .menu-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(3, 6, 23, 0.5);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: 2000;
+    }
+
+    .menu-overlay.active {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Evitar scroll del body cuando el menú está abierto */
     body.menu-open {
         overflow: hidden;
     }
-    
-    /* Links del menú - FORZADO CON SELECTORES MÚLTIPLES */
-    .nav-links,
-    #navMenu .nav-links,
-    nav#navMenu .nav-links,
-    .nav .nav-links {
+
+    /* =========================
+       LINKS DEL MENÚ
+       ========================= */
+
+    .nav-links {
         flex-direction: column !important;
         gap: 0 !important;
         padding: 0 1.5rem !important;
         margin: 0 !important;
         list-style: none !important;
         display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
         width: 100% !important;
     }
-    
-    .nav-links li,
-    #navMenu .nav-links li,
-    nav#navMenu .nav-links li,
-    .nav .nav-links li {
+
+    .nav-links li {
         border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
         list-style: none !important;
         display: block !important;
-        visibility: visible !important;
-        opacity: 1 !important;
         width: 100% !important;
+        margin: 0 !important;
     }
-    
-    .nav-links a,
-    .nav-links li a,
-    #navMenu .nav-links a,
-    nav#navMenu .nav-links a,
-    .nav .nav-links a {
+
+    .nav-links li:last-child {
+        border-bottom: none !important;
+    }
+
+    .nav-links a {
         display: block !important;
         padding: 1.2rem 0 !important;
-        font-size: 1rem !important;
+        font-size: 1.05rem !important;
         font-weight: 500 !important;
-        color: #ffffff !important;
+        color: rgba(255, 255, 255, 0.9) !important;
         text-decoration: none !important;
-        transition: color 0.3s ease, padding-left 0.3s ease !important;
-        visibility: visible !important;
-        opacity: 1 !important;
+        transition: color 0.3s ease, padding-left 0.3s ease, background-color 0.3s ease !important;
         width: 100% !important;
+        position: relative !important;
     }
-    
-    .nav-links a:hover {
+
+    .nav-links a:hover,
+    .nav-links a:active {
         color: var(--color-primary) !important;
-        padding-left: 10px;
+        padding-left: 10px !important;
+        background-color: rgba(0, 212, 255, 0.05) !important;
     }
-    
+
     .nav-links a::after {
         display: none !important;
     }
-    
+
     /* Botón dentro del menú */
     .nav .btn-primary {
-        margin: 1.5rem 1.5rem 0;
-        justify-content: center;
-        width: calc(100% - 3rem);
-        display: flex;
-        align-items: center;
+        margin: 1.5rem 1.5rem 0 !important;
+        justify-content: center !important;
+        width: calc(100% - 3rem) !important;
+        display: flex !important;
+        align-items: center !important;
+        text-align: center !important;
     }
-    
+
+
     /* ===== HERO MOBILE ===== */
     .hero {
         min-height: auto;
-        padding: 6rem 1.25rem 4rem;
+        padding: 7rem 1.25rem 4rem;
         position: relative;
     }
-    
+
     .hero-inner {
         grid-template-columns: 1fr;
         gap: 2.5rem;
+        margin-top: 0;
     }
-    
+
     .hero-content {
         max-width: 100%;
         text-align: center;
         position: relative;
         z-index: 10;
+        margin-top: 4.5rem;
     }
-    
+
     .hero-badge {
         font-size: 0.8rem;
         padding: 0.5rem 1rem;
@@ -253,7 +260,7 @@
         border: 1px solid rgba(0, 212, 255, 0.3);
         animation: pulse-badge 2s ease-in-out infinite, fadeInUp 0.8s ease-out;
     }
-    
+
     /* Nueva micro-frase arriba del H1 */
     .hero-content::before {
         content: 'Diseño web que convierte y escala';
@@ -264,27 +271,36 @@
         text-transform: uppercase;
         letter-spacing: 0.1em;
         margin-bottom: 1rem;
+        margin-top: 0 !important;
+        padding-top: 0 !important;
         opacity: 0.9;
         animation: fadeInUp 0.6s ease-out 0.2s both;
     }
-    
+
     @keyframes pulse-badge {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.05); }
+
+        0%,
+        100% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.05);
+        }
     }
-    
+
     .hero h1 {
         font-size: clamp(1.85rem, 7.5vw, 2.75rem);
         margin-bottom: 1.25rem;
         line-height: 1.25;
         animation: fadeInUp 0.8s ease-out 0.3s both;
     }
-    
+
     .hero h1 span {
         display: block;
         margin-top: 0.5rem;
     }
-    
+
     .hero-subtitle {
         font-size: 1.05rem;
         margin-bottom: 2rem;
@@ -292,13 +308,13 @@
         line-height: 1.7;
         animation: fadeInUp 0.8s ease-out 0.4s both;
     }
-    
+
     .hero-cta {
         flex-direction: column;
         gap: 1rem;
         margin-bottom: 2.5rem;
     }
-    
+
     .hero-cta .btn {
         width: 100%;
         justify-content: center;
@@ -307,22 +323,22 @@
         font-weight: 600;
         animation: fadeInUp 0.8s ease-out both;
     }
-    
+
     .hero-cta .btn:nth-child(1) {
         animation-delay: 0.5s;
     }
-    
+
     .hero-cta .btn:nth-child(2) {
         animation-delay: 0.6s;
     }
-    
+
     .hero-cta .btn-primary {
         background: linear-gradient(135deg, var(--color-cta) 0%, #ff8555 100%);
         box-shadow: 0 8px 24px rgba(255, 107, 53, 0.4);
         position: relative;
         overflow: hidden;
     }
-    
+
     .hero-cta .btn-primary::before {
         content: '';
         position: absolute;
@@ -330,69 +346,92 @@
         left: -100%;
         width: 100%;
         height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
         animation: shimmer 3s infinite;
     }
-    
+
     @keyframes shimmer {
-        0% { left: -100%; }
-        100% { left: 100%; }
+        0% {
+            left: -100%;
+        }
+
+        100% {
+            left: 100%;
+        }
     }
-    
+
     @keyframes fadeInUp {
         from {
             opacity: 0;
             transform: translateY(30px);
         }
+
         to {
             opacity: 1;
             transform: translateY(0);
         }
     }
-    
+
     /* Hero visual mejorado y atractivo en mobile */
     .hero-visual {
         display: block;
         margin-top: 1.5rem;
         position: relative;
     }
-    
+
     .hero-mockup {
         transform: none;
         border-radius: 20px;
         box-shadow: 0 20px 60px rgba(0, 212, 255, 0.3),
-                    0 0 40px rgba(124, 58, 237, 0.2);
+            0 0 40px rgba(124, 58, 237, 0.2);
         animation: float-mobile 6s ease-in-out infinite;
     }
-    
+
     @keyframes float-mobile {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
+
+        0%,
+        100% {
+            transform: translateY(0);
+        }
+
+        50% {
+            transform: translateY(-10px);
+        }
     }
-    
+
     .mockup-content {
         padding: 1.5rem;
         min-height: 280px;
     }
-    
+
     .hero-float-card {
         display: none;
     }
-    
+
     /* Watermark visible en mobile */
     .hero-logo-watermark {
         display: block !important;
+        top: 35% !important;
         width: 80%;
         max-width: 400px;
         opacity: 0.08;
         animation: logo-pulse 20s ease-in-out infinite;
     }
-    
+
     @keyframes logo-pulse {
-        0%, 100% { opacity: 0.08; transform: translate(-50%, -50%) scale(1); }
-        50% { opacity: 0.08; transform: translate(-50%, -50%) scale(1.05); }
+
+        0%,
+        100% {
+            opacity: 0.08;
+            transform: translate(-50%, -50%) scale(1);
+        }
+
+        50% {
+            opacity: 0.08;
+            transform: translate(-50%, -50%) scale(1.05);
+        }
     }
-    
+
     /* Agregar gradientes decorativos sutiles en mobile */
     .hero::after {
         content: '';
@@ -401,48 +440,48 @@
         left: 0;
         right: 0;
         height: 150px;
-        background: linear-gradient(to top, 
-            rgba(0, 212, 255, 0.05) 0%,
-            transparent 100%);
+        background: linear-gradient(to top,
+                rgba(0, 212, 255, 0.05) 0%,
+                transparent 100%);
         pointer-events: none;
         z-index: 1;
     }
-    
+
     /* ===== IMPULSA SECTION MOBILE ===== */
     .impulsa-section {
         padding: 4rem 1.25rem;
     }
-    
+
     .impulsa-inner {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
-    
+
     .impulsa-content {
         text-align: center;
     }
-    
+
     .impulsa-title {
         font-size: clamp(1.75rem, 7vw, 2.5rem);
     }
-    
+
     .impulsa-text {
         font-size: 1rem;
         margin-bottom: 2rem;
     }
-    
+
     .btn-impulsa {
         width: 100%;
         justify-content: center;
         padding: 1rem 1.5rem;
     }
-    
+
     /* Rocket más pequeño y con animación suave en mobile */
     .rocket-container {
         transform: scale(0.8);
         animation: rocketFloatSmooth 10s ease-in-out infinite !important;
     }
-    
+
     /* Desactivar animaciones múltiples del cohete en móvil */
     .rocket {
         animation: none !important;
@@ -450,315 +489,318 @@
         left: 50%;
         transform: translateX(-50%);
     }
-    
+
     @keyframes rocketFloatSmooth {
-        0%, 100% {
+
+        0%,
+        100% {
             transform: scale(0.8) translateY(0);
         }
+
         50% {
             transform: scale(0.8) translateY(-20px);
         }
     }
-    
+
     /* ===== SECTIONS GENERAL MOBILE ===== */
     .section-inner {
         padding: 0 1.25rem;
     }
-    
+
     .section-header {
         margin-bottom: 3rem;
     }
-    
+
     .section-tag {
         font-size: 0.75rem;
         margin-bottom: 0.75rem;
     }
-    
+
     .section-title {
         font-size: clamp(1.75rem, 7vw, 2.25rem);
         margin-bottom: 0.875rem;
     }
-    
+
     .section-subtitle {
         font-size: 1rem;
     }
-    
+
     /* ===== SERVICES MOBILE ===== */
     .services {
         padding: 4rem 1.25rem;
     }
-    
+
     .services-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    
+
     .service-card {
         padding: 2rem 1.5rem;
     }
-    
+
     .service-card:hover {
         transform: translateY(-8px) scale(1.01);
     }
-    
+
     .service-icon {
         width: 56px;
         height: 56px;
         font-size: 1.5rem;
         margin-bottom: 1.25rem;
     }
-    
+
     .service-card h3 {
         font-size: 1.15rem;
     }
-    
+
     .service-card p {
         font-size: 0.9rem;
     }
-    
+
     .service-features li {
         font-size: 0.85rem;
     }
-    
+
     /* ===== ANTI-FALLAS MOBILE ===== */
     .anti-fallas {
         padding: 4rem 1.25rem;
     }
-    
+
     .anti-grid {
         grid-template-columns: 1fr;
         gap: 1.25rem;
     }
-    
+
     .anti-card {
         padding: 1.75rem 1.5rem;
     }
-    
+
     .anti-icon {
         width: 50px;
         height: 50px;
         font-size: 1.5rem;
     }
-    
+
     .anti-content h4 {
         font-size: 1.1rem;
         margin-bottom: 0.5rem;
     }
-    
+
     .anti-content p {
         font-size: 0.9rem;
     }
-    
+
     /* ===== PORTFOLIO MOBILE ===== */
     .portfolio {
         padding: 4rem 1.25rem;
     }
-    
+
     .portfolio-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    
+
     .portfolio-card {
         flex-direction: column;
     }
-    
+
     .portfolio-image {
         width: 100%;
         height: 220px;
     }
-    
+
     .portfolio-content {
         padding: 1.5rem;
     }
-    
+
     .portfolio-content h3 {
         font-size: 1.15rem;
     }
-    
+
     .portfolio-content p {
         font-size: 0.9rem;
     }
-    
+
     .portfolio-tags {
         flex-wrap: wrap;
         gap: 0.5rem;
     }
-    
+
     .portfolio-tag {
         font-size: 0.75rem;
         padding: 0.35rem 0.75rem;
     }
-    
+
     /* ===== PROCESS MOBILE ===== */
     .process {
         padding: 4rem 1.25rem;
     }
-    
+
     .process-timeline {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    
+
     .process-step {
         padding: 2rem 1.5rem;
         text-align: center;
     }
-    
+
     .process-number {
         font-size: 2.5rem;
         margin-bottom: 1rem;
     }
-    
+
     .process-step h3 {
         font-size: 1.15rem;
         margin-bottom: 0.75rem;
     }
-    
+
     .process-step p {
         font-size: 0.9rem;
     }
-    
+
     /* ===== PRICING MOBILE ===== */
     .pricing {
         padding: 4rem 1.25rem;
     }
-    
+
     .pricing-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
-    
+
     .pricing-card {
         padding: 2rem 1.5rem;
     }
-    
+
     .pricing-header h3 {
         font-size: 1.5rem;
     }
-    
+
     .pricing-description {
         font-size: 0.9rem;
     }
-    
+
     .pricing-price {
         margin: 1.5rem 0;
     }
-    
+
     .price-amount {
         font-size: 2.5rem;
     }
-    
+
     .pricing-features {
         gap: 0.75rem;
         margin-bottom: 2rem;
     }
-    
+
     .pricing-features li {
         font-size: 0.9rem;
         padding: 0.65rem 0;
     }
-    
+
     .pricing-card .btn {
         width: 100%;
         justify-content: center;
     }
-    
+
     /* ===== CTA SECTION MOBILE ===== */
     .cta-section {
         padding: 4rem 1.25rem;
     }
-    
+
     .cta-inner {
         padding: 3rem 2rem;
         text-align: center;
     }
-    
+
     .cta-title {
         font-size: clamp(1.75rem, 7vw, 2.25rem);
         margin-bottom: 1rem;
     }
-    
+
     .cta-subtitle {
         font-size: 1rem;
         margin-bottom: 2rem;
     }
-    
+
     .cta-buttons {
         flex-direction: column;
         gap: 1rem;
     }
-    
+
     .cta-buttons .btn {
         width: 100%;
         justify-content: center;
     }
-    
+
     /* ===== CONTACT SECTION MOBILE ===== */
     .contact-quick-access {
         padding: 2rem 1.25rem;
     }
-    
+
     .contact-quick-grid {
         grid-template-columns: 1fr;
         gap: 1rem;
     }
-    
+
     .footer-contact-item {
         padding: 1.25rem;
         font-size: 0.9rem;
     }
-    
+
     /* ===== FOOTER MOBILE ===== */
     .footer {
         padding: 3rem 1.25rem 2rem;
     }
-    
+
     .footer-top {
         grid-template-columns: 1fr;
         gap: 2.5rem;
         margin-bottom: 2.5rem;
     }
-    
+
     .footer-brand {
         text-align: center;
     }
-    
+
     .footer-brand .logo-image {
         margin: 0 auto;
     }
-    
+
     .footer-brand p {
         font-size: 0.9rem;
     }
-    
+
     .footer-links {
         text-align: center;
     }
-    
+
     .footer-links h4 {
         font-size: 1rem;
         margin-bottom: 1rem;
     }
-    
+
     .footer-links ul li a {
         font-size: 0.9rem;
     }
-    
+
     .footer-bottom {
         flex-direction: column;
         gap: 1.5rem;
         text-align: center;
     }
-    
+
     .footer-copyright {
         font-size: 0.85rem;
     }
-    
+
     .footer-socials {
         justify-content: center;
     }
-    
+
     /* ===== BACK TO TOP BUTTON ===== */
     .back-to-top {
         width: 50px;
@@ -771,111 +813,112 @@
 
 /* ==================== MOBILE PORTRAIT (480px y menos) ==================== */
 @media (max-width: 480px) {
+
     /* ===== BASE ===== */
     html {
         font-size: 14px;
     }
-    
+
     /* ===== HEADER ===== */
     .header {
         padding: 0.75rem 1rem;
         height: 65px;
     }
-    
+
     .header.scrolled {
         height: 60px;
     }
-    
+
     .logo-image {
         height: 220%;
         max-height: 150px;
     }
-    
+
     .nav {
         top: 65px;
         width: 100%;
         height: calc(100vh - 65px);
         right: -100%;
     }
-    
+
     /* ===== HERO ===== */
     .hero {
         padding: 5rem 1rem 3rem;
     }
-    
+
     .hero-inner {
         gap: 2rem;
     }
-    
+
     .hero-badge {
         font-size: 0.75rem;
         padding: 0.45rem 0.85rem;
     }
-    
+
     .hero h1 {
         font-size: clamp(1.65rem, 8.5vw, 2.35rem);
         line-height: 1.25;
         margin-bottom: 1rem;
     }
-    
+
     .hero-subtitle {
         font-size: 0.95rem;
         line-height: 1.7;
         margin-bottom: 1.5rem;
     }
-    
+
     .hero-content::before {
         font-size: 0.8rem;
     }
-    
+
     .hero-cta {
         gap: 0.875rem;
     }
-    
+
     .hero-cta .btn {
         padding: 1rem 1.25rem;
         font-size: 0.95rem;
     }
-    
+
     .hero-mockup {
         border-radius: 16px;
     }
-    
+
     .mockup-content {
         padding: 1.25rem;
         min-height: 260px;
     }
-    
+
     /* ===== IMPULSA SECTION ===== */
     .impulsa-section {
         padding: 3rem 1rem;
     }
-    
+
     .impulsa-inner {
         gap: 2rem;
     }
-    
+
     .impulsa-title {
         font-size: clamp(1.5rem, 8vw, 2rem);
         line-height: 1.2;
     }
-    
+
     .impulsa-text {
         font-size: 0.95rem;
         line-height: 1.6;
         margin-bottom: 1.5rem;
     }
-    
+
     .btn-impulsa {
         padding: 0.875rem 1.25rem;
         font-size: 0.9rem;
     }
-    
+
     .rocket-container {
         transform: scale(0.7);
         animation: rocketFloatSmooth 10s ease-in-out infinite !important;
     }
-    
+
     /* Desactivar animaciones múltiples del cohete en móvil */
     .rocket {
         animation: none !important;
@@ -883,16 +926,19 @@
         left: 50%;
         transform: translateX(-50%);
     }
-    
+
     @keyframes rocketFloatSmooth {
-        0%, 100% {
+
+        0%,
+        100% {
             transform: scale(0.7) translateY(0);
         }
+
         50% {
             transform: scale(0.7) translateY(-15px);
         }
     }
-    
+
     /* ===== SECTIONS ===== */
     .services,
     .anti-fallas,
@@ -902,265 +948,265 @@
     .cta-section {
         padding: 3rem 1rem;
     }
-    
+
     .section-header {
         margin-bottom: 2.5rem;
     }
-    
+
     .section-tag {
         font-size: 0.7rem;
         letter-spacing: 0.1em;
     }
-    
+
     .section-title {
         font-size: clamp(1.5rem, 8vw, 2rem);
         line-height: 1.2;
     }
-    
+
     .section-subtitle {
         font-size: 0.95rem;
         line-height: 1.5;
     }
-    
+
     /* ===== SERVICES ===== */
     .service-card {
         padding: 1.75rem 1.25rem;
     }
-    
+
     .service-icon {
         width: 50px;
         height: 50px;
         font-size: 1.35rem;
         margin-bottom: 1rem;
     }
-    
+
     .service-card h3 {
         font-size: 1.05rem;
         margin-bottom: 0.6rem;
     }
-    
+
     .service-card p {
         font-size: 0.85rem;
         line-height: 1.5;
         margin-bottom: 1.25rem;
     }
-    
+
     .service-features {
         gap: 0.4rem;
     }
-    
+
     .service-features li {
         font-size: 0.8rem;
     }
-    
+
     /* ===== ANTI-FALLAS ===== */
     .anti-card {
         padding: 1.5rem 1.25rem;
     }
-    
+
     .anti-icon {
         width: 45px;
         height: 45px;
         font-size: 1.35rem;
     }
-    
+
     .anti-content h4 {
         font-size: 1rem;
     }
-    
+
     .anti-content p {
         font-size: 0.85rem;
         line-height: 1.5;
     }
-    
+
     /* ===== PORTFOLIO ===== */
     .portfolio-image {
         height: 200px;
     }
-    
+
     .portfolio-content {
         padding: 1.25rem;
     }
-    
+
     .portfolio-content h3 {
         font-size: 1.05rem;
         margin-bottom: 0.75rem;
     }
-    
+
     .portfolio-content p {
         font-size: 0.85rem;
         line-height: 1.5;
     }
-    
+
     .portfolio-tag {
         font-size: 0.7rem;
         padding: 0.3rem 0.65rem;
     }
-    
+
     .portfolio-result {
         font-size: 0.8rem;
         padding: 0.6rem 0.9rem;
     }
-    
+
     /* ===== PROCESS ===== */
     .process-step {
         padding: 1.75rem 1.25rem;
     }
-    
+
     .process-number {
         font-size: 2rem;
         margin-bottom: 0.875rem;
     }
-    
+
     .process-step h3 {
         font-size: 1.05rem;
         margin-bottom: 0.6rem;
     }
-    
+
     .process-step p {
         font-size: 0.85rem;
         line-height: 1.5;
     }
-    
+
     /* ===== PRICING ===== */
     .pricing-card {
         padding: 1.75rem 1.25rem;
     }
-    
+
     .pricing-header h3 {
         font-size: 1.35rem;
     }
-    
+
     .pricing-description {
         font-size: 0.85rem;
         line-height: 1.5;
     }
-    
+
     .pricing-price {
         margin: 1.25rem 0;
     }
-    
+
     .price-currency {
         font-size: 1.25rem;
     }
-    
+
     .price-amount {
         font-size: 2.25rem;
     }
-    
+
     .price-period {
         font-size: 0.85rem;
     }
-    
+
     .pricing-features {
         gap: 0.6rem;
         margin-bottom: 1.75rem;
     }
-    
+
     .pricing-features li {
         font-size: 0.85rem;
         padding: 0.6rem 0;
     }
-    
+
     .pricing-note {
         padding: 1.25rem;
         font-size: 0.85rem;
     }
-    
+
     /* ===== CTA SECTION ===== */
     .cta-inner {
         padding: 2.5rem 1.5rem;
         border-radius: 16px;
     }
-    
+
     .cta-title {
         font-size: clamp(1.5rem, 8vw, 2rem);
         margin-bottom: 0.875rem;
     }
-    
+
     .cta-subtitle {
         font-size: 0.95rem;
         line-height: 1.5;
         margin-bottom: 1.75rem;
     }
-    
+
     .cta-buttons {
         gap: 0.875rem;
     }
-    
+
     .cta-buttons .btn {
         padding: 0.875rem 1.25rem;
         font-size: 0.9rem;
     }
-    
+
     /* ===== CONTACT ===== */
     .contact-quick-access {
         padding: 1.75rem 1rem;
     }
-    
+
     .footer-contact-item {
         padding: 1rem;
         font-size: 0.85rem;
     }
-    
+
     .footer-contact-item svg {
         width: 18px;
         height: 18px;
     }
-    
+
     /* ===== FOOTER ===== */
     .footer {
         padding: 2.5rem 1rem 1.75rem;
     }
-    
+
     .footer-top {
         gap: 2rem;
         margin-bottom: 2rem;
     }
-    
+
     .footer-brand p {
         font-size: 0.85rem;
         line-height: 1.5;
     }
-    
+
     .footer-links h4 {
         font-size: 0.95rem;
         margin-bottom: 0.875rem;
     }
-    
+
     .footer-links ul li {
         margin-bottom: 0.6rem;
     }
-    
+
     .footer-links ul li a {
         font-size: 0.85rem;
     }
-    
+
     .footer-bottom {
         gap: 1.25rem;
         padding-top: 1.5rem;
     }
-    
+
     .footer-copyright {
         font-size: 0.8rem;
     }
-    
+
     .footer-social {
         width: 38px;
         height: 38px;
     }
-    
+
     /* ===== BUTTONS GENERAL ===== */
     .btn {
         padding: 0.75rem 1.25rem;
         font-size: 0.875rem;
     }
-    
+
     .btn svg {
         width: 14px;
         height: 14px;
     }
-    
+
     /* ===== BACK TO TOP ===== */
     .back-to-top {
         width: 48px;
@@ -1176,20 +1222,20 @@
     html {
         font-size: 13px;
     }
-    
+
     .header {
         padding: 0.65rem 0.875rem;
         height: 60px;
     }
-    
+
     .hero {
         padding: 4.5rem 0.875rem 2rem;
     }
-    
+
     .hero h1 {
         font-size: clamp(1.5rem, 10vw, 2rem);
     }
-    
+
     .sections,
     .impulsa-section,
     .services,
@@ -1200,11 +1246,11 @@
     .cta-section {
         padding: 2.5rem 0.875rem;
     }
-    
+
     .section-title {
         font-size: clamp(1.35rem, 9vw, 1.75rem);
     }
-    
+
     .service-card,
     .anti-card,
     .portfolio-content,
@@ -1220,16 +1266,16 @@
         min-height: auto;
         padding: 5rem 1.25rem 2rem;
     }
-    
+
     .hero-inner {
         gap: 2rem;
     }
-    
+
     .nav {
         height: calc(100vh - 60px);
         overflow-y: auto;
     }
-    
+
     .section-header {
         margin-bottom: 2rem;
     }
@@ -1237,6 +1283,7 @@
 
 /* ==================== UTILITIES MOBILE ==================== */
 @media (max-width: 768px) {
+
     /* Ocultar elementos decorativos pesados en mobile */
     .space-planets,
     .hero-gradient,
@@ -1257,18 +1304,18 @@
     .hero-bg .hero-grid {
         display: none !important;
     }
-    
+
     /* Mantener solo el mockup visible en hero */
     .hero-visual .hero-mockup {
         display: block !important;
     }
-    
+
     /* Optimizar animaciones en mobile - pero permitir las del hero */
     :not(.hero *):not(.hero-cta):not(.btn):not(.hero-badge):not(.hero-content) {
         animation-duration: 0.5s !important;
         transition-duration: 0.3s !important;
     }
-    
+
     /* Mejorar tap targets (mínimo 44px) */
     a,
     button,
@@ -1279,7 +1326,7 @@
         min-height: 44px;
         min-width: 44px;
     }
-    
+
     /* Scroll suave */
     html {
         scroll-padding-top: 80px;

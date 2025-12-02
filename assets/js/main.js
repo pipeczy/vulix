@@ -1,68 +1,102 @@
-// ==================== MOBILE MENU TOGGLE - REESCRITO DESDE CERO ====================
-const menuToggle = document.getElementById('menuToggle');
-const navMenu = document.getElementById('navMenu');
-const navLinks = document.querySelectorAll('.nav-links a');
+// ==================== MOBILE MENU TOGGLE ====================
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    const header = document.getElementById('header');
 
-// Crear overlay
-let menuOverlay = document.querySelector('.menu-overlay');
-if (!menuOverlay) {
-    menuOverlay = document.createElement('div');
-    menuOverlay.className = 'menu-overlay';
-    document.body.appendChild(menuOverlay);
-}
+    // Crear overlay si no existe
+    let menuOverlay = document.querySelector('.menu-overlay');
+    if (!menuOverlay) {
+        menuOverlay = document.createElement('div');
+        menuOverlay.className = 'menu-overlay';
+        document.body.appendChild(menuOverlay);
+    }
 
-if (menuToggle && navMenu) {
-    console.log('✅ Menu elements found');
-    
-    // Función para abrir menú
-    function openMenu() {
-        menuToggle.classList.add('active');
-        navMenu.classList.add('active');
-        menuOverlay.classList.add('active');
-        document.body.classList.add('menu-open');
-        console.log('🔵 Menu OPENED');
-    }
-    
-    // Función para cerrar menú
-    function closeMenu() {
-        menuToggle.classList.remove('active');
-        navMenu.classList.remove('active');
-        menuOverlay.classList.remove('active');
-        document.body.classList.remove('menu-open');
-        console.log('🔴 Menu CLOSED');
-    }
-    
-    // Toggle al hacer clic en hamburguesa
-    menuToggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
+    if (menuToggle && navMenu) {
+        console.log('✅ Menu elements found');
         
-        const isOpen = navMenu.classList.contains('active');
-        console.log('🍔 Menu clicked, currently open:', isOpen);
-        
-        if (isOpen) {
-            closeMenu();
-        } else {
-            openMenu();
+        // Función para abrir menú
+        function openMenu() {
+            console.log('🔵 Opening menu...');
+            menuToggle.classList.add('active');
+            navMenu.classList.add('active');
+            menuOverlay.classList.add('active');
+            document.body.classList.add('menu-open');
+            
+            // Force reflow para asegurar la transición
+            void navMenu.offsetWidth;
+            
+            console.log('✅ Menu OPENED');
         }
-    });
-    
-    // Cerrar al hacer clic en un link
-    navLinks.forEach(function(link) {
-        link.addEventListener('click', function() {
-            console.log('🔗 Link clicked');
+        
+        // Función para cerrar menú
+        function closeMenu() {
+            console.log('🔴 Closing menu...');
+            menuToggle.classList.remove('active');
+            navMenu.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            document.body.classList.remove('menu-open');
+            console.log('✅ Menu CLOSED');
+        }
+        
+        // Toggle al hacer clic en hamburguesa
+        menuToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const isOpen = navMenu.classList.contains('active');
+            console.log('🍔 Menu toggle clicked. Current state:', isOpen ? 'OPEN' : 'CLOSED');
+            
+            if (isOpen) {
+                closeMenu();
+            } else {
+                openMenu();
+            }
+        });
+        
+        // Cerrar al hacer clic en un link
+        navLinks.forEach(function(link) {
+            link.addEventListener('click', function(e) {
+                console.log('🔗 Link clicked:', this.textContent);
+                // Pequeño delay para que se vea la selección
+                setTimeout(function() {
+                    closeMenu();
+                }, 100);
+            });
+        });
+        
+        // Cerrar al hacer clic en el overlay
+        menuOverlay.addEventListener('click', function() {
+            console.log('⬛ Overlay clicked');
             closeMenu();
         });
-    });
-    
-    // Cerrar al hacer clic en el overlay
-    menuOverlay.addEventListener('click', function() {
-        console.log('⬛ Overlay clicked');
-        closeMenu();
-    });
-    
-    console.log('✅ Menu initialized successfully');
-}
+        
+        // Cerrar al hacer clic en el área vacía del menú (no en los links)
+        navMenu.addEventListener('click', function(e) {
+            // Si el clic es directamente en el navMenu (no en sus hijos como links o botones)
+            if (e.target === navMenu) {
+                console.log('📋 Menu background clicked');
+                closeMenu();
+            }
+        });
+        
+        // Cerrar con tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                console.log('⌨️ ESC pressed');
+                closeMenu();
+            }
+        });
+        
+        console.log('✅ Menu initialized successfully');
+        console.log('📱 Menu element:', navMenu);
+        console.log('🍔 Toggle element:', menuToggle);
+        console.log('⬛ Overlay element:', menuOverlay);
+    } else {
+        console.error('❌ Menu elements not found!');
+    }
+});
 
 // ==================== HEADER SCROLL EFFECT ====================
 const header = document.getElementById('header');
@@ -465,3 +499,4 @@ if (btnDespegue) {
 }
 
 // ==================== ANIMATED COUNTER FOR METRICS ====================
+

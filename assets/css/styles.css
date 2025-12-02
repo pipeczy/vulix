@@ -76,7 +76,7 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 3000;
     padding: 0.5rem 2rem;
     background: linear-gradient(180deg,
         rgba(10, 15, 30, 0.95) 0%,
@@ -87,7 +87,7 @@ body {
     height: 80px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3),
                 0 0 20px rgba(0, 212, 255, 0.1);
-    overflow: hidden;
+    overflow: visible;
 }
 
 .header::before {
@@ -433,7 +433,7 @@ body {
     padding: 0.5rem;
     background: none;
     border: none;
-    z-index: 1003;
+    z-index: 3500;
     position: relative;
 }
 
@@ -466,7 +466,7 @@ body {
     height: 100%;
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(5px);
-    z-index: 1000;
+    z-index: 2000;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
@@ -534,7 +534,7 @@ body.menu-open {
 
 .hero-logo-watermark {
     position: absolute;
-    top: 25%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 60%;
