@@ -498,5 +498,94 @@ if (btnDespegue) {
     });
 }
 
-// ==================== ANIMATED COUNTER FOR METRICS ====================
+// ==================== ANIMATED COUNTER FOR METRICS ====================
 
+// ==================== PROCESS CAROUSEL ====================
+document.addEventListener('DOMContentLoaded', function() {
+    const processSteps = document.querySelectorAll('.process-step');
+    const processDots = document.querySelectorAll('.process-dots .dot');
+    const processRocket = document.querySelector('.process-rocket');
+    const processSection = document.querySelector('.process');
+
+    if (!processSteps.length || !processDots.length || !processRocket) {
+        return;
+    }
+
+    let currentStep = 0;
+    const totalSteps = processSteps.length;
+    const autoPlayInterval = 4000;
+    let processInterval;
+
+    function updateProcessCarousel(stepIndex) {
+        // Remover active de todos
+        processSteps.forEach(step => step.classList.remove('active'));
+        processDots.forEach(dot => dot.classList.remove('active'));
+        
+        // Agregar active al paso actual
+        if (processSteps[stepIndex]) {
+            processSteps[stepIndex].classList.add('active');
+        }
+        if (processDots[stepIndex]) {
+            processDots[stepIndex].classList.add('active');
+        }
+        
+        // Mover el cohete
+        const positions = [12.5, 37.5, 62.5, 87.5];
+        if (processRocket && positions[stepIndex] !== undefined) {
+            processRocket.style.left = positions[stepIndex] + '%';
+        }
+        
+        // Actualizar línea de progreso
+        const progressWidth = (stepIndex / (totalSteps - 1)) * 75;
+        const styleId = 'process-progress-style';
+        let progressStyle = document.getElementById(styleId);
+        
+        if (!progressStyle) {
+            progressStyle = document.createElement('style');
+            progressStyle.id = styleId;
+            document.head.appendChild(progressStyle);
+        }
+        
+        progressStyle.textContent = '.process-timeline::after { width: ' + progressWidth + '% !important; }';
+    }
+
+    function startProcessCarousel() {
+        processInterval = setInterval(function() {
+            currentStep = (currentStep + 1) % totalSteps;
+            updateProcessCarousel(currentStep);
+        }, autoPlayInterval);
+    }
+
+    function stopProcessCarousel() {
+        if (processInterval) {
+            clearInterval(processInterval);
+            processInterval = null;
+        }
+    }
+
+    // Click en dots
+    processDots.forEach(function(dot, index) {
+        dot.addEventListener('click', function() {
+            currentStep = index;
+            updateProcessCarousel(currentStep);
+            stopProcessCarousel();
+            setTimeout(startProcessCarousel, autoPlayInterval * 2);
+        });
+    });
+
+    // Iniciar carousel cuando la sección esté visible
+    if (processSection) {
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    updateProcessCarousel(0);
+                    startProcessCarousel();
+                } else {
+                    stopProcessCarousel();
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        observer.observe(processSection);
+    }
+});
