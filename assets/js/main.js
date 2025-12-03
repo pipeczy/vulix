@@ -1,4 +1,4 @@
-// ==================== MOBILE MENU TOGGLE ====================
+﻿// ==================== MOBILE MENU TOGGLE ====================
 document.addEventListener('DOMContentLoaded', function() {
     const menuToggle = document.getElementById('menuToggle');
     const navMenu = document.getElementById('navMenu');
@@ -498,45 +498,64 @@ if (btnDespegue) {
     });
 }
 
-// ==================== ANIMATED COUNTER FOR METRICS ====================
 
-// ==================== PROCESS CAROUSEL ====================
+// ==================== PROCESS CAROUSEL (SCROLL-BASED) ====================
 document.addEventListener('DOMContentLoaded', function() {
     const processSteps = document.querySelectorAll('.process-step');
-    const processDots = document.querySelectorAll('.process-dots .dot');
-    const processRocket = document.querySelector('.process-rocket');
     const processSection = document.querySelector('.process');
 
-    if (!processSteps.length || !processDots.length || !processRocket) {
+    if (!processSteps.length || !processSection) {
         return;
     }
 
-    let currentStep = 0;
     const totalSteps = processSteps.length;
-    const autoPlayInterval = 4000;
-    let processInterval;
+    let manualControl = false;
 
-    function updateProcessCarousel(stepIndex) {
-        // Remover active de todos
-        processSteps.forEach(step => step.classList.remove('active'));
-        processDots.forEach(dot => dot.classList.remove('active'));
+    function updateProcessByScroll() {
+        if (manualControl) return;
         
-        // Agregar active al paso actual
-        if (processSteps[stepIndex]) {
-            processSteps[stepIndex].classList.add('active');
-        }
-        if (processDots[stepIndex]) {
-            processDots[stepIndex].classList.add('active');
+        const sectionRect = processSection.getBoundingClientRect();
+        const sectionTop = sectionRect.top;
+        const sectionHeight = sectionRect.height;
+        const viewportHeight = window.innerHeight;
+        
+        // Calcular progreso del scroll (0 a 1)
+        let scrollProgress = 0;
+        
+        if (sectionTop < viewportHeight && sectionTop + sectionHeight > 0) {
+            // La sección está visible
+            const visibleStart = Math.max(0, viewportHeight - sectionTop);
+            const totalScrollRange = sectionHeight + viewportHeight;
+            scrollProgress = Math.min(1, Math.max(0, visibleStart / totalScrollRange));
+            
+            // Diferentes velocidades para móvil y PC
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                // Móvil: velocidad original (perfecta)
+                scrollProgress = Math.max(0, Math.min(1, (scrollProgress - 0.15) / 0.7));
+            } else {
+                // PC: más rápido
+                scrollProgress = Math.max(0, Math.min(1, (scrollProgress - 0.05) / 0.4));
+            }
         }
         
-        // Mover el cohete
-        const positions = [12.5, 37.5, 62.5, 87.5];
-        if (processRocket && positions[stepIndex] !== undefined) {
-            processRocket.style.left = positions[stepIndex] + '%';
-        }
+        // Determinar qué pasos deben estar activos
+        const activeSteps = Math.max(0, Math.min(totalSteps, Math.floor(scrollProgress * (totalSteps + 1))));
         
-        // Actualizar l�nea de progreso
-        const progressWidth = (stepIndex / (totalSteps - 1)) * 75;
+        // Activar pasos progresivamente
+        processSteps.forEach(function(step, index) {
+            if (index < activeSteps) {
+                step.classList.add('active');
+            } else {
+                step.classList.remove('active');
+            }
+        });
+
+        // El cohete ha sido eliminado - código removido
+        
+        // Actualizar línea de progreso de forma suave
+        const progressWidth = Math.min(75, (scrollProgress * 75));
         const styleId = 'process-progress-style';
         let progressStyle = document.getElementById(styleId);
         
@@ -549,43 +568,55 @@ document.addEventListener('DOMContentLoaded', function() {
         progressStyle.textContent = '.process-timeline::after { width: ' + progressWidth + '% !important; }';
     }
 
-    function startProcessCarousel() {
-        processInterval = setInterval(function() {
-            currentStep = (currentStep + 1) % totalSteps;
-            updateProcessCarousel(currentStep);
-        }, autoPlayInterval);
-    }
-
-    function stopProcessCarousel() {
-        if (processInterval) {
-            clearInterval(processInterval);
-            processInterval = null;
+    // Escuchar el scroll con optimización (throttling)
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                updateProcessByScroll();
+                ticking = false;
+            });
+            ticking = true;
         }
-    }
-
-    // Click en dots
-    processDots.forEach(function(dot, index) {
-        dot.addEventListener('click', function() {
-            currentStep = index;
-            updateProcessCarousel(currentStep);
-            stopProcessCarousel();
-            setTimeout(startProcessCarousel, autoPlayInterval * 2);
-        });
     });
 
-    // Iniciar carousel cuando la secci�n est� visible
-    if (processSection) {
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) {
-                    updateProcessCarousel(0);
-                    startProcessCarousel();
+    // Actualizar al cargar y al redimensionar
+    updateProcessByScroll();
+    window.addEventListener('resize', function() {
+        updateProcessByScroll();
+    });
+
+    // Permitir click en los pasos para navegación manual
+    processSteps.forEach(function(step, index) {
+        step.addEventListener('click', function() {
+            manualControl = true;
+            
+            // Activar pasos hasta el clickeado
+            processSteps.forEach(function(s, i) {
+                if (i <= index) {
+                    s.classList.add('active');
                 } else {
-                    stopProcessCarousel();
+                    s.classList.remove('active');
                 }
             });
-        }, { threshold: 0.3 });
-        
-        observer.observe(processSection);
-    }
+
+            // Actualizar línea de progreso
+            const progressWidth = (index / (totalSteps - 1)) * 75;
+            const styleId = 'process-progress-style';
+            let progressStyle = document.getElementById(styleId);
+            
+            if (!progressStyle) {
+                progressStyle = document.createElement('style');
+                progressStyle.id = styleId;
+                document.head.appendChild(progressStyle);
+            }
+            
+            progressStyle.textContent = '.process-timeline::after { width: ' + progressWidth + '% !important; }';
+            
+            // Reactivar control por scroll después de 2 segundos
+            setTimeout(function() {
+                manualControl = false;
+            }, 2000);
+        });
+    });
 });

@@ -2862,17 +2862,9 @@ body.menu-open {
     margin-right: auto;
 }
 
-/* Cohete indicador */
+/* Cohete indicador - OCULTO */
 .process-rocket {
-    position: absolute;
-    top: -60px;
-    left: 12.5%;
-    transform: translateX(-50%);
-    z-index: 10;
-    font-size: 2.5rem;
-    transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    animation: rocketBounce 2s ease-in-out infinite;
-    filter: drop-shadow(0 4px 12px rgba(0, 212, 255, 0.4));
+    display: none;
 }
 
 @keyframes rocketBounce {
@@ -2923,57 +2915,35 @@ body.menu-open {
     padding-top: 20px;
 }
 
-/* Línea de progreso */
+/* Línea de progreso - OCULTA */
 .process-timeline::before {
-    content: '';
-    position: absolute;
-    top: 60px;
-    left: 12.5%;
-    right: 12.5%;
-    height: 3px;
-    background: linear-gradient(90deg,
-        rgba(0, 212, 255, 0.3) 0%,
-        rgba(124, 58, 237, 0.3) 100%);
-    border-radius: 2px;
-    z-index: 0;
+    display: none;
 }
 
-/* Línea de progreso activa */
+/* Línea de progreso activa - OCULTA */
 .process-timeline::after {
-    content: '';
-    position: absolute;
-    top: 60px;
-    left: 12.5%;
-    width: 0%;
-    height: 3px;
-    background: linear-gradient(90deg,
-        var(--color-primary) 0%,
-        var(--color-accent) 100%);
-    border-radius: 2px;
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
-    z-index: 1;
-    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    display: none;
 }
 
 /* Steps del proceso */
 .process-step {
     text-align: center;
     position: relative;
-    opacity: 0.4;
-    transform: scale(0.95);
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.3;
+    transform: scale(0.9) translateY(15px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .process-step.active {
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translateY(0);
 }
 
 .process-number {
     width: 80px;
     height: 80px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 3px solid rgba(0, 212, 255, 0.3);
+    background: rgba(255, 255, 255, 0.05);
+    border: 3px solid rgba(0, 212, 255, 0.2);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -2981,20 +2951,21 @@ body.menu-open {
     font-family: var(--font-mono);
     font-size: 1.5rem;
     font-weight: 700;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.3);
     margin: 0 auto 1.5rem;
     position: relative;
     z-index: 2;
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .process-step.active .process-number {
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
     border-color: var(--color-accent);
     color: white;
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4),
-                0 0 40px rgba(0, 212, 255, 0.3);
-    transform: scale(1.1);
+    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.5),
+                0 0 50px rgba(0, 212, 255, 0.4),
+                0 5px 15px rgba(0, 0, 0, 0.3);
+    transform: scale(1.05);
 }
 
 /* Anillo pulsante */
