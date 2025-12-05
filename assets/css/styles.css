@@ -320,8 +320,58 @@ body {
     filter: brightness(1.1);
 }
 
+/* ==================== TERMINAL TYPING EFFECT ==================== */
+.terminal-typing {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-left: 1.25rem;
+    font-family: 'Courier New', 'Consolas', monospace;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+}
 
+.typing-text {
+    background: linear-gradient(135deg, #00D4FF 0%, #7C3AED 50%, #00D4FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 100%;
+    animation: gradient-shift 3s ease infinite;
+    text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.25))
+            drop-shadow(0 0 15px rgba(124, 58, 237, 0.15));
+    min-height: 1.2em;
+    display: inline-block;
+}
 
+.typing-cursor {
+    color: #00D4FF;
+    font-size: 1.1rem;
+    animation: blink-cursor 1s step-end infinite;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+    opacity: 0.9;
+}
+
+@keyframes blink-cursor {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+@keyframes gradient-shift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
 
 .logo-mark {
     width: 36px;
@@ -494,7 +544,7 @@ body.menu-open {
     display: flex;
     align-items: center;
     position: relative;
-    padding: 8rem 2rem 4rem;
+    padding: 8rem 2rem 2rem;
     overflow: hidden;
     background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
 }
@@ -1385,50 +1435,490 @@ body.menu-open {
     }
 }
 
-/* ==================== CLIENTS SECTION ==================== */
-.clients {
-    padding: 4rem 2rem;
-    background: var(--color-bg-alt);
-    border-top: 1px solid rgba(0,0,0,0.05);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+/* ==================== CLIENTS MINIMAL SECTION ==================== */
+.clients-minimal {
+    padding: 3rem 2rem 5rem;
+    position: relative;
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse 800px 300px at 50% 0%, rgba(0, 212, 255, 0.03) 0%, transparent 50%),
+        linear-gradient(180deg,
+            #FFFFFF 0%,
+            #FAFBFC 25%,
+            #F8F9FB 50%,
+            #F5F7FA 70%,
+            rgba(245, 247, 250, 0.9) 85%,
+            rgba(10, 15, 30, 0.08) 100%);
 }
 
-.clients-inner {
+/* Separador galáctico superior */
+.galaxy-separator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 250px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Halos circulares translúcidos */
+.cosmic-halo {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(40px);
+    opacity: 0.06;
+    animation: pulse-halo 8s ease-in-out infinite;
+}
+
+.halo-1 {
+    width: 400px;
+    height: 400px;
+    top: -150px;
+    left: 10%;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.4) 0%, transparent 70%);
+}
+
+.halo-2 {
+    width: 350px;
+    height: 350px;
+    top: -120px;
+    right: 15%;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.3) 0%, transparent 70%);
+    animation-delay: 2s;
+}
+
+.halo-3 {
+    width: 300px;
+    height: 300px;
+    top: -100px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.2) 0%, transparent 70%);
+    animation-delay: 4s;
+}
+
+@keyframes pulse-halo {
+    0%, 100% {
+        transform: scale(1) translateY(0);
+        opacity: 0.04;
+    }
+    50% {
+        transform: scale(1.1) translateY(-10px);
+        opacity: 0.08;
+    }
+}
+
+/* Órbitas SVG */
+.orbit-curves {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    opacity: 0.08;
+}
+
+.orbit-path {
+    fill: none;
+    stroke-width: 1.5;
+    stroke-dasharray: 10, 5;
+    animation: orbit-flow 15s linear infinite;
+}
+
+.orbit-1 {
+    stroke: rgba(0, 212, 255, 0.4);
+}
+
+.orbit-2 {
+    stroke: rgba(124, 58, 237, 0.3);
+    animation-delay: 2s;
+}
+
+@keyframes orbit-flow {
+    to {
+        stroke-dashoffset: 100;
+    }
+}
+
+/* Destellos */
+.sparkle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.8) 0%, transparent 60%);
+    border-radius: 50%;
+    animation: sparkle-shine 3s ease-in-out infinite;
+}
+
+.sparkle:nth-child(2n) {
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.6) 0%, transparent 60%);
+    animation-delay: 1s;
+}
+
+.sparkle:nth-child(3n) {
+    animation-delay: 2s;
+}
+
+@keyframes sparkle-shine {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(0, 212, 255, 0);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.5);
+        box-shadow: 0 0 12px rgba(0, 212, 255, 0.4);
+    }
+}
+
+/* Partículas flotantes */
+.float-particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(0, 212, 255, 0.4);
+    border-radius: 50%;
+    animation: gentle-float 12s ease-in-out infinite;
+}
+
+.float-particle:nth-child(2n) {
+    background: rgba(124, 58, 237, 0.3);
+    animation-duration: 15s;
+}
+
+@keyframes gentle-float {
+    0%, 100% {
+        transform: translate(0, 0);
+        opacity: 0.3;
+    }
+    25% {
+        transform: translate(15px, -20px);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translate(-10px, -40px);
+        opacity: 0.8;
+    }
+    75% {
+        transform: translate(-20px, -20px);
+        opacity: 0.5;
+    }
+}
+
+/* Detalles galácticos sutiles */
+.subtle-galaxy {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.star-dot {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(0, 212, 255, 0.3);
+    border-radius: 50%;
+    animation: subtle-twinkle 4s ease-in-out infinite;
+}
+
+.star-dot:nth-child(2n) {
+    animation-delay: 1s;
+    background: rgba(124, 58, 237, 0.25);
+}
+
+.star-dot:nth-child(3n) {
+    animation-delay: 2.5s;
+}
+
+@keyframes subtle-twinkle {
+    0%, 100% {
+        opacity: 0.2;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.4);
+    }
+}
+
+.glow-line {
+    position: absolute;
+    height: 1px;
+    width: 40%;
+    opacity: 0.1;
+}
+
+.glow-line-1 {
+    top: 30%;
+    left: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 212, 255, 0.3) 50%, transparent 100%);
+    animation: flow-line 8s ease-in-out infinite;
+}
+
+.glow-line-2 {
+    bottom: 35%;
+    right: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(124, 58, 237, 0.3) 50%, transparent 100%);
+    animation: flow-line 8s ease-in-out infinite reverse;
+}
+
+@keyframes flow-line {
+    0%, 100% {
+        transform: translateX(0) scaleX(1);
+        opacity: 0.05;
+    }
+    50% {
+        transform: translateX(20px) scaleX(1.1);
+        opacity: 0.15;
+    }
+}
+
+/* Contenido */
+.clients-content {
+    position: relative;
+    z-index: 1;
     max-width: 1200px;
     margin: 0 auto;
+}
+
+/* Encabezado minimalista */
+.clients-header-minimal {
     text-align: center;
+    margin-bottom: 4rem;
+    position: relative;
+    z-index: 2;
 }
 
-.clients-label {
-    font-size: 0.85rem;
-    font-weight: 500;
+.clients-title-minimal {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        0 0 20px rgba(0, 212, 255, 0.06);
+    position: relative;
+}
+
+.clients-title-minimal::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(0, 212, 255, 0.3) 50%,
+        transparent 100%);
+    border-radius: 2px;
+}
+
+.clients-subtitle-minimal {
+    font-size: 1.05rem;
     color: var(--color-text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 2rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.03);
+    opacity: 0.9;
 }
 
-.clients-logos {
+/* Carrusel wrapper */
+.clients-carousel-wrapper {
+    width: 100%;
+    overflow: hidden;
+    margin: 3rem 0;
+    position: relative;
+    padding: 2rem 0;
+}
+
+.clients-carousel-wrapper::before,
+.clients-carousel-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.clients-carousel-wrapper::before {
+    left: 0;
+    background: linear-gradient(90deg, #FAFBFC 0%, transparent 100%);
+}
+
+.clients-carousel-wrapper::after {
+    right: 0;
+    background: linear-gradient(270deg, #FAFBFC 0%, transparent 100%);
+}
+
+.clients-carousel {
+    width: 100%;
+    overflow: visible;
+}
+
+/* Track del carrusel */
+.carousel-track {
+    display: flex;
+    gap: 3rem;
+    animation: orbit-scroll 30s linear infinite;
+    width: fit-content;
+}
+
+.carousel-track:hover {
+    animation-play-state: paused;
+}
+
+@keyframes orbit-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-33.333%);
+    }
+}
+
+/* Items del carrusel */
+.carousel-item {
+    flex-shrink: 0;
+    width: 240px;
+    height: 120px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 4rem;
-    flex-wrap: wrap;
+    padding: 1.5rem 2rem;
+    background: transparent;
+    border: none;
+    border-radius: 16px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: visible;
 }
 
-.client-logo {
-    font-family: var(--font-display);
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--color-text-muted);
-    opacity: 0.5;
-    transition: var(--transition-fast);
-    letter-spacing: -0.02em;
+/* Efecto de resplandor galáctico detrás del logo */
+.logo-glow-effect {
+    position: absolute;
+    inset: -15px;
+    border-radius: 20px;
+    background: radial-gradient(ellipse at center,
+        rgba(0, 212, 255, 0.08) 0%,
+        rgba(124, 58, 237, 0.06) 30%,
+        transparent 70%);
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+    filter: blur(15px);
 }
 
-.client-logo:hover {
+/* Estrellas decorativas alrededor del logo */
+.carousel-item::before {
+    content: '✦';
+    position: absolute;
+    top: -12px;
+    right: -12px;
+    font-size: 16px;
+    color: rgba(0, 212, 255, 0.5);
+    animation: star-pulse 2.5s ease-in-out infinite;
+    text-shadow:
+        0 0 10px rgba(0, 212, 255, 0.5),
+        0 0 20px rgba(0, 212, 255, 0.3);
+}
+
+/* Segundo conjunto de estrellas */
+.carousel-item::after {
+    content: '✦';
+    position: absolute;
+    bottom: -12px;
+    left: -12px;
+    font-size: 14px;
+    color: rgba(124, 58, 237, 0.5);
+    animation: star-pulse 2.5s ease-in-out infinite 0.5s;
+    text-shadow:
+        0 0 10px rgba(124, 58, 237, 0.5),
+        0 0 20px rgba(124, 58, 237, 0.3);
+}
+
+@keyframes star-pulse {
+    0%, 100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.4) rotate(180deg);
+        opacity: 1;
+    }
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    filter: none;
     opacity: 1;
-    color: var(--color-text);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
+    drop-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Invertir colores solo para el logo de MadaMedia */
+.carousel-item img[src*="MadaMedia"] {
+    filter: invert(1) brightness(0.9);
+}
+
+.carousel-item:hover {
+    transform: translateY(-12px) scale(1.08);
+}
+
+.carousel-item:hover .logo-glow-effect {
+    opacity: 1;
+    inset: -25px;
+    filter: blur(20px);
+}
+
+.carousel-item:hover::before,
+.carousel-item:hover::after {
+    animation-duration: 1.5s;
+}
+
+.carousel-item:hover img {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.3))
+            drop-shadow(0 0 40px rgba(124, 58, 237, 0.2));
+}
+
+/* Mensaje final */
+.clients-message {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 2rem;
+}
+
+.clients-message p {
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    font-weight: 400;
+    line-height: 1.6;
+}
+
+.galaxy-gradient {
+    background: linear-gradient(135deg, #00D4FF 0%, #7C3AED 50%, #00D4FF 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
 }
 
 /* ==================== SECTIONS COMMON ==================== */
@@ -3217,191 +3707,25 @@ body.menu-open {
 }
 
 /* ==================== PRICING SECTION ==================== */
+/* ==================== PRICING SECTION - REDISEÑADA ==================== */
 .pricing {
     padding: 8rem 2rem;
-    background: var(--color-bg-alt);
+    background: linear-gradient(180deg,
+        #FFFFFF 0%,
+        #FAFBFC 25%,
+        #F8F9FB 50%,
+        #F5F7FA 100%);
     position: relative;
     overflow: hidden;
 }
 
 .pricing .section-inner {
     position: relative;
-    z-index: 1;
+    z-index: 2;
 }
 
-.pricing-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
-}
-
-.pricing-card {
-    background: white;
-    border: 2px solid rgba(0,0,0,0.08);
-    border-radius: 20px;
-    padding: 2.5rem;
-    transition: var(--transition-smooth);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-}
-
-.pricing-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
-    border-color: rgba(0, 212, 255, 0.3);
-}
-
-.pricing-featured {
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.03) 0%, rgba(124, 58, 237, 0.03) 100%);
-    border: 2px solid var(--color-primary);
-    transform: scale(1.05);
-}
-
-.pricing-featured:hover {
-    transform: translateY(-8px) scale(1.05);
-}
-
-.pricing-badge {
-    position: absolute;
-    top: -12px;
-    left: 50%;
-    transform: translateX(-50%);
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
-    color: white;
-    font-size: 0.75rem;
-    font-weight: 700;
-    padding: 0.5rem 1.5rem;
-    border-radius: 100px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    box-shadow: 0 4px 12px rgba(0, 212, 255, 0.3);
-}
-
-.pricing-header {
-    text-align: center;
-    margin-bottom: 2rem;
-    padding-bottom: 2rem;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-}
-
-.pricing-header h3 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-    color: var(--color-text);
-}
-
-.pricing-description {
-    font-size: 0.95rem;
-    color: var(--color-text-muted);
-    line-height: 1.5;
-}
-
-.pricing-price {
-    text-align: center;
-    margin-bottom: 2rem;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    gap: 0.25rem;
-}
-
-.price-currency {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-text-muted);
-    margin-top: 0.5rem;
-}
-
-.price-amount {
-    font-size: 4rem;
-    font-weight: 600;
-    line-height: 1;
-    color: var(--color-text);
-    font-family: var(--font-mono);
-}
-
-.pricing-featured .price-amount {
-    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.price-period {
-    font-size: 1rem;
-    color: var(--color-text-muted);
-    margin-top: 1.5rem;
-}
-
-.pricing-features {
-    list-style: none;
-    margin-bottom: 2rem;
-    flex-grow: 1;
-}
-
-.pricing-features li {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-    padding: 0.75rem 0;
-    font-size: 0.95rem;
-    color: var(--color-text);
-    border-bottom: 1px solid rgba(0,0,0,0.04);
-}
-
-.pricing-features li:last-child {
-    border-bottom: none;
-}
-
-.pricing-features li::before {
-    content: '✓';
-    color: var(--color-success);
-    font-weight: 700;
-    font-size: 1.1rem;
-    flex-shrink: 0;
-}
-
-.pricing-card .btn {
-    width: 100%;
-    justify-content: center;
-    margin-top: auto;
-}
-
-.pricing-note {
-    text-align: center;
-    margin-top: 3rem;
-    padding: 1.5rem;
-    background: rgba(0, 212, 255, 0.05);
-    border: 1px solid rgba(0, 212, 255, 0.15);
-    border-radius: 12px;
-    max-width: 700px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.pricing-note p {
-    font-size: 0.95rem;
-    color: var(--color-text);
-    margin: 0;
-}
-
-.pricing-note a {
-    color: var(--color-primary-dark);
-    font-weight: 600;
-    text-decoration: none;
-    transition: var(--transition-fast);
-}
-
-.pricing-note a:hover {
-    color: var(--color-primary);
-    text-decoration: underline;
-}
-
-/* Pricing Space Background Effects */
-.pricing-space-bg {
+/* Fondo galáctico minimalista */
+.pricing-galaxy-bg {
     position: absolute;
     top: 0;
     left: 0;
@@ -3412,97 +3736,651 @@ body.menu-open {
     overflow: hidden;
 }
 
-.pricing-star {
+/* Orbes sutiles translúcidos */
+.pricing-orb {
     position: absolute;
-    width: 3px;
-    height: 3px;
-    background: white;
     border-radius: 50%;
-    box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
-    animation: pricingStarTwinkle 3s ease-in-out infinite;
+    filter: blur(80px);
+    opacity: 0.15;
+    animation: float-gentle 20s ease-in-out infinite;
 }
 
-.pricing-star-1 {
-    top: 15%;
-    left: 10%;
+.orb-1 {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+    top: -150px;
+    left: -100px;
     animation-delay: 0s;
 }
 
-.pricing-star-2 {
-    top: 25%;
-    right: 15%;
-    animation-delay: 0.5s;
+.orb-2 {
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.25) 0%, transparent 70%);
+    top: 30%;
+    right: -80px;
+    animation-delay: 5s;
 }
 
-.pricing-star-3 {
-    top: 70%;
-    left: 20%;
-    animation-delay: 1s;
-}
-
-.pricing-star-4 {
-    top: 80%;
-    right: 25%;
-    animation-delay: 1.5s;
-}
-
-.pricing-star-5 {
-    top: 40%;
-    left: 5%;
-    animation-delay: 2s;
-}
-
-.pricing-star-6 {
-    top: 60%;
-    right: 8%;
-    animation-delay: 2.5s;
-}
-
-.pricing-orbit {
-    position: absolute;
-    border: 1px solid rgba(0, 212, 255, 0.08);
-    border-radius: 50%;
-    animation: pricingOrbitRotate 30s linear infinite;
-}
-
-.pricing-orbit-1 {
+.orb-3 {
     width: 300px;
     height: 300px;
-    top: 10%;
-    right: -100px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.2) 0%, transparent 70%);
+    bottom: -100px;
+    left: 20%;
+    animation-delay: 10s;
 }
 
-.pricing-orbit-2 {
-    width: 400px;
-    height: 400px;
-    bottom: -150px;
-    left: -100px;
-    animation-duration: 40s;
+/* Estrellas diminutas */
+.pricing-tiny-star {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: rgba(0, 212, 255, 0.4);
+    border-radius: 50%;
+    box-shadow: 0 0 4px rgba(0, 212, 255, 0.3);
+    animation: twinkle-subtle 3s ease-in-out infinite;
 }
 
-@keyframes pricingStarTwinkle {
+/* Líneas difuminadas */
+.pricing-glow-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(0, 212, 255, 0.2) 50%,
+        transparent 100%);
+    filter: blur(1px);
+}
+
+.line-1 {
+    width: 40%;
+    top: 25%;
+    left: 10%;
+    animation: glow-pulse 4s ease-in-out infinite;
+}
+
+.line-2 {
+    width: 35%;
+    bottom: 30%;
+    right: 15%;
+    animation: glow-pulse 4s ease-in-out infinite 2s;
+}
+
+/* Grid de 4 planes */
+.pricing-grid-new {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 4rem;
+    position: relative;
+    z-index: 1;
+    align-items: stretch;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 1rem;
+}
+
+/* Cards de planes */
+.pricing-card-new {
+    background: linear-gradient(180deg,
+        rgba(255, 255, 255, 0.98) 0%,
+        rgba(255, 255, 255, 0.96) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1.5px solid rgba(0, 0, 0, 0.06);
+    border-radius: 24px;
+    padding: 2rem 1.75rem;
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.05),
+        0 2px 8px rgba(0, 0, 0, 0.03),
+        inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    height: 100%;
+    min-height: 680px;
+    overflow: visible;
+}
+
+/* Resplandor de fondo en hover */
+.card-glow-bg {
+    position: absolute;
+    inset: -4px;
+    border-radius: 32px;
+    background: radial-gradient(circle at 50% 0%,
+        rgba(0, 212, 255, 0.15) 0%,
+        rgba(124, 58, 237, 0.1) 50%,
+        transparent 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: -1;
+    filter: blur(24px);
+}
+
+.pricing-card-new:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 16px 48px rgba(0, 0, 0, 0.08),
+        0 6px 16px rgba(0, 0, 0, 0.05),
+        0 0 0 1px rgba(0, 212, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+    border-color: rgba(0, 212, 255, 0.2);
+}
+
+.pricing-card-new:hover .card-glow-bg {
+    opacity: 1;
+}
+
+/* Plan destacado (Órbita) */
+.featured-card {
+    background: linear-gradient(180deg,
+        rgba(0, 212, 255, 0.05) 0%,
+        rgba(124, 58, 237, 0.03) 50%,
+        rgba(255, 255, 255, 0.96) 100%);
+    border: 2px solid rgba(0, 212, 255, 0.35);
+    box-shadow:
+        0 10px 40px rgba(0, 212, 255, 0.1),
+        0 4px 12px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95),
+        inset 0 -1px 0 rgba(0, 212, 255, 0.08);
+}
+
+.featured-card:hover {
+    transform: translateY(-8px);
+    box-shadow:
+        0 20px 60px rgba(0, 212, 255, 0.18),
+        0 8px 20px rgba(0, 0, 0, 0.06),
+        0 0 0 1.5px rgba(0, 212, 255, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 1);
+    border-color: rgba(0, 212, 255, 0.45);
+}
+
+.featured-card .card-glow-bg {
+    background: radial-gradient(circle at 50% 0%,
+        rgba(0, 212, 255, 0.25) 0%,
+        rgba(124, 58, 237, 0.15) 50%,
+        transparent 100%);
+    opacity: 0.5;
+}
+
+.featured-card:hover .card-glow-bg {
+    opacity: 1;
+}
+
+/* Badge "Más Popular" */
+.popular-badge {
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #00D4FF 0%, #7C3AED 100%);
+    color: white;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.6rem 1.8rem;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    box-shadow:
+        0 6px 24px rgba(0, 212, 255, 0.5),
+        0 2px 8px rgba(124, 58, 237, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    z-index: 10;
+    animation: badge-pulse 3s ease-in-out infinite;
+}
+
+@keyframes badge-pulse {
+    0%, 100% {
+        box-shadow:
+            0 6px 24px rgba(0, 212, 255, 0.5),
+            0 2px 8px rgba(124, 58, 237, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    }
+    50% {
+        box-shadow:
+            0 8px 32px rgba(0, 212, 255, 0.7),
+            0 4px 12px rgba(124, 58, 237, 0.4),
+            inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
+}
+
+/* Header del plan */
+.pricing-header-new {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    position: relative;
+}
+
+.pricing-header-new::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 212, 255, 0.35) 50%, transparent 100%);
+    border-radius: 2px;
+}
+
+.featured-card .pricing-header-new::after {
+    background: linear-gradient(90deg, transparent 0%, rgba(0, 212, 255, 0.55) 50%, transparent 100%);
+    box-shadow: 0 0 6px rgba(0, 212, 255, 0.25);
+}
+
+.pricing-header-new h3 {
+    font-size: 1.65rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    color: var(--color-text);
+    letter-spacing: -0.015em;
+}
+
+.pricing-description-new {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    max-width: 95%;
+    margin: 0 auto;
+    padding: 0 0.5rem;
+}
+
+/* Precio */
+.pricing-price-new {
+    text-align: center;
+    margin-bottom: 1.75rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0.2rem;
+    padding: 1rem 0;
+}
+
+.price-currency-new {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    margin-top: 0.5rem;
+}
+
+.price-amount-new {
+    font-size: 3.2rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    letter-spacing: -0.025em;
+}
+
+.featured-card .price-amount-new {
+    background: linear-gradient(135deg, #00D4FF 0%, #7C3AED 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.12));
+}
+
+.price-period-new {
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    margin-top: 1.4rem;
+}
+
+/* Precio personalizado */
+.price-custom {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-text);
+    background: linear-gradient(135deg, #00D4FF 0%, #7C3AED 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.01em;
+}
+
+.custom-galaxy-text {
+    font-size: 1.85rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #00D4FF 0%, #7C3AED 50%, #FF1493 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: galaxy-shimmer 4s ease-in-out infinite;
+    letter-spacing: -0.015em;
+    text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
+    filter: drop-shadow(0 0 10px rgba(124, 58, 237, 0.4));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0;
+    min-height: 3.2rem;
+}
+
+@keyframes galaxy-shimmer {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Features */
+.pricing-features-new {
+    list-style: none;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+}
+
+.pricing-features-new li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 0.55rem 0;
+    font-size: 0.87rem;
+    color: var(--color-text);
+    line-height: 1.5;
+    transition: all 0.2s ease;
+}
+
+.pricing-features-new li:hover {
+    padding-left: 0.25rem;
+}
+
+.check-icon {
+    color: #00D4FF;
+    font-weight: 700;
+    font-size: 1rem;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background: rgba(0, 212, 255, 0.08);
+    border-radius: 50%;
+    transition: all 0.2s ease;
+}
+
+.pricing-features-new li:hover .check-icon {
+    background: rgba(0, 212, 255, 0.15);
+    transform: scale(1.08);
+}
+
+.featured-card .check-icon {
+    background: rgba(0, 212, 255, 0.12);
+}
+
+.featured-card .pricing-features-new li:hover .check-icon {
+    background: rgba(0, 212, 255, 0.2);
+}
+
+/* Botones unificados */
+.btn-pricing {
+    width: 100%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.95rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: auto;
+    background: linear-gradient(135deg, #00D4FF 0%, #0099CC 100%);
+    color: white;
+    border: none;
+    box-shadow:
+        0 3px 16px rgba(0, 212, 255, 0.28),
+        0 1px 6px rgba(0, 0, 0, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.btn-pricing::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.btn-pricing:hover {
+    transform: scale(1.02);
+    box-shadow:
+        0 6px 24px rgba(0, 212, 255, 0.4),
+        0 2px 10px rgba(0, 0, 0, 0.12),
+        inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    background: linear-gradient(135deg, #00E5FF 0%, #00AADD 100%);
+}
+
+.btn-pricing:hover::before {
+    opacity: 1;
+}
+
+.btn-pricing:active {
+    transform: scale(0.98);
+    transition: all 0.12s ease;
+}
+
+/* Nota final */
+.pricing-note-new {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 1.5rem 2rem;
+    background: rgba(0, 212, 255, 0.04);
+    border: 1px solid rgba(0, 212, 255, 0.12);
+    border-radius: 16px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pricing-note-new p {
+    font-size: 0.95rem;
+    color: var(--color-text);
+    margin: 0;
+}
+
+.pricing-note-new a {
+    color: #00D4FF;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.pricing-note-new a:hover {
+    color: #7C3AED;
+    text-decoration: underline;
+}
+
+/* Animaciones */
+@keyframes float-gentle {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+    33% {
+        transform: translate(20px, -20px);
+    }
+    66% {
+        transform: translate(-15px, 15px);
+    }
+}
+
+@keyframes twinkle-subtle {
     0%, 100% {
         opacity: 0.3;
         transform: scale(1);
     }
     50% {
-        opacity: 1;
-        transform: scale(1.3);
+        opacity: 0.8;
+        transform: scale(1.5);
     }
 }
 
-@keyframes pricingOrbitRotate {
-    from {
-        transform: rotate(0deg);
+@keyframes glow-pulse {
+    0%, 100% {
+        opacity: 0.2;
     }
-    to {
-        transform: rotate(360deg);
+    50% {
+        opacity: 0.4;
     }
 }
 
-.pricing-grid {
-    position: relative;
-    z-index: 1;
+/* Responsive para Pricing */
+@media (max-width: 1440px) {
+    .pricing-grid-new {
+        max-width: 1300px;
+        gap: 1.25rem;
+    }
+}
+
+@media (max-width: 1280px) {
+    .pricing-grid-new {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        max-width: 900px;
+    }
+
+    .pricing-card-new {
+        padding: 2rem 1.5rem;
+    }
+}
+
+@media (max-width: 1024px) {
+    .pricing {
+        padding: 6rem 2rem;
+    }
+
+    .pricing-grid-new {
+        gap: 1.5rem;
+        padding: 0;
+    }
+
+    .pricing-header-new h3 {
+        font-size: 1.55rem;
+    }
+
+    .price-amount-new {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .pricing {
+        padding: 5rem 1.25rem;
+    }
+
+    .pricing-grid-new {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-top: 2.5rem;
+        max-width: 500px;
+    }
+
+    .pricing-card-new {
+        padding: 1.75rem 1.5rem;
+        border-radius: 22px;
+    }
+
+    .pricing-header-new {
+        margin-bottom: 1.25rem;
+        padding-bottom: 1.25rem;
+    }
+
+    .pricing-header-new h3 {
+        font-size: 1.5rem;
+    }
+
+    .pricing-description-new {
+        font-size: 0.84rem;
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .pricing-price-new {
+        margin-bottom: 1.5rem;
+        padding: 0.75rem 0;
+    }
+
+    .price-amount-new {
+        font-size: 2.8rem;
+    }
+
+    .price-currency-new {
+        font-size: 1.3rem;
+    }
+
+    .price-custom {
+        font-size: 1.8rem;
+    }
+
+    .popular-badge {
+        font-size: 0.65rem;
+        padding: 0.5rem 1.4rem;
+        top: -14px;
+    }
+
+    .pricing-features-new {
+        margin-bottom: 1.75rem;
+    }
+
+    .pricing-features-new li {
+        font-size: 0.84rem;
+        padding: 0.5rem 0;
+        gap: 0.7rem;
+    }
+
+    .check-icon {
+        width: 17px;
+        height: 17px;
+        font-size: 0.95rem;
+    }
+
+    .btn-pricing {
+        padding: 0.9rem 1.25rem;
+        font-size: 0.92rem;
+    }
+
+    .pricing-note-new {
+        padding: 1.25rem 1.5rem;
+        margin-top: 2.5rem;
+    }
+
+    .pricing-note-new p {
+        font-size: 0.86rem;
+    }
+
+    .pricing-orb {
+        opacity: 0.06;
+    }
+
+    /* Ajustes para hover en móvil */
+    .pricing-card-new:hover {
+        transform: translateY(-3px);
+    }
+
+    .featured-card:hover {
+        transform: translateY(-4px);
+    }
+
+    .btn-pricing:hover {
+        transform: scale(1.01);
+    }
 }
 
 /* ==================== IMPULSA SECTION ==================== */
@@ -5107,6 +5985,19 @@ body.menu-open {
     .logo-image {
         height: 280%;
         max-height: 350px;
+    }
+
+    /* Typing effect debajo del logo en tablets y móviles */
+    .terminal-typing {
+        position: absolute;
+        top: 60px;
+        left: 1.5rem;
+        margin-left: 0;
+        font-size: 0.8rem;
+    }
+
+    .typing-cursor {
+        font-size: 0.9rem;
     }
 
     /* Hero Section */

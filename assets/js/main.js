@@ -620,3 +620,59 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// ==================== TERMINAL TYPING EFFECT ====================
+document.addEventListener('DOMContentLoaded', function() {
+    const typingElement = document.querySelector('.typing-text');
+
+    if (!typingElement) return;
+
+    // Frases galácticas para el typing effect
+    const phrases = [
+        "Innovación digital",
+        "Diseño que despega",
+        "Tu sitio web profesional",
+        "Tecnología a tu medida",
+        "Experiencias únicas",
+        "Crece con nosotros"
+    ];
+
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 80;
+
+    function type() {
+        const currentPhrase = phrases[phraseIndex];
+
+        if (isDeleting) {
+            // Borrando
+            typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+            charIndex--;
+            typingSpeed = 40;
+        } else {
+            // Escribiendo
+            typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+            charIndex++;
+            typingSpeed = 80;
+        }
+
+        // Si terminó de escribir la frase
+        if (!isDeleting && charIndex === currentPhrase.length) {
+            // Pausa antes de empezar a borrar
+            typingSpeed = 3500;
+            isDeleting = true;
+        }
+        // Si terminó de borrar la frase
+        else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+            typingSpeed = 500;
+        }
+
+        setTimeout(type, typingSpeed);
+    }
+
+    // Iniciar el efecto después de un pequeño delay
+    setTimeout(type, 1000);
+});
