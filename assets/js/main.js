@@ -640,7 +640,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let phraseIndex = 0;
     let charIndex = 0;
     let isDeleting = false;
-    let typingSpeed = 80;
+    let typingSpeed = 120;
 
     function type() {
         const currentPhrase = phrases[phraseIndex];
@@ -649,12 +649,12 @@ document.addEventListener('DOMContentLoaded', function() {
             // Borrando
             typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
             charIndex--;
-            typingSpeed = 40;
+            typingSpeed = 60;
         } else {
             // Escribiendo
             typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
             charIndex++;
-            typingSpeed = 80;
+            typingSpeed = 120;
         }
 
         // Si terminó de escribir la frase

@@ -5476,6 +5476,88 @@ body.menu-open {
 
 /* Responsive */
 @media (max-width: 768px) {
+    /* ==================== CARRUSEL MÓVIL ==================== */
+    /* Carrusel más lento y suave en móvil - cada logo visible 3-4 segundos */
+    .carousel-track {
+        animation: orbit-scroll-mobile 60s ease-in-out infinite;
+        gap: 4rem;
+    }
+
+    @keyframes orbit-scroll-mobile {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-33.333%);
+        }
+    }
+
+    .clients-carousel-wrapper {
+        overflow: hidden;
+        padding: 0 1rem;
+    }
+
+    .carousel-item {
+        min-width: 150px;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .carousel-item img {
+        max-width: 130px;
+        height: auto;
+        object-fit: contain;
+    }
+
+    /* ==================== NAVBAR MÓVIL ==================== */
+    /* Typing effect debajo del logo en móvil */
+    .terminal-typing {
+        position: static;
+        width: 100%;
+        margin: 0;
+        padding: 0.5rem 0 0 0;
+        font-size: 0.7rem;
+        text-align: center;
+        order: 2;
+        flex-basis: 100%;
+    }
+
+    .typing-cursor {
+        font-size: 0.75rem;
+    }
+
+    .typing-text {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .header-inner {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        min-height: 70px;
+    }
+
+    .logo {
+        order: 1;
+        flex: 0 0 auto;
+    }
+
+    .menu-toggle {
+        order: 3;
+        flex: 0 0 auto;
+    }
+
+    .nav {
+        order: 4;
+        width: 100%;
+    }
+
     .contact-quick-access {
         padding: 2rem 1.5rem;
     }
@@ -5985,19 +6067,6 @@ body.menu-open {
     .logo-image {
         height: 280%;
         max-height: 350px;
-    }
-
-    /* Typing effect debajo del logo en tablets y móviles */
-    .terminal-typing {
-        position: absolute;
-        top: 60px;
-        left: 1.5rem;
-        margin-left: 0;
-        font-size: 0.8rem;
-    }
-
-    .typing-cursor {
-        font-size: 0.9rem;
     }
 
     /* Hero Section */
