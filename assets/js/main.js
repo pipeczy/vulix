@@ -676,3 +676,28 @@ document.addEventListener('DOMContentLoaded', function() {
     // Iniciar el efecto después de un pequeño delay
     setTimeout(type, 1000);
 });
+
+// ==================== PHRASES CAROUSEL ROTATION ====================
+document.addEventListener('DOMContentLoaded', function() {
+    const phraseItems = document.querySelectorAll('.phrase-item');
+
+    if (!phraseItems.length) return;
+
+    let currentPhraseIndex = 0;
+    const rotationInterval = 4500; // 4.5 seconds per phrase for comfortable reading
+
+    function rotatePhrases() {
+        // Remove active class from current phrase
+        phraseItems[currentPhraseIndex].classList.remove('active');
+
+        // Move to next phrase
+        currentPhraseIndex = (currentPhraseIndex + 1) % phraseItems.length;
+
+        // Add active class to new phrase
+        phraseItems[currentPhraseIndex].classList.add('active');
+    }
+
+    // Start rotation
+    setInterval(rotatePhrases, rotationInterval);
+});
+
