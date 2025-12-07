@@ -336,8 +336,9 @@ body {
 .typing-text {
     background: linear-gradient(135deg, #00D4FF 0%, #7C3AED 50%, #00D4FF 100%);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
     background-size: 200% 100%;
     animation: gradient-shift 3s ease infinite;
     text-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
@@ -952,8 +953,7 @@ body.menu-open {
     max-width: 640px;
     position: relative;
     z-index: 10;
-    padding-left: 90px;
-    
+
 }
 
 .hero-badge {
@@ -997,8 +997,9 @@ body.menu-open {
 .hero h1 span {
     background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
 .hero-subtitle {
@@ -1428,8 +1429,9 @@ body.menu-open {
     color: white;
     background: linear-gradient(135deg, #ffffff 0%, var(--color-primary) 100%);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
     letter-spacing: -0.02em;
 }
 
@@ -1757,16 +1759,19 @@ body.menu-open {
     color: rgba(255, 255, 255, 0.8);
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, var(--color-primary) 100%);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
     transition: all 0.3s ease;
 }
 
 .trusted-cta:hover .trusted-cta-text {
-    background: linear-gradient(135deg, white 0%, var(--color-primary) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  background: linear-gradient(135deg, white 0%, var(--color-primary) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
+
 
 .trusted-cta-arrow {
     font-size: 1.25rem;
@@ -2395,7 +2400,7 @@ body.menu-open {
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     z-index: 1;
-    drop-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.08));
 }
 
 /* Invertir colores solo para el logo de MadaMedia */
@@ -2441,8 +2446,9 @@ body.menu-open {
 .galaxy-gradient {
     background: linear-gradient(135deg, #00D4FF 0%, #7C3AED 50%, #00D4FF 100%);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
     font-weight: 600;
     position: relative;
     display: inline-block;
@@ -4547,8 +4553,9 @@ body.menu-open {
 .featured-card .price-amount-new {
     background: linear-gradient(135deg, #00D4FF 0%, #7C3AED 100%);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
     filter: drop-shadow(0 0 15px rgba(0, 212, 255, 0.12));
 }
 
@@ -4565,8 +4572,9 @@ body.menu-open {
     color: var(--color-text);
     background: linear-gradient(135deg, #00D4FF 0%, #7C3AED 100%);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
     letter-spacing: -0.01em;
 }
 
@@ -4576,8 +4584,9 @@ body.menu-open {
     background: linear-gradient(135deg, #00D4FF 0%, #7C3AED 50%, #FF1493 100%);
     background-size: 200% 200%;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
     animation: galaxy-shimmer 4s ease-in-out infinite;
     letter-spacing: -0.015em;
     text-shadow: 0 0 30px rgba(0, 212, 255, 0.3);
@@ -5023,8 +5032,9 @@ body.menu-open {
 .impulsa-title span {
     background: linear-gradient(135deg, var(--color-primary) 0%, #a855f7 100%);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
 .impulsa-text {
@@ -6004,10 +6014,10 @@ body.menu-open {
 /* Responsive */
 @media (max-width: 768px) {
     /* ==================== CARRUSEL MÓVIL ==================== */
-    /* Carrusel más lento y suave en móvil - cada logo visible 3-4 segundos */
+    /* Carrusel más lento en móvil - velocidad igual a PC */
     .carousel-track {
-        animation: orbit-scroll-mobile 60s ease-in-out infinite;
-        gap: 4rem;
+        animation: orbit-scroll-mobile 30s linear infinite;
+        gap: 2rem;
     }
 
     @keyframes orbit-scroll-mobile {
@@ -6033,33 +6043,15 @@ body.menu-open {
     }
 
     .carousel-item img {
-        max-width: 130px;
+        max-width: 90px;
         height: auto;
         object-fit: contain;
     }
 
     /* ==================== NAVBAR MÓVIL ==================== */
-    /* Typing effect debajo del logo en móvil */
+    /* Ocultar terminal typing en móvil para no tapar el botón del menú */
     .terminal-typing {
-        position: static;
-        width: 100%;
-        margin: 0;
-        padding: 0.5rem 0 0 0;
-        font-size: 0.7rem;
-        text-align: center;
-        order: 2;
-        flex-basis: 100%;
-    }
-
-    .typing-cursor {
-        font-size: 0.75rem;
-    }
-
-    .typing-text {
-        max-width: 100%;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+        display: none !important;
     }
 
     .header-inner {

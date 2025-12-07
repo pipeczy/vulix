@@ -64,8 +64,8 @@
 
     /* ===== HEADER MOBILE ===== */
     .header {
-        padding: 0.75rem 1.25rem;
-        height: 70px;
+        padding: 1rem 1.25rem;
+        height: 65px;
         position: fixed;
         top: 0;
         left: 0;
@@ -74,18 +74,40 @@
         -webkit-backdrop-filter: blur(20px);
         z-index: 3000;
         overflow: visible;
+        display: flex;
+        align-items: center;
     }
 
     .header.scrolled {
-        height: 65px;
+        height: 60px;
         backdrop-filter: blur(25px);
         -webkit-backdrop-filter: blur(25px);
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
     }
 
+    .header-inner {
+        justify-content: space-between !important;
+        align-items: center !important;
+        gap: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+    .logo {
+        order: 0;
+        display: flex;
+        align-items: center;
+        height: 100%;
+    }
+
+    .menu-toggle {
+        order: 1;
+    }
+
     .logo-image {
-        height: 250%;
-        max-height: 200px;
+        height: 120px;
+        width: auto;
+        object-fit: contain;
     }
 
     /* Botón hamburguesa/X visible siempre */
@@ -378,6 +400,7 @@
         display: block;
         margin-top: 1.5rem;
         position: relative;
+        overflow: hidden;
     }
 
     .hero-mockup {
@@ -413,10 +436,15 @@
 
     .trusted-title {
         font-size: 1.4rem;
+        text-align: center;
+        padding: 0;
+        margin: 0 auto;
     }
 
     .trusted-header {
         margin-bottom: 2rem;
+        text-align: center;
+        padding: 0;
     }
 
     .trusted-carousel-wrapper {
@@ -883,8 +911,9 @@
     }
 
     .logo-image {
-        height: 220%;
-        max-height: 150px;
+        height: 120px;
+        width: auto;
+        object-fit: contain;
     }
 
     .nav {
@@ -950,10 +979,15 @@
 
     .trusted-title {
         font-size: 1.2rem;
+        text-align: center;
+        padding: 0;
+        margin: 0 auto;
     }
 
     .trusted-header {
         margin-bottom: 1.5rem;
+        text-align: center;
+        padding: 0;
     }
 
     .trusted-carousel-wrapper {
@@ -1400,7 +1434,6 @@
     .stardust,
     .hero-float-card,
     .services-space-bg,
-    .parallax-star,
     .space-star,
     .space-orbit,
     .space-planet,
@@ -1412,14 +1445,22 @@
     .hero-bg .hero-grid {
         display: none !important;
     }
+    
+    /* Mantener estrellas visibles pero más prominentes en móvil */
+    .star-dot {
+        width: 3px !important;
+        height: 3px !important;
+        background: rgba(0, 212, 255, 0.6) !important;
+        box-shadow: 0 0 6px rgba(0, 212, 255, 0.4);
+    }
 
     /* Mantener solo el mockup visible en hero */
     .hero-visual .hero-mockup {
         display: block !important;
     }
 
-    /* Optimizar animaciones en mobile - pero permitir las del hero */
-    :not(.hero *):not(.hero-cta):not(.btn):not(.hero-badge):not(.hero-content) {
+    /* Optimizar animaciones en mobile - pero permitir las del hero y carruseles */
+    :not(.hero *):not(.hero-cta):not(.btn):not(.hero-badge):not(.hero-content):not(.carousel-track):not(.trusted-track) {
         animation-duration: 0.5s !important;
         transition-duration: 0.3s !important;
     }
