@@ -876,9 +876,54 @@
         }
 
         @media (max-width: 768px) {
+            .header {
+                display: flex;
+                align-items: center;
+                height: 65px;
+                padding: 1rem 1.25rem;
+            }
+
+            .header-inner {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                height: 100%;
+            }
+
+            .logo {
+                display: flex;
+                align-items: center;
+                height: 100%;
+            }
+
+            .logo-image {
+                height: 45px;
+                width: auto;
+                object-fit: contain;
+            }
+
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
             .about-hero {
-                padding: 5rem 1.5rem 2rem;
-                min-height: 40vh;
+                padding: 8rem 1.5rem 3rem;
+                min-height: 50vh;
+            }
+
+            .about-hero h1 {
+                font-size: 2rem;
+                line-height: 1.3;
+                margin-bottom: 1.25rem;
+            }
+
+            .about-hero-subtitle {
+                font-size: 1rem;
+                line-height: 1.6;
+                padding: 0 0.5rem;
             }
 
             .about-content {
@@ -886,12 +931,12 @@
             }
 
             .about-intro {
-                padding: 2rem;
+                padding: 2rem 1.5rem;
             }
 
             .mission-card,
             .vision-card {
-                padding: 2rem;
+                padding: 2rem 1.5rem;
             }
 
             .values-section {
@@ -922,16 +967,7 @@
                     <li><a href="index.html#proceso">Proceso</a></li>
                     <li><a href="index.html#contacto">Contacto</a></li>
                 </ul>
-<<<<<<< HEAD
                 <a href="index.html#contacto" class="btn btn-primary">Comienza Tu Proyecto</a>
-                <div class="menu-toggle" aria-label="Menú">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-=======
-                <a href="index.html#contacto" class="btn btn-primary">Iniciar Proyecto</a>
->>>>>>> c51cbf15d13e80f10390d9af50b8fe8b2c6b8fe2
             </nav>
             <button class="menu-toggle" id="menuToggle" aria-label="Menú">
                 <span></span>
