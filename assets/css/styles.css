@@ -547,7 +547,12 @@ body.menu-open {
     position: relative;
     padding: 8rem 2rem 2rem;
     overflow: hidden;
-    background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
+    background:
+        radial-gradient(circle at 1px 1px, rgba(0, 0, 0, 0.025) 1px, transparent 1px),
+        radial-gradient(ellipse 800px 600px at 20% 40%, rgba(0, 212, 255, 0.03) 0%, transparent 50%),
+        radial-gradient(ellipse 600px 800px at 15% 70%, rgba(124, 58, 237, 0.025) 0%, transparent 50%),
+        linear-gradient(180deg, #f7f8fa 0%, #fafbfc 50%, #ffffff 100%);
+    background-size: 40px 40px, 100% 100%, 100% 100%, 100% 100%;
 }
 
 /* Estrellas de fondo en el hero */
@@ -1049,7 +1054,7 @@ body.menu-open {
     position: relative;
     animation: fadeInRight 0.8s ease-out 0.3s both;
     max-width: 100%;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .hero-mockup {
@@ -1351,18 +1356,16 @@ body.menu-open {
 .trusted-companies-container {
     position: relative;
     background: linear-gradient(135deg, rgb(10, 15, 30) 0%, rgb(15, 20, 40) 100%);
-    border-radius: 24px;
-    padding: 2.5rem 4rem;
-    overflow: visible;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3),
-                0 0 40px rgba(0, 212, 255, 0.15);
+    border-radius: 20px;
+    padding: 2rem 2.25rem 2rem 2.25rem;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25),
+                0 0 0 1px rgba(0, 212, 255, 0.1);
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    min-height: 450px;
-    max-width: none;
+    max-width: 700px;
     width: 100%;
-    margin: 0 auto;
+    margin: 0 auto 3rem auto;
     box-sizing: border-box;
 }
 
@@ -1372,6 +1375,8 @@ body.menu-open {
     inset: 0;
     pointer-events: none;
     z-index: 1;
+    border-radius: inherit;
+    overflow: hidden;
 }
 
 .trusted-grid {
@@ -1382,6 +1387,7 @@ body.menu-open {
         linear-gradient(90deg, rgba(0, 212, 255, 0.025) 1px, transparent 1px);
     background-size: 40px 40px;
     opacity: 0.4;
+    border-radius: inherit;
 }
 
 .trusted-glow {
@@ -1420,7 +1426,7 @@ body.menu-open {
     position: relative;
     z-index: 2;
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .trusted-title {
@@ -1441,7 +1447,7 @@ body.menu-open {
     z-index: 2;
     width: 100%;
     overflow: hidden;
-    padding: 1.5rem 0;
+    padding: 1.25rem 0;
     mask-image: linear-gradient(
         to right,
         transparent 0%,
@@ -1682,13 +1688,286 @@ body.menu-open {
     white-space: nowrap;
 }
 
+/* ==================== NEW TRUST ELEMENTS ==================== */
+
+/* Particle Dots Animation */
+.trusted-particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.particle-dot {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.8) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: particleFloat 8s ease-in-out infinite;
+}
+
+.particle-dot:nth-child(1) {
+    top: 15%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.particle-dot:nth-child(2) {
+    top: 25%;
+    right: 15%;
+    animation-delay: 2s;
+}
+
+.particle-dot:nth-child(3) {
+    bottom: 20%;
+    left: 20%;
+    animation-delay: 4s;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.8) 0%, transparent 70%);
+}
+
+.particle-dot:nth-child(4) {
+    bottom: 30%;
+    right: 25%;
+    animation-delay: 6s;
+}
+
+.particle-dot:nth-child(5) {
+    top: 50%;
+    left: 50%;
+    animation-delay: 1s;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.8) 0%, transparent 70%);
+}
+
+@keyframes particleFloat {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.3;
+    }
+    25% {
+        transform: translate(20px, -20px) scale(1.5);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translate(-15px, -40px) scale(1);
+        opacity: 1;
+    }
+    75% {
+        transform: translate(-20px, -10px) scale(1.2);
+        opacity: 0.6;
+    }
+}
+
+/* Trust Badge */
+.trusted-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 50px;
+    margin-bottom: 1rem;
+    animation: badgePulse 3s ease-in-out infinite;
+}
+
+.badge-icon {
+    font-size: 1rem;
+    color: #00D4FF;
+    animation: checkBounce 2s ease-in-out infinite;
+}
+
+.badge-text {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+@keyframes badgePulse {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        transform: scale(1);
+    }
+    50% {
+        box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+        transform: scale(1.02);
+    }
+}
+
+@keyframes checkBounce {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* Trusted Subtitle */
+.trusted-subtitle {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0.5rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+}
+
+/* Value Props Section */
+.trusted-value-props {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    margin: 1.25rem 0 0.875rem 0;
+    padding: 1.15rem;
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.03) 0%, rgba(124, 58, 237, 0.03) 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    position: relative;
+    z-index: 2;
+}
+
+.value-prop-item {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    padding: 0.75rem 1.25rem;
+    background: linear-gradient(90deg, rgba(0, 212, 255, 0.05) 0%, transparent 100%);
+    border-left: 3px solid rgba(0, 212, 255, 0.5);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    animation: valueFadeIn 0.6s ease-out both;
+}
+
+.value-prop-item:nth-child(1) {
+    animation-delay: 0.1s;
+}
+
+.value-prop-item:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.value-prop-item:nth-child(3) {
+    animation-delay: 0.3s;
+}
+
+.value-prop-item:hover {
+    background: linear-gradient(90deg, rgba(0, 212, 255, 0.1) 0%, rgba(124, 58, 237, 0.05) 100%);
+    transform: translateX(5px);
+    box-shadow: 0 4px 20px rgba(0, 212, 255, 0.15);
+}
+
+.value-icon {
+    font-size: 1.25rem;
+    color: #00D4FF;
+    font-weight: bold;
+    min-width: 24px;
+    animation: checkPulse 2s ease-in-out infinite;
+}
+
+.value-text {
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+}
+
+@keyframes valueFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes checkPulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+/* Logo Shine Effect */
+.logo-shine {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+}
+
+.trusted-logo-item:hover .logo-shine {
+    opacity: 1;
+    animation: shineSlide 1s ease-in-out;
+}
+
+@keyframes shineSlide {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Phrase Icon */
+.phrase-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5rem;
+    animation: iconBounce 2s ease-in-out infinite;
+    z-index: 3;
+}
+
+@keyframes iconBounce {
+    0%, 100% {
+        transform: translateY(-50%) scale(1);
+    }
+    50% {
+        transform: translateY(-50%) scale(1.2) rotate(10deg);
+    }
+}
+
+/* CTA Pulse Effect */
+.cta-pulse {
+    position: absolute;
+    inset: -10px;
+    background: radial-gradient(circle, rgba(0, 212, 255, 0.3) 0%, transparent 70%);
+    border-radius: 50%;
+    opacity: 0;
+    animation: ctaPulseAnim 2s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes ctaPulseAnim {
+    0%, 100% {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 0.5;
+    }
+}
+
 /* Rotating Phrases Carousel */
 .phrases-carousel {
     position: relative;
     z-index: 2;
-    margin-top: 2rem;
-    margin-bottom: 1.5rem;
-    height: 60px;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    height: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1706,27 +1985,22 @@ body.menu-open {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 90%;
+    width: 95%;
     margin: 0;
     padding: 0 1rem;
     text-align: center;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     font-weight: 500;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.4;
+    color: rgba(255, 255, 255, 0.85);
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
                 visibility 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    background: linear-gradient(90deg,
-        rgba(0, 212, 255, 0.15) 0%,
-        rgba(138, 43, 226, 0.15) 100%);
-    border-left: 3px solid rgba(0, 212, 255, 0.5);
-    border-radius: 4px;
-    padding: 0.8rem 1.2rem;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    padding: 0.5rem 0.8rem;
 }
 
 .phrase-item.active {
@@ -1739,7 +2013,7 @@ body.menu-open {
     position: relative;
     z-index: 2;
     text-align: center;
-    margin-top: 2.5rem;
+    margin-top: 1.5rem;
     margin-bottom: 0.5rem;
     display: flex;
     align-items: center;
